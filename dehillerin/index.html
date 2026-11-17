@@ -1,0 +1,818 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>E.Dehillerin, rue Coquillière</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+/* Layout : une boutique-musée. Bandes plein cadre qui alternent le blanc de la marque, le vert du fronton et la nuit cuivrée du coq ; tout le reste s'efface devant le métal. */
+:root{
+  --paper:#fbfbf8;
+  --mist:#f0efe9;
+  --ink:#0d2a1a;          /* vert du logo E.DEHILLERIN */
+  --green:#0f3a23;        /* vert du fronton rue Coquillière */
+  --green-2:#14472b;
+  --night:#140d0c;        /* fond de la photo du coq */
+  --copper:#b4663d;
+  --copper-hi:#e8a77a;
+  --brass:#c8a04a;
+  --line:rgba(13,42,26,.14);
+  --line-inv:rgba(255,255,255,.16);
+  --muted:#5b6b61;
+  --f-display:"Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --f-text:"Jost", "Futura", "Avenir Next", system-ui, sans-serif;
+  --gut:max(16px, env(safe-area-inset-left, 0px));
+  --gutr:max(16px, env(safe-area-inset-right, 0px));
+  --ease:cubic-bezier(.2,.7,.1,1);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-text);font-size:16px;line-height:1.6;font-weight:400;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+:focus-visible{outline:2px solid var(--copper);outline-offset:3px}
+.wrap{padding-left:calc(var(--gut) + clamp(0px,3vw,40px));padding-right:calc(var(--gutr) + clamp(0px,3vw,40px));max-width:1600px;margin:0 auto}
+.eyebrow{font-family:var(--f-text);font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;font-weight:500}
+.serif{font-family:var(--f-display)}
+em,.it{font-style:italic}
+.num{font-variant-numeric:tabular-nums lining-nums}
+
+/* ---------- Préchargement ---------- */
+.loader{position:fixed;inset:0;z-index:100;background:var(--green);color:#fff;display:grid;place-items:center;clip-path:inset(0 0 0 0)}
+.loader-in{display:grid;justify-items:center;gap:22px}
+.loader-year{font-family:var(--f-display);font-size:clamp(4rem,14vw,11rem);line-height:.9;font-weight:400;letter-spacing:-.02em}
+.loader-bar{width:min(260px,60vw);height:1px;background:var(--line-inv);position:relative;overflow:hidden}
+.loader-bar i{position:absolute;inset:0;background:var(--copper-hi);transform-origin:left;transform:scaleX(0)}
+.loader .eyebrow{color:rgba(255,255,255,.7)}
+.no-js .loader,.reduced .loader{display:none}
+
+/* ---------- Navigation ---------- */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--night)}
+.nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;color:#fff;transition:background .5s var(--ease),color .5s var(--ease),transform .6s var(--ease),border-color .5s;border-bottom:1px solid transparent}
+.nav.solid{background:rgba(251,251,248,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:var(--ink);border-color:var(--line)}
+.nav.hide{transform:translateY(-110%)}
+.nav-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:76px;gap:16px}
+.nav-links{display:flex;gap:clamp(14px,2.4vw,36px);list-style:none;margin:0;padding:0}
+.nav-links a{text-decoration:none;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;position:relative;padding:6px 0}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;justify-self:center}
+.brand-word{font-family:var(--f-text);font-weight:500;letter-spacing:.06em;font-size:1.32rem;line-height:1}
+.brand-sub{display:block;font-size:.56rem;letter-spacing:.28em;text-transform:uppercase;opacity:.7;margin-top:5px;font-weight:400}
+.brand img{width:34px;height:auto}
+.nav-tools{display:flex;justify-content:flex-end;align-items:center;gap:22px;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500}
+.cart-btn{display:flex;align-items:center;gap:10px}
+.cart-count{min-width:24px;height:24px;border-radius:12px;border:1px solid currentColor;display:inline-grid;place-items:center;font-size:.7rem;letter-spacing:0;padding:0 6px}
+.burger{display:none}
+@media (max-width:900px){
+  .nav-links,.nav-tools .lang{display:none}
+  .burger{display:block;justify-self:start;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+  .brand-sub{display:none}
+  .brand-word{font-size:1.06rem}
+  .brand img{width:26px}
+  .nav-in{height:64px}
+}
+.menu{position:fixed;inset:0;z-index:70;background:var(--green);color:#fff;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:max(80px,env(safe-area-inset-top)) var(--gutr) 40px var(--gut);clip-path:inset(0 0 100% 0);transition:clip-path .8s var(--ease);visibility:hidden}
+.menu.open{clip-path:inset(0 0 0 0);visibility:visible}
+.menu a{font-family:var(--f-display);font-size:clamp(2.4rem,11vw,4rem);text-decoration:none;line-height:1.1}
+.menu-close{position:absolute;top:calc(env(safe-area-inset-top,0px) + 22px);right:var(--gutr);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase}
+
+/* ---------- Héros ---------- */
+.hero{position:relative;background:var(--night);color:#fff;overflow:hidden;padding-top:120px;padding-bottom:clamp(40px,6vw,80px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.9fr);align-items:end;gap:clamp(20px,4vw,60px);min-height:min(820px,calc(100svh - 60px))}
+.hero-copy{position:relative;z-index:2;padding-bottom:clamp(10px,3vw,40px)}
+.hero-meta{display:flex;gap:28px;flex-wrap:wrap;color:rgba(255,255,255,.66);margin-bottom:clamp(24px,4vw,48px)}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(2.9rem,min(7.2vw,10.5vh),7.6rem);line-height:.93;letter-spacing:-.025em;margin:0;text-wrap:balance}
+.hero h1 .ln{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 .ln>span{display:inline-block}
+.hero h1 .cu{font-style:italic;background:linear-gradient(100deg,#8a4524 0%,#d98b5c 22%,#ffd6b4 34%,#c97447 46%,#8a4524 60%,#e8a77a 78%,#9a5130 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 7s linear infinite}
+@keyframes sheen{to{background-position:-250% 0}}
+.hero-foot{display:flex;flex-wrap:wrap;align-items:center;gap:20px 40px;margin-top:clamp(28px,4vw,52px)}
+.hero-foot p{margin:0;max-width:38ch;color:rgba(255,255,255,.78);font-size:1.02rem;font-weight:300}
+.btn{display:inline-flex;align-items:center;gap:14px;padding:18px 30px;border-radius:999px;border:1px solid currentColor;text-decoration:none;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;font-weight:500;position:relative;overflow:hidden;isolation:isolate;transition:color .5s var(--ease)}
+.btn::before{content:"";position:absolute;inset:0;background:var(--copper);transform:translateY(101%);transition:transform .6s var(--ease);z-index:-1;border-radius:inherit}
+.btn:hover{color:#fff;border-color:var(--copper)}
+.btn:hover::before{transform:translateY(0)}
+.btn.fill{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.btn .arr{transition:transform .5s var(--ease)}
+.btn:hover .arr{transform:translateX(5px)}
+.hero-visual{position:relative;align-self:stretch;min-height:420px}
+.coq{position:absolute;inset:-6% -10% -12% 0;display:grid;place-items:end center}
+.coq img{height:100%;width:auto;max-width:none;object-fit:contain;-webkit-mask-image:radial-gradient(60% 62% at 50% 50%,#000 58%,transparent 100%);mask-image:radial-gradient(60% 62% at 50% 50%,#000 58%,transparent 100%);will-change:transform}
+.halo{position:absolute;width:70%;aspect-ratio:1;left:15%;top:18%;border-radius:50%;background:radial-gradient(circle,rgba(232,167,122,.28),rgba(232,167,122,0) 65%);filter:blur(10px);pointer-events:none}
+.seal{position:absolute;right:max(0px,2vw);top:4%;width:clamp(110px,11vw,150px);aspect-ratio:1;z-index:3;color:var(--copper-hi)}
+.seal svg{width:100%;height:100%;animation:spin 26s linear infinite}
+.seal b{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-display);font-style:italic;font-weight:400;font-size:clamp(1.3rem,2vw,1.8rem);color:#fff}
+@keyframes spin{to{transform:rotate(360deg)}}
+.scroll-cue{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);display:grid;justify-items:center;gap:10px;color:rgba(255,255,255,.55);z-index:3}
+.scroll-cue i{width:1px;height:46px;background:linear-gradient(rgba(255,255,255,.6),rgba(255,255,255,0));animation:drip 2.2s var(--ease) infinite;transform-origin:top}
+@keyframes drip{0%{transform:scaleY(0)}50%{transform:scaleY(1);transform-origin:top}50.1%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media (max-width:900px){
+  .hero{padding-top:96px}
+  .hero-grid{grid-template-columns:1fr;min-height:0}
+  .hero-visual{order:-1;min-height:0;height:min(80vw,380px);margin-bottom:-10px}
+  .coq{inset:0;overflow:hidden}
+  .hero-meta{gap:6px 18px;font-size:.62rem}
+  .seal{top:auto;bottom:0;right:0;width:96px}
+  .scroll-cue{display:none}
+}
+
+/* ---------- Défilant ---------- */
+.marquee{background:var(--green);color:#fff;overflow:hidden;border-block:1px solid var(--line-inv);padding-block:22px}
+.marquee-track{display:flex;width:max-content;will-change:transform}
+.marquee-group{display:flex;align-items:center;gap:clamp(28px,4vw,56px);padding-right:clamp(28px,4vw,56px);font-family:var(--f-display);font-size:clamp(1.8rem,4.4vw,3.6rem);line-height:1;white-space:nowrap}
+.marquee-group span:nth-child(4n+1){font-style:italic;color:var(--copper-hi)}
+.marquee-group .dot{width:10px;height:10px;border-radius:50%;background:var(--copper);flex:none}
+
+/* ---------- Manifeste ---------- */
+.manifesto{padding-block:clamp(90px,14vw,200px)}
+.manifesto-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,3fr);gap:clamp(24px,5vw,80px)}
+.manifesto .eyebrow{color:var(--copper);padding-top:1.1em}
+.manifesto p{font-family:var(--f-display);font-size:clamp(1.7rem,3.6vw,3.4rem);line-height:1.14;letter-spacing:-.012em;margin:0;text-wrap:pretty}
+.manifesto p .w{opacity:.16;transition:none}
+.manifesto p em{color:var(--copper)}
+.sig{display:flex;align-items:center;gap:16px;margin-top:clamp(32px,4vw,56px);color:var(--muted);font-size:.9rem}
+.sig::before{content:"";width:48px;height:1px;background:currentColor}
+@media (max-width:760px){.manifesto-grid{grid-template-columns:1fr}.manifesto .eyebrow{padding-top:0}}
+
+/* ---------- Le cuivre (défilement horizontal) ---------- */
+.copper{background:var(--mist);position:relative;overflow:hidden}
+.copper-pin{height:100svh;min-height:620px;display:flex;align-items:center;overflow:hidden}
+.copper-track{display:flex;align-items:stretch;gap:clamp(18px,2.5vw,40px);padding-left:calc(var(--gut) + clamp(0px,3vw,40px));padding-right:calc(var(--gutr) + 8vw);will-change:transform}
+.copper-intro{flex:0 0 min(520px,82vw);display:flex;flex-direction:column;justify-content:center;gap:28px;padding-right:2vw}
+.copper-intro h2{font-family:var(--f-display);font-weight:400;font-size:clamp(2.6rem,5.4vw,5.6rem);line-height:.96;letter-spacing:-.02em;margin:0}
+.copper-intro h2 em{color:var(--copper)}
+.copper-intro p{margin:0;color:var(--muted);max-width:40ch}
+.terms{display:flex;flex-wrap:wrap;gap:8px}
+.terms span{border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.78rem;letter-spacing:.06em}
+.piece{flex:0 0 clamp(300px,34vw,520px);background:var(--paper);display:flex;flex-direction:column;position:relative;overflow:hidden;cursor:pointer;text-align:left}
+.piece-img{aspect-ratio:4/5;overflow:hidden;background:var(--paper);position:relative}
+.piece-img img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 1.2s var(--ease)}
+.piece:hover .piece-img img{transform:scale(1.1) rotate(-1.5deg)}
+.piece-body{display:grid;grid-template-columns:1fr auto;gap:6px 18px;padding:22px 26px 26px;border-top:1px solid var(--line)}
+.piece-body h3{font-family:var(--f-display);font-weight:400;font-size:clamp(1.3rem,1.8vw,1.7rem);margin:0;line-height:1.1}
+.piece-body .price{font-size:1rem;font-weight:500;align-self:start}
+.piece-body small{grid-column:1/-1;color:var(--muted);letter-spacing:.04em}
+.piece-tag{position:absolute;top:18px;left:18px;z-index:2;font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;font-weight:500;color:var(--copper)}
+.copper-progress{position:absolute;left:calc(var(--gut) + clamp(0px,3vw,40px));right:calc(var(--gutr) + clamp(0px,3vw,40px));bottom:clamp(20px,4vh,40px);height:1px;background:var(--line)}
+.copper-progress i{position:absolute;inset:0;background:var(--copper);transform-origin:left;transform:scaleX(0)}
+@media (max-width:900px),(prefers-reduced-motion:reduce){
+  .copper-pin{height:auto;min-height:0;padding-block:80px 60px;display:block}
+  .copper-track{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:20px;flex-wrap:nowrap;scrollbar-width:none}
+  .copper-track::-webkit-scrollbar{display:none}
+  .piece,.copper-intro{scroll-snap-align:start}
+  .piece{flex-basis:78vw}
+  .copper-progress{display:none}
+}
+
+/* ---------- Chiffres du métier ---------- */
+.facts{background:var(--paper);padding-block:clamp(80px,10vw,140px)}
+.facts-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line)}
+.fact{padding:clamp(24px,3vw,40px) clamp(0px,2vw,28px) 0 0;display:grid;gap:14px;align-content:start;border-right:1px solid var(--line);padding-left:clamp(0px,2vw,28px)}
+.fact:first-child{padding-left:0}
+.fact:last-child{border-right:0}
+.fact b{font-family:var(--f-display);font-weight:400;font-size:clamp(3rem,6vw,5.6rem);line-height:.9;letter-spacing:-.02em;color:var(--ink)}
+.fact b sup{font-size:.36em;vertical-align:top;margin-left:4px;color:var(--copper);font-family:var(--f-text);letter-spacing:0;position:relative;top:.5em}
+.fact p{margin:0;color:var(--muted);font-size:.95rem;max-width:30ch}
+@media (max-width:900px){.facts-grid{grid-template-columns:1fr 1fr}.fact{border-right:0;padding-left:0;border-bottom:1px solid var(--line);padding-bottom:28px}}
+@media (max-width:440px){.facts-grid{grid-template-columns:1fr}}
+
+/* ---------- Image plein cadre ---------- */
+.reveal{position:relative;height:clamp(520px,110vh,1100px);background:var(--paper)}
+.reveal-sticky{position:sticky;top:0;height:100svh;min-height:520px;overflow:hidden;display:grid;place-items:center}
+.reveal-frame{position:absolute;inset:0;clip-path:inset(14% 18% 14% 18%);will-change:clip-path}
+.reveal-frame img{width:100%;height:100%;object-fit:cover;transform:scale(1.25);will-change:transform}
+.reveal-word{position:relative;z-index:2;color:#fff;font-family:var(--f-display);font-weight:400;font-style:italic;font-size:clamp(4rem,16vw,15rem);letter-spacing:-.03em;mix-blend-mode:difference;pointer-events:none;line-height:1}
+.reveal-cap{position:absolute;z-index:2;left:calc(var(--gut) + clamp(0px,3vw,40px));bottom:clamp(24px,5vh,48px);color:#fff;max-width:36ch;font-size:.95rem;text-shadow:0 1px 18px rgba(0,0,0,.4)}
+.reduced .reveal{height:auto}.reduced .reveal-sticky{position:relative}.reduced .reveal-frame{clip-path:none}.reduced .reveal-frame img{transform:none}
+
+/* ---------- Boutique ---------- */
+.shop{padding-block:clamp(90px,12vw,170px);background:var(--paper)}
+.shop-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:28px;margin-bottom:clamp(36px,5vw,64px)}
+.shop-head h2{font-family:var(--f-display);font-weight:400;font-size:clamp(2.6rem,6vw,6rem);line-height:.92;letter-spacing:-.02em;margin:10px 0 0}
+.shop-head h2 em{color:var(--copper)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);border-radius:999px;padding:10px 18px;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;transition:background .4s,color .4s,border-color .4s}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip sup{font-size:.6rem;margin-left:4px;opacity:.6;letter-spacing:0}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.6vw,24px) clamp(12px,1.6vw,24px)}
+.card{position:relative;display:flex;flex-direction:column;gap:14px;cursor:pointer;text-align:left}
+.card-img{position:relative;aspect-ratio:4/5;background:var(--mist);overflow:hidden}
+.card-img img{width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;transition:transform 1.1s var(--ease)}
+.card:hover .card-img img{transform:scale(1.07)}
+.card-img::after{content:"";position:absolute;inset:-20% -60%;background:linear-gradient(105deg,transparent 40%,rgba(255,236,220,.55) 50%,transparent 60%);transform:translateX(-70%);transition:transform 1.1s var(--ease);pointer-events:none;mix-blend-mode:soft-light}
+.card:hover .card-img::after{transform:translateX(70%)}
+.card-badge{position:absolute;top:14px;left:14px;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;font-weight:500;color:var(--ink);z-index:2}
+.card-add{position:absolute;left:12px;right:12px;bottom:12px;z-index:2;background:var(--ink);color:#fff;padding:14px;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;transform:translateY(calc(100% + 14px));transition:transform .6s var(--ease),background .3s}
+.card-add:hover{background:var(--copper)}
+.card:hover .card-add,.card:focus-within .card-add{transform:translateY(0)}
+.card-meta{display:grid;grid-template-columns:1fr auto;gap:4px 14px;align-items:start}
+.card-meta h3{margin:0;font-family:var(--f-display);font-weight:400;font-size:1.18rem;line-height:1.15}
+.card-meta .price{font-weight:500;white-space:nowrap}
+.card-meta small{color:var(--muted);font-size:.8rem;letter-spacing:.03em;grid-column:1/-1}
+.card.hidden{display:none}
+@media (max-width:1100px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:760px){.card-meta{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}.card-add{transform:none;position:static;margin-top:-4px;background:transparent;color:var(--ink);border:1px solid var(--line);padding:11px}.card-meta h3{font-size:1.02rem}}
+
+/* ---------- Histoire ---------- */
+.story{background:var(--green);color:#fff;padding-block:clamp(90px,12vw,170px);position:relative;overflow:clip}
+.story-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(32px,6vw,100px)}
+.story-sticky{position:sticky;top:120px;align-self:start;display:grid;gap:28px}
+.story-year{font-family:var(--f-display);font-size:clamp(5rem,15vw,14rem);line-height:1;letter-spacing:-.04em;font-weight:400;color:var(--copper-hi);display:flex;align-items:flex-start;overflow:hidden;height:1em}
+.story-year .col{display:flex;flex-direction:column;transition:transform .9s var(--ease)}
+.story-year .col span{height:1em;line-height:1em;display:block}
+.story-photo{aspect-ratio:3/2;overflow:hidden;position:relative}
+.story-photo img{width:100%;height:100%;object-fit:cover;transform:scale(1.15)}
+.story-list{list-style:none;margin:0;padding:0}
+.story-item{padding-block:clamp(36px,6vw,80px);border-top:1px solid var(--line-inv);display:grid;gap:14px}
+.story-item .eyebrow{color:var(--copper-hi)}
+.story-item h3{font-family:var(--f-display);font-weight:400;font-size:clamp(1.8rem,3.4vw,3rem);line-height:1.04;margin:0;letter-spacing:-.01em}
+.story-item p{margin:0;color:rgba(255,255,255,.74);max-width:46ch}
+.story h2{font-family:var(--f-display);font-weight:400;font-size:clamp(2.2rem,4vw,3.6rem);line-height:1;margin:0}
+@media (max-width:900px){.story-grid{grid-template-columns:1fr}.story-sticky{position:relative;top:0}}
+
+/* ---------- Servir / Visite ---------- */
+.duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:var(--night);color:#fff}
+.duo-img{position:relative;overflow:hidden;min-height:520px}
+.duo-img img{position:absolute;inset:-10% 0;width:100%;height:120%;object-fit:cover}
+.duo-copy{padding:clamp(48px,7vw,110px) calc(var(--gutr) + clamp(0px,3vw,40px)) clamp(48px,7vw,110px) clamp(32px,6vw,90px);display:flex;flex-direction:column;justify-content:center;gap:28px}
+.duo-copy h2{font-family:var(--f-display);font-weight:400;font-size:clamp(2.4rem,4.6vw,4.4rem);line-height:.98;margin:0;letter-spacing:-.02em}
+.duo-copy h2 em{color:var(--copper-hi)}
+.hours{display:grid;grid-template-columns:auto 1fr;gap:10px 28px;margin:0;font-size:.95rem}
+.hours dt{color:rgba(255,255,255,.6)}
+.hours dd{margin:0}
+.addr{font-family:var(--f-display);font-size:clamp(1.4rem,2.2vw,1.9rem);line-height:1.2}
+.contact-row{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center}
+.copyable{display:inline-flex;align-items:center;gap:10px;font-size:1rem;user-select:all}
+.copy{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid currentColor;color:var(--copper-hi);user-select:none}
+@media (max-width:900px){.duo{grid-template-columns:1fr}.duo-img{min-height:340px}.duo-copy{padding-left:calc(var(--gut) + 4px)}}
+
+/* ---------- Services ---------- */
+.services{padding-block:clamp(80px,10vw,140px)}
+.services-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,28px)}
+.svc{border-top:1px solid var(--ink);padding-top:24px;display:grid;gap:12px;align-content:start}
+.svc h3{font-family:var(--f-display);font-weight:400;font-size:1.7rem;margin:0;line-height:1.1}
+.svc p{margin:0;color:var(--muted);max-width:36ch}
+.svc .eyebrow{color:var(--copper)}
+@media (max-width:820px){.services-grid{grid-template-columns:1fr}}
+
+/* ---------- Pied de page ---------- */
+.footer{background:var(--paper);border-top:1px solid var(--line);padding-top:clamp(60px,8vw,110px);overflow:hidden}
+.footer-cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:clamp(50px,8vw,100px)}
+.footer h4{font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;font-weight:500;margin:0 0 16px;color:var(--copper)}
+.footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:.95rem}
+.footer a{text-decoration:none}
+.footer a:hover{color:var(--copper)}
+.news{display:flex;border-bottom:1px solid var(--ink);max-width:420px;margin-top:18px}
+.news input{flex:1;min-width:0;border:0;background:transparent;padding:14px 0;font:inherit;color:var(--ink);outline:none}
+.news button{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+.giant{font-family:var(--f-text);font-weight:500;font-size:12vw;letter-spacing:.01em;line-height:.8;white-space:nowrap;display:flex;color:var(--ink);margin-bottom:-.06em}
+.giant span{display:inline-block}
+.footer-base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:22px 64px;border-top:1px solid var(--line);font-size:.78rem;color:var(--muted)}
+@media (max-width:820px){.footer-cols{grid-template-columns:1fr 1fr}.footer-cols>div:first-child{grid-column:1/-1}}
+
+/* ---------- Fiche produit (panneau) ---------- */
+.scrim{position:fixed;inset:0;z-index:80;background:rgba(10,20,14,.5);opacity:0;pointer-events:none;transition:opacity .6s var(--ease)}
+.scrim.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;z-index:90;top:0;right:0;bottom:0;width:min(1040px,100%);background:var(--paper);transform:translateX(102%);transition:transform .9s var(--ease);display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);overflow:hidden}
+.sheet.on{transform:translateX(0)}
+.sheet-img{background:var(--mist);position:relative;overflow:hidden}
+.sheet-img img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;padding:6%}
+.sheet-body{overflow-y:auto;padding:calc(env(safe-area-inset-top,0px) + 70px) calc(var(--gutr) + 24px) calc(env(safe-area-inset-bottom,0px) + 40px) clamp(24px,4vw,56px);display:flex;flex-direction:column;gap:22px}
+.sheet-body h2{font-family:var(--f-display);font-weight:400;font-size:clamp(2rem,3.4vw,3rem);line-height:1;margin:0;letter-spacing:-.01em}
+.sheet-price{font-size:1.4rem;font-weight:500}
+.sheet-desc{color:var(--muted);margin:0}
+.opt-label{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;margin-bottom:10px;display:block}
+.sizes{display:flex;flex-wrap:wrap;gap:8px}
+.size{border:1px solid var(--line);padding:10px 16px;min-width:64px;font-size:.88rem;transition:all .3s}
+.size[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:#fff}
+.specs{display:grid;grid-template-columns:auto 1fr;gap:10px 24px;margin:0;padding-top:18px;border-top:1px solid var(--line);font-size:.92rem}
+.specs dt{color:var(--muted)}
+.specs dd{margin:0}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line)}
+.qty button{width:44px;height:48px;font-size:1.1rem}
+.qty output{min-width:34px;text-align:center}
+.buy-row{display:flex;gap:10px;flex-wrap:wrap}
+.buy{flex:1;min-width:200px;background:var(--ink);color:#fff;padding:16px 22px;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;transition:background .3s}
+.buy:hover{background:var(--copper)}
+.perks{display:grid;gap:10px;font-size:.88rem;color:var(--muted);margin:0;padding:0;list-style:none}
+.perks li{display:flex;gap:12px;align-items:baseline}
+.perks li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--copper);flex:none;transform:translateY(-2px)}
+.close-x{position:absolute;z-index:3;top:calc(env(safe-area-inset-top,0px) + 20px);right:calc(var(--gutr) + 12px);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;padding:8px 0;border-bottom:1px solid currentColor}
+@media (max-width:820px){.sheet{grid-template-columns:1fr;grid-template-rows:42vh 1fr}.sheet-body{padding-top:28px}}
+
+/* ---------- Panier ---------- */
+.cart{position:fixed;z-index:90;top:0;right:0;bottom:0;width:min(460px,100%);background:var(--paper);transform:translateX(102%);transition:transform .8s var(--ease);display:flex;flex-direction:column}
+.cart.on{transform:translateX(0)}
+.cart-head{display:flex;justify-content:space-between;align-items:center;padding:calc(env(safe-area-inset-top,0px) + 26px) calc(var(--gutr) + 12px) 22px 28px;border-bottom:1px solid var(--line)}
+.cart-head h2{font-family:var(--f-display);font-weight:400;font-size:1.8rem;margin:0}
+.cart-list{flex:1;overflow-y:auto;list-style:none;margin:0;padding:8px 28px}
+.cart-line{display:grid;grid-template-columns:76px 1fr auto;gap:16px;align-items:center;padding-block:16px;border-bottom:1px solid var(--line)}
+.cart-line img{width:76px;aspect-ratio:4/5;object-fit:cover;background:var(--mist);mix-blend-mode:multiply}
+.cart-line h3{font-family:var(--f-display);font-weight:400;font-size:1.05rem;margin:0;line-height:1.15}
+.cart-line small{color:var(--muted)}
+.cart-line .rm{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:6px;border-bottom:1px solid currentColor}
+.cart-empty{padding:40px 0;color:var(--muted)}
+.cart-foot{padding:22px calc(var(--gutr) + 12px) calc(env(safe-area-inset-bottom,0px) + 26px) 28px;border-top:1px solid var(--line);display:grid;gap:14px}
+.mode{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line)}
+.mode button{padding:12px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.mode button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.total{display:flex;justify-content:space-between;font-size:1.1rem}
+.total b{font-weight:500}
+.cart-note{font-size:.82rem;color:var(--muted);margin:0}
+
+/* ---------- Divers ---------- */
+.flyer{position:fixed;z-index:95;width:70px;aspect-ratio:4/5;pointer-events:none;background:var(--mist);overflow:hidden;border-radius:2px}
+.flyer img{width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply}
+.toast{position:fixed;z-index:96;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 24px);transform:translate(-50%,160%);opacity:0;background:var(--ink);color:#fff;padding:14px 22px;font-size:.84rem;transition:transform .6s var(--ease),opacity .4s;max-width:calc(100% - 32px)}
+.toast.on{transform:translate(-50%,0);opacity:1}
+.cursor{position:fixed;z-index:120;top:0;left:0;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--copper);pointer-events:none;display:none;mix-blend-mode:normal;transition:width .45s var(--ease),height .45s var(--ease),margin .45s var(--ease),background .3s}
+.cursor span{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;opacity:0;transition:opacity .3s;font-weight:500}
+.cursor.big{width:86px;height:86px;margin:-43px 0 0 -43px;background:rgba(180,102,61,.92)}
+.cursor.big span{opacity:1}
+@media (pointer:fine){.has-cursor .cursor{display:block}}
+.proposal{position:fixed;z-index:40;right:calc(var(--gutr));bottom:calc(env(safe-area-inset-bottom,0px) + 16px);background:rgba(13,42,26,.92);color:#fff;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:9px 14px;border-radius:999px;backdrop-filter:blur(8px)}
+@media (max-width:600px){.proposal{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}}
+</style>
+
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-in">
+    <span class="eyebrow">E.DEHILLERIN · Paris</span>
+    <div class="loader-year num" id="loaderYear">1820</div>
+    <div class="loader-bar"><i id="loaderBar"></i></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor"><span>Voir</span></div>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <ul class="nav-links">
+      <li><a href="#cuivre">Le cuivre</a></li>
+      <li><a href="#boutique">Boutique</a></li>
+      <li><a href="#maison">La maison</a></li>
+      <li><a href="#visite">Visite</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="menu">Menu</button>
+    <a class="brand" href="#top" aria-label="E.DEHILLERIN, accueil">
+      <span><span class="brand-word">E.DEHILLERIN</span><span class="brand-sub">Le spécialiste du matériel de cuisine</span></span>
+      <img src="img/coq-logo.webp" alt="" width="182" height="195">
+    </a>
+    <div class="nav-tools">
+      <span class="lang">FR · EN</span>
+      <button class="cart-btn" id="cartBtn" aria-label="Ouvrir le panier"><span class="lbl">Panier</span><span class="cart-count num" id="cartCount">0</span></button>
+    </div>
+  </div>
+</header>
+
+<nav class="menu" id="menu" aria-label="Menu">
+  <button class="menu-close" id="menuClose">Fermer</button>
+  <a href="#cuivre">Le cuivre</a>
+  <a href="#boutique">Boutique</a>
+  <a href="#maison">La maison</a>
+  <a href="#visite">Visite</a>
+</nav>
+
+<main id="top">
+<!-- HÉROS -->
+<section class="hero" id="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="hero-meta eyebrow"><span>Paris, 1<sup>er</sup></span><span>18–20 rue Coquillière</span><span>Depuis 1820</span></div>
+      <h1 id="heroTitle">
+        <span class="ln"><span>Aider modestement</span></span>
+        <span class="ln"><span>à promouvoir</span></span>
+        <span class="ln"><span>la cuisine <span class="cu">française</span>.</span></span>
+      </h1>
+      <div class="hero-foot">
+        <p>Le cuivre des grandes cuisines, les couteaux des chefs et des milliers d'ustensiles, choisis rue Coquillière depuis deux siècles.</p>
+        <a class="btn fill magnet" href="#boutique">Entrer dans la boutique <span class="arr">→</span></a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="halo"></div>
+      <div class="coq" id="coq"><img src="img/coq.webp" alt="" width="395" height="746"></div>
+      <div class="seal">
+        <svg viewBox="0 0 200 200"><defs><path id="circ" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs><text fill="currentColor" font-family="Jost, sans-serif" font-size="15.2" letter-spacing="5.6"><textPath href="#circ">MAISON FONDÉE EN 1820 · E.DEHILLERIN · PARIS · </textPath></text></svg>
+        <b>1820</b>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue eyebrow" aria-hidden="true"><span>Défiler</span><i></i></div>
+</section>
+
+<!-- DÉFILANT -->
+<div class="marquee" aria-label="Nos gammes : cuire, découper, pâtisser, servir, conserver">
+  <div class="marquee-track" id="marquee">
+    <div class="marquee-group"><span>Cuire</span><i class="dot"></i><span>Découper</span><i class="dot"></i><span>Pâtisser</span><i class="dot"></i><span>Servir</span><i class="dot"></i><span>Conserver</span><i class="dot"></i></div>
+    <div class="marquee-group" aria-hidden="true"><span>Cuire</span><i class="dot"></i><span>Découper</span><i class="dot"></i><span>Pâtisser</span><i class="dot"></i><span>Servir</span><i class="dot"></i><span>Conserver</span><i class="dot"></i></div>
+  </div>
+</div>
+
+<!-- MANIFESTE -->
+<section class="manifesto">
+  <div class="wrap manifesto-grid">
+    <span class="eyebrow">La maison</span>
+    <div>
+      <p id="manifesto">Rue Coquillière, la boutique a gardé le visage qu'elle avait en 1890. Du sol au plafond, des milliers d'ustensiles, déclinés <em>dans toutes les tailles possibles</em>. Les chefs le savent depuis deux siècles&nbsp;: c'est ici qu'on trouve la casserole juste.</p>
+      <div class="sig">Restaurateurs, pâtissiers, charcutiers, traiteurs, et tous ceux qui cuisinent comme eux</div>
+    </div>
+  </div>
+</section>
+
+<!-- LE CUIVRE -->
+<section class="copper" id="cuivre">
+  <div class="copper-pin" id="copperPin">
+    <div class="copper-track" id="copperTrack">
+      <div class="copper-intro">
+        <span class="eyebrow" style="color:var(--copper)">Le cuivre</span>
+        <h2>Le métal <em>des chefs</em>, depuis toujours.</h2>
+        <p>Il chauffe vite, partout pareil, et répond au moindre geste sur le feu. Étamé à l'étain ou doublé d'inox, il se transmet d'une génération de cuisiniers à l'autre.</p>
+        <div class="terms"><span>Étamé</span><span>Martelé</span><span>Queue bronze</span><span>Induction</span></div>
+      </div>
+      <!-- pièces injectées -->
+    </div>
+    <div class="copper-progress" aria-hidden="true"><i id="copperBar"></i></div>
+  </div>
+</section>
+
+<!-- CHIFFRES -->
+<section class="facts">
+  <div class="wrap">
+    <div class="facts-grid">
+      <div class="fact"><b class="num"><span data-count="1820">1820</span></b><p>Création du magasin que la famille Dehillerin rachètera, et dont elle porte l'histoire.</p></div>
+      <div class="fact"><b class="num"><span data-count="232">232</span><sup>°C</sup></b><p>Point de fusion de l'étain. Une casserole étamée ne chauffe jamais à vide.</p></div>
+      <div class="fact"><b class="num"><span data-count="2.5" data-dec="1">2,5</span><sup>mm</sup></b><p>L'épaisseur du cuivre des batteries professionnelles. Elle fait toute la régularité de la cuisson.</p></div>
+      <div class="fact"><b class="num"><span data-count="1894">1894</span></b><p>Médaille d'or pour la batterie de cuisine maison, puis diplôme d'honneur de 1895 à 1900.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CUIRE -->
+<section class="reveal" id="revealCuire">
+  <div class="reveal-sticky">
+    <div class="reveal-frame" id="revealFrame"><img src="img/cuire.webp" alt="Un chef verse un jus d'une louche dans une casserole en cuivre" width="1343" height="896"></div>
+    <div class="reveal-word" id="revealWord">Cuire</div>
+    <p class="reveal-cap">Le cuivre conduit la chaleur environ vingt fois mieux que l'inox. Un jus réduit, une sauce monte, sans jamais attacher.</p>
+  </div>
+</section>
+
+<!-- BOUTIQUE -->
+<section class="shop" id="boutique">
+  <div class="wrap">
+    <div class="shop-head">
+      <div>
+        <span class="eyebrow" style="color:var(--copper)">La boutique en ligne</span>
+        <h2>Douze pièces <em>de cuivre</em></h2>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Filtrer par gamme"></div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<!-- HISTOIRE -->
+<section class="story" id="maison">
+  <div class="wrap story-grid">
+    <div class="story-sticky">
+      <span class="eyebrow" style="color:var(--copper-hi)">Deux siècles rue Coquillière</span>
+      <div class="story-year num" id="storyYear" aria-hidden="true"></div>
+      <div class="story-photo"><img id="storyImg" src="img/bicentenaire.webp" alt="Le livret du bicentenaire et le coq de la maison" width="1343" height="896"></div>
+    </div>
+    <ol class="story-list" id="storyList">
+      <li class="story-item" data-year="1820"><span class="eyebrow">1820</span><h3>Un vieux magasin ouvre près des Halles.</h3><p>Il sera racheté plus tard par Eugène de Hillerin. C'est de lui que la maison tient ses deux siècles d'histoire.</p></li>
+      <li class="story-item" data-year="1880"><span class="eyebrow">Années 1880</span><h3>Eugène de Hillerin s'installe dans le quartier des Halles.</h3><p>Une quincaillerie au 1, rue Montmartre, un atelier de chaudronnerie au 7, rue du Bouloi, puis un atelier d'étamage. Ses clients sont les restaurateurs venus aux Halles voisines.</p></li>
+      <li class="story-item" data-year="1890"><span class="eyebrow">1890</span><h3>La boutique s'installe rue Coquillière.</h3><p>Elle prend dès cette époque le visage qu'elle a toujours, avec son foisonnement d'ustensiles. La devise est déjà là&nbsp;: aider modestement à promouvoir la cuisine française.</p></li>
+      <li class="story-item" data-year="1894"><span class="eyebrow">1894</span><h3>Médaille d'or pour la batterie de cuisine.</h3><p>Diplôme d'honneur de 1895 à 1900. Eugène finit par siéger au jury, hors concours.</p></li>
+      <li class="story-item" data-year="1902"><span class="eyebrow">1902</span><h3>Augustine reprend la maison.</h3><p>Au décès prématuré d'Eugène, sa veuve tient la maison avec une très grande énergie. Les générations Dehillerin se succèdent depuis.</p></li>
+      <li class="story-item" data-year="2020"><span class="eyebrow">2020</span><h3>Le bicentenaire.</h3><p>Deux cents ans plus tard, la maison fête son anniversaire avec un livret, sous l'œil du coq de cuivre qui veille sur la boutique.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="wrap services-grid">
+    <div class="svc"><span class="eyebrow">Click &amp; collect</span><h3>Commandé le matin, prêt rue Coquillière.</h3><p>Réservez en ligne, passez prendre votre commande en boutique aux heures d'ouverture.</p></div>
+    <div class="svc"><span class="eyebrow">Professionnels</span><h3>Un compte pour les métiers de bouche.</h3><p>Devis, commandes répétées et équipement complet d'une cuisine, avec un interlocuteur dédié.</p></div>
+    <div class="svc"><span class="eyebrow">Conseil</span><h3>Le bon diamètre, la bonne épaisseur.</h3><p>Étamé ou inox, induction ou gaz&nbsp;: posez la question, l'équipe de la boutique répond.</p></div>
+  </div>
+</section>
+
+<!-- VISITE -->
+<section class="duo" id="visite">
+  <div class="duo-img"><img id="duoImg" src="img/boutique.webp" alt="Casseroles en cuivre suspendues dans la boutique de la rue Coquillière" width="1456" height="819"></div>
+  <div class="duo-copy">
+    <span class="eyebrow" style="color:var(--copper-hi)">Nous rendre visite</span>
+    <h2>Une boutique <em>qu'on visite</em> comme un musée.</h2>
+    <div class="addr">18 et 20 rue Coquillière<br>75001 Paris</div>
+    <dl class="hours num">
+      <dt>Lundi</dt><dd>9h – 12h30 · 14h – 18h</dd>
+      <dt>Mardi au vendredi</dt><dd>9h – 19h</dd>
+      <dt>Samedi</dt><dd>9h – 18h</dd>
+      <dt>Dimanche et fériés</dt><dd>Fermé</dd>
+    </dl>
+    <div class="contact-row">
+      <span class="copyable num" id="phone">+33 (0)1 42 36 53 13</span><button class="copy" data-copy="+33142365313">Copier</button>
+      <a class="btn magnet" href="https://www.google.com/maps/search/?api=1&query=E.+Dehillerin+18+rue+Coquilli%C3%A8re+Paris" target="_blank" rel="noopener">Itinéraire <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-cols">
+      <div>
+        <h4>La lettre de la maison</h4>
+        <p style="margin:0;color:var(--muted);max-width:40ch">Nouveautés, retours de stock et conseils d'entretien du cuivre, une fois par mois.</p>
+        <form class="news" id="news"><label for="newsMail" class="sr" style="position:absolute;left:-9999px">Adresse e-mail</label><input id="newsMail" type="email" placeholder="Votre adresse e-mail" required><button type="submit">S'inscrire</button></form>
+      </div>
+      <div><h4>Gammes</h4><ul><li><a href="#boutique">Cuire</a></li><li><a href="#boutique">Découper</a></li><li><a href="#boutique">Pâtisser</a></li><li><a href="#boutique">Servir</a></li><li><a href="#boutique">Conserver</a></li></ul></div>
+      <div><h4>Maison</h4><ul><li><a href="#maison">Histoire</a></li><li><a href="#visite">La boutique</a></li><li><a href="#cuivre">Le cuivre</a></li><li><a href="https://www.instagram.com/e_dehillerin/" target="_blank" rel="noopener">Instagram</a></li></ul></div>
+      <div><h4>Aide</h4><ul><li><a href="#visite">Livraison et retrait</a></li><li><a href="#visite">Paiement sécurisé</a></li><li><a href="#visite">Nous contacter</a></li><li><a href="#visite">CGV</a></li></ul></div>
+    </div>
+  </div>
+  <div class="wrap"><div class="giant" id="giant" aria-label="E.DEHILLERIN"></div></div>
+  <div class="wrap footer-base"><span>© E.DEHILLERIN · Au service de la gastronomie depuis 1820</span><span>Proposition de nouvelle version du site · 2026</span></div>
+</footer>
+
+<div class="proposal">Maquette · nouvelle version</div>
+
+<!-- Fiche produit -->
+<div class="scrim" id="scrim"></div>
+<aside class="sheet" id="sheet" aria-hidden="true" aria-label="Fiche produit">
+  <button class="close-x" id="sheetClose">Fermer</button>
+  <div class="sheet-img"><img id="sheetImg" src="img/casserole-martelee.webp" alt=""></div>
+  <div class="sheet-body">
+    <span class="eyebrow" id="sheetTag" style="color:var(--copper)"></span>
+    <h2 id="sheetName"></h2>
+    <div class="sheet-price num" id="sheetPrice"></div>
+    <p class="sheet-desc" id="sheetDesc"></p>
+    <div><span class="opt-label">Diamètre</span><div class="sizes" id="sizes" role="group" aria-label="Diamètre"></div></div>
+    <div class="buy-row">
+      <div class="qty"><button id="qMinus" aria-label="Retirer un">−</button><output id="qVal" class="num">1</output><button id="qPlus" aria-label="Ajouter un">+</button></div>
+      <button class="buy" id="sheetBuy">Ajouter au panier</button>
+    </div>
+    <ul class="perks"><li>Retrait gratuit en boutique, rue Coquillière</li><li>Livraison en France et à l'international</li><li>Conseil d'entretien remis avec chaque pièce en cuivre</li></ul>
+    <dl class="specs" id="specs"></dl>
+  </div>
+</aside>
+
+<!-- Panier -->
+<aside class="cart" id="cart" aria-hidden="true" aria-label="Panier">
+  <div class="cart-head"><h2>Panier</h2><button class="close-x" style="position:static" id="cartClose">Fermer</button></div>
+  <ul class="cart-list" id="cartList"></ul>
+  <div class="cart-foot">
+    <div class="mode" role="group" aria-label="Mode de réception"><button aria-pressed="true" data-mode="retrait">Retrait boutique</button><button aria-pressed="false" data-mode="livraison">Livraison</button></div>
+    <div class="total"><span>Total</span><b class="num" id="cartTotal">0,00 €</b></div>
+    <p class="cart-note" id="cartNote">Retrait gratuit au 18 rue Coquillière, aux heures d'ouverture.</p>
+    <button class="buy" id="checkout">Valider la commande</button>
+  </div>
+</aside>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fine=matchMedia('(pointer: fine)').matches;
+const hasG=!!window.gsap;
+if(reduced||!hasG) document.documentElement.classList.add('reduced');
+const eur=n=>n.toLocaleString('fr-FR',{style:'currency',currency:'EUR'});
+
+/* ---------- Catalogue (prix et produits relevés sur edehillerin.fr) ---------- */
+const P=[
+ {id:'casserole-martelee',name:'Casserole cuivre martelé, queue bronze',cat:'Cuire',tag:'Étamé · Martelé',price:203.46,sizes:['12 cm','14 cm','16 cm','18 cm','20 cm'],desc:"La casserole d'école, en cuivre extra fort martelé à la main, étamée à l'étain et montée d'une queue en bronze rivetée.",spec:[['Matière','Cuivre extra fort, étamé'],['Finition','Martelée'],['Queue','Bronze, rivetée'],['Feux','Gaz, électrique, four']]},
+ {id:'casserole-induction',name:'Casserole cuivre induction',cat:'Cuire',tag:'Induction',price:225.06,sizes:['14 cm','16 cm','18 cm','20 cm'],desc:"Le cuivre et l'inox réunis, avec un fond qui la rend compatible avec toutes les plaques, induction comprise.",spec:[['Matière','Cuivre, intérieur inox'],['Queue','Inox'],['Feux','Tous feux, dont induction'],['Entretien','Lave-vaisselle déconseillé']]},
+ {id:'sauteuse-bombee',name:'Sauteuse bombée cuivre induction',cat:'Cuire',tag:'Induction',price:312.18,sizes:['20 cm','24 cm','28 cm'],desc:"Les bords arrondis guident la spatule et facilitent les réductions. Le geste du saucier, sur tous les feux.",spec:[['Matière','Cuivre, intérieur inox'],['Forme','Bombée'],['Feux','Tous feux, dont induction'],['Queue','Inox']]},
+ {id:'braisiere',name:'Braisière cuivre étamé avec couvercle',cat:'Cuire',tag:'Pièce de chef',price:1478.10,sizes:['40 cm','50 cm'],desc:"Pour les longues cuissons au four : braiser, mijoter, confire. Cuivre martelé étamé, anses et prise en bronze.",spec:[['Matière','Cuivre martelé, étamé'],['Anses','Bronze'],['Usage','Four et feu doux'],['Couvercle','Cuivre, inclus']]},
+ {id:'poissonniere',name:'Poissonnière cuivre étamé',cat:'Cuire',tag:'Pièce de chef',price:1090.62,sizes:['40 cm','50 cm','60 cm'],desc:"La forme longue des poissons entiers, avec sa grille et son couvercle. Une pièce de la grande cuisine bourgeoise.",spec:[['Matière','Cuivre, étamé'],['Anses','Bronze'],['Fourni avec','Couvercle et grille'],['Usage','Pochage au court-bouillon']]},
+ {id:'marmite',name:'Marmite cuivre étamé avec couvercle',cat:'Cuire',tag:'Étamé',price:620.88,sizes:['20 cm','24 cm','28 cm'],desc:"Haute et droite, pour les fonds, les bouillons et les pot-au-feu. Le cuivre martelé répartit la chaleur sur toute la hauteur.",spec:[['Matière','Cuivre martelé, étamé'],['Anses','Bronze'],['Couvercle','Cuivre, inclus'],['Usage','Fonds et bouillons']]},
+ {id:'bassine-confiture',name:'Bassine à confiture cuivre',cat:'Pâtisser',tag:'Cuivre nu',price:279.78,sizes:['32 cm','36 cm','40 cm'],desc:"Le cuivre nu, sans étamage, comme le veut la tradition des confituriers. Évasée pour une évaporation rapide.",spec:[['Matière','Cuivre nu'],['Anses','Bronze'],['Forme','Évasée'],['Usage','Confitures et sucre cuit']]},
+ {id:'poelon-sucre',name:'Poêlon à sucre cuivre',cat:'Pâtisser',tag:'Cuivre nu',price:130.20,sizes:['12 cm','14 cm','16 cm','18 cm'],desc:"Bec verseur et manche creux : l'outil du caramel et du sucre cuit, monté tout en cuivre.",spec:[['Matière','Cuivre nu'],['Manche','Cuivre, creux'],['Bec','Verseur'],['Usage','Sucre, caramel']]},
+ {id:'poelon-sabayon',name:'Poêlon à sabayon cuivre',cat:'Pâtisser',tag:'Cuivre nu',price:121.92,sizes:['16 cm','20 cm','24 cm'],desc:"La demi-sphère où le fouet atteint chaque point de la paroi. Pour les sabayons, les crèmes et les blancs montés.",spec:[['Matière','Cuivre nu'],['Forme','Demi-sphère'],['Manche','Bronze'],['Usage','Sabayon, crèmes']]},
+ {id:'tarte-tatin',name:'Moule à tarte Tatin cuivre étamé',cat:'Pâtisser',tag:'Étamé',price:119.70,sizes:['24 cm','28 cm'],desc:"On caramélise sur le feu, on enfourne dans le même moule. Les oreillons permettent de retourner la tarte d'un geste.",spec:[['Matière','Cuivre, étamé'],['Prises','Oreillons cuivre'],['Usage','Feu puis four'],['Diamètre','Selon modèle']]},
+ {id:'bain-marie',name:'Bain-marie cuivre et porcelaine',cat:'Servir',tag:'Queue bronze',price:320.94,sizes:['12 cm','14 cm'],desc:"Une casserole cuivre et son insert porcelaine pour fondre le chocolat et tenir les sauces émulsionnées sans les trancher.",spec:[['Matière','Cuivre, insert porcelaine'],['Queues','Bronze'],['Couvercle','Cuivre, inclus'],['Usage','Sauces, chocolat']]},
+ {id:'seau-champagne',name:'Seau à champagne cuivre martelé',cat:'Servir',tag:'Martelé',price:339.60,sizes:['Rond'],desc:"Cuivre martelé, intérieur étamé, anses en bronze. Le cuivre garde le froid de la glace au plus près de la bouteille.",spec:[['Matière','Cuivre martelé'],['Intérieur','Étamé'],['Anses','Bronze'],['Usage','Service du champagne']]}
+];
+const byId=Object.fromEntries(P.map(p=>[p.id,p]));
+
+/* ---------- Pièces du défilement cuivre ---------- */
+const track=$('#copperTrack');
+['casserole-martelee','braisiere','poelon-sabayon','marmite','poissonniere','seau-champagne'].forEach(id=>{
+  const p=byId[id];
+  const b=document.createElement('button');
+  b.className='piece';b.dataset.id=id;b.setAttribute('data-cursor','Voir');
+  b.innerHTML=`<span class="piece-tag">${p.tag}</span><div class="piece-img"><img src="img/${id}.webp" alt="${p.name}" loading="lazy" width="720" height="901"></div><div class="piece-body"><h3>${p.name}</h3><span class="price num">${eur(p.price)}</span><small>${p.sizes.length>1?'Du '+p.sizes[0]+' au '+p.sizes[p.sizes.length-1]:p.sizes[0]}</small></div>`;
+  track.appendChild(b);
+});
+
+/* ---------- Grille boutique ---------- */
+const grid=$('#grid'), chips=$('#chips');
+const cats=['Tout','Cuire','Pâtisser','Servir'];
+cats.forEach((c,i)=>{const b=document.createElement('button');b.className='chip';b.setAttribute('aria-pressed',i===0);b.dataset.cat=c;b.innerHTML=`${c}<sup class="num">${c==='Tout'?P.length:P.filter(p=>p.cat===c).length}</sup>`;chips.appendChild(b)});
+P.forEach(p=>{
+  const a=document.createElement('article');
+  a.className='card';a.dataset.id=p.id;a.dataset.cat=p.cat;a.setAttribute('data-cursor','Voir');a.tabIndex=0;
+  a.innerHTML=`<div class="card-img"><span class="card-badge">${p.tag}</span><img src="img/${p.id}.webp" alt="${p.name}" loading="lazy" width="720" height="901"><button class="card-add" data-add="${p.id}">Ajouter au panier</button></div><div class="card-meta"><h3>${p.name}</h3><span class="price num">${eur(p.price)}</span><small>${p.cat} · ${p.sizes.length>1?p.sizes.length+' diamètres':p.sizes[0]}</small></div>`;
+  grid.appendChild(a);
+});
+chips.addEventListener('click',e=>{
+  const b=e.target.closest('.chip');if(!b)return;
+  $$('.chip').forEach(c=>c.setAttribute('aria-pressed',c===b));
+  const cat=b.dataset.cat, cards=$$('.card');
+  const state=hasG&&window.Flip&&!reduced?Flip.getState(cards):null;
+  cards.forEach(c=>c.classList.toggle('hidden',cat!=='Tout'&&c.dataset.cat!==cat));
+  if(state){Flip.from(state,{duration:.8,ease:'power3.inOut',scale:true,absolute:true,stagger:.03,onEnter:els=>gsap.fromTo(els,{opacity:0,scale:.9},{opacity:1,scale:1,duration:.6}),onLeave:els=>gsap.to(els,{opacity:0,scale:.9,duration:.4}),onComplete:()=>window.ScrollTrigger&&ScrollTrigger.refresh()});}
+});
+
+/* ---------- Panier ---------- */
+const cart=[]; let mode='retrait';
+function cartCount(){return cart.reduce((s,l)=>s+l.q,0)}
+function renderCart(anim=true){
+  const list=$('#cartList');
+  list.innerHTML=cart.length?cart.map((l,i)=>{const p=byId[l.id];return `<li class="cart-line"><img src="img/${p.id}.webp" alt=""><div><h3>${p.name}</h3><small class="num">${l.size} · ${l.q} × ${eur(p.price)}</small><br><button class="rm" data-rm="${i}">Retirer</button></div><b class="num">${eur(p.price*l.q)}</b></li>`}).join(''):'<li class="cart-empty">Votre panier est vide. Les douze pièces de cuivre vous attendent dans la boutique.</li>';
+  const tot=cart.reduce((s,l)=>s+byId[l.id].price*l.q,0);
+  $('#cartTotal').textContent=eur(tot);
+  const n=$('#cartCount');n.textContent=cartCount();
+  if(anim&&hasG&&!reduced)gsap.fromTo(n,{scale:1.6,backgroundColor:'#b4663d',color:'#fff'},{scale:1,backgroundColor:'rgba(0,0,0,0)',color:'inherit',duration:.7,ease:'back.out(3)',clearProps:'backgroundColor,color'});
+}
+$('#cartList').addEventListener('click',e=>{const b=e.target.closest('[data-rm]');if(b){cart.splice(+b.dataset.rm,1);renderCart()}});
+$$('.mode button').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.mode;$$('.mode button').forEach(x=>x.setAttribute('aria-pressed',x===b));$('#cartNote').textContent=mode==='retrait'?"Retrait gratuit au 18 rue Coquillière, aux heures d'ouverture.":"Livraison soignée en France et à l'international, frais calculés à l'étape suivante."}));
+$('#checkout').addEventListener('click',()=>toast(cart.length?'Maquette : le paiement sécurisé se branche ici.':'Ajoutez une pièce avant de valider.'));
+function addToCart(id,size,q,fromEl){
+  const p=byId[id];size=size||p.sizes[0];q=q||1;
+  const ex=cart.find(l=>l.id===id&&l.size===size); ex?ex.q+=q:cart.push({id,size,q});
+  if(fromEl&&hasG&&!reduced){
+    const r=fromEl.getBoundingClientRect(), t=$('#cartCount').getBoundingClientRect();
+    const f=document.createElement('div');f.className='flyer';f.innerHTML=`<img src="img/${id}.webp" alt="">`;document.body.appendChild(f);
+    gsap.set(f,{left:r.left+r.width/2-35,top:r.top+r.height/2-44});
+    gsap.timeline({onComplete:()=>{f.remove();renderCart()}})
+      .to(f,{left:t.left+t.width/2-35,duration:.9,ease:'power2.inOut'},0)
+      .to(f,{top:t.top-40,duration:.9,ease:'back.in(1.4)'},0)
+      .to(f,{scale:.15,opacity:.2,borderRadius:'50%',duration:.9,ease:'power2.in'},0);
+  } else renderCart();
+  toast(`${p.name} (${size}) ajouté au panier`);
+}
+let tt;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2600)}
+
+/* ---------- Fiche produit ---------- */
+let cur=null,qty=1,size=null;
+function openSheet(id){
+  const p=byId[id];cur=id;qty=1;size=p.sizes[0];
+  $('#sheetImg').src=`img/${id}.webp`;$('#sheetImg').alt=p.name;
+  $('#sheetTag').textContent=p.cat+' · '+p.tag;$('#sheetName').textContent=p.name;
+  $('#sheetPrice').textContent=(p.sizes.length>1?'À partir de ':'')+eur(p.price);
+  $('#sheetDesc').textContent=p.desc;$('#qVal').textContent=1;
+  $('#sizes').innerHTML=p.sizes.map((s,i)=>`<button class="size num" aria-pressed="${i===0}">${s}</button>`).join('');
+  $('#specs').innerHTML=p.spec.map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join('')+`<dt>Référence</dt><dd class="num">EDH-${String(P.indexOf(p)+101).padStart(4,'0')}</dd>`;
+  openPanel('#sheet');
+  if(hasG&&!reduced){gsap.fromTo('#sheetImg',{scale:1.15,opacity:0,rotate:-4},{scale:1,opacity:1,rotate:0,duration:1.2,ease:'expo.out',delay:.25});gsap.fromTo('.sheet-body>*',{y:30,opacity:0},{y:0,opacity:1,stagger:.05,duration:.8,ease:'power3.out',delay:.35})}
+}
+$('#sizes').addEventListener('click',e=>{const b=e.target.closest('.size');if(!b)return;size=b.textContent;$$('#sizes .size').forEach(x=>x.setAttribute('aria-pressed',x===b))});
+$('#qMinus').onclick=()=>{qty=Math.max(1,qty-1);$('#qVal').textContent=qty};
+$('#qPlus').onclick=()=>{qty=Math.min(20,qty+1);$('#qVal').textContent=qty};
+$('#sheetBuy').onclick=()=>{addToCart(cur,size,qty,$('#sheetImg'));closePanels()};
+let lastFocus=null;
+function openPanel(sel){lastFocus=document.activeElement;closePanels(true);const el=$(sel);el.classList.add('on');el.setAttribute('aria-hidden','false');$('#scrim').classList.add('on');lenis&&lenis.stop();setTimeout(()=>el.querySelector('button')?.focus({preventScroll:true}),300)}
+function closePanels(silent){$$('.sheet,.cart').forEach(x=>{x.classList.remove('on');x.setAttribute('aria-hidden','true')});$('#scrim').classList.remove('on');lenis&&lenis.start();if(!silent&&lastFocus)lastFocus.focus?.({preventScroll:true})}
+$('#scrim').onclick=()=>closePanels();$('#sheetClose').onclick=()=>closePanels();$('#cartClose').onclick=()=>closePanels();
+$('#cartBtn').onclick=()=>{renderCart(false);openPanel('#cart')};
+addEventListener('keydown',e=>{if(e.key==='Escape')closePanels()});
+document.addEventListener('click',e=>{
+  const add=e.target.closest('[data-add]');
+  if(add){e.stopPropagation();addToCart(add.dataset.add,null,1,add.closest('.card').querySelector('img'));return}
+  const c=e.target.closest('.card,.piece');if(c)openSheet(c.dataset.id);
+});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.classList?.contains('card'))openSheet(e.target.dataset.id)});
+$$('.copy').forEach(b=>b.addEventListener('click',()=>{navigator.clipboard?.writeText(b.dataset.copy).then(()=>toast('Numéro copié')).catch(()=>{const r=document.createRange();r.selectNodeContents($('#phone'));getSelection().removeAllRanges();getSelection().addRange(r)})}));
+$('#news').addEventListener('submit',e=>{e.preventDefault();toast('Merci. Vous recevrez la prochaine lettre de la maison.');e.target.reset()});
+
+/* ---------- Menu mobile ---------- */
+$('#burger').onclick=()=>{$('#menu').classList.add('open');$('#burger').setAttribute('aria-expanded','true')};
+const closeMenu=()=>{$('#menu').classList.remove('open');$('#burger').setAttribute('aria-expanded','false')};
+$('#menuClose').onclick=closeMenu;$$('#menu a').forEach(a=>a.addEventListener('click',closeMenu));
+
+/* ---------- Grand mot du pied de page ---------- */
+$('#giant').innerHTML='E.DEHILLERIN'.split('').map(c=>`<span aria-hidden="true">${c}</span>`).join('');
+function fitGiant(){const g=$('#giant');const cw=g.parentElement.clientWidth-parseFloat(getComputedStyle(g.parentElement).paddingLeft)-parseFloat(getComputedStyle(g.parentElement).paddingRight);g.style.fontSize='100px';g.style.width='max-content';const w=g.offsetWidth;g.style.width='';g.style.fontSize=(100*cw/w*0.99)+'px'}
+fitGiant();addEventListener('resize',fitGiant);document.fonts&&document.fonts.ready.then(fitGiant);
+
+/* ---------- Manifeste : mots ---------- */
+(function(){const p=$('#manifesto');const walk=n=>{[...n.childNodes].forEach(c=>{if(c.nodeType===3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(w=>{if(!w)return;if(/^\s+$/.test(w))f.appendChild(document.createTextNode(w));else{const s=document.createElement('span');s.className='w';s.textContent=w;f.appendChild(s)}});c.replaceWith(f)}else walk(c)})};walk(p);if(reduced||!hasG)$$('#manifesto .w').forEach(w=>w.style.opacity=1)})();
+
+/* ---------- Année de l'histoire (compteur à rouleaux) ---------- */
+const yEl=$('#storyYear');
+yEl.innerHTML=[0,1,2,3].map(()=>`<span class="col">${'0123456789'.split('').map(d=>`<span>${d}</span>`).join('')}</span>`).join('');
+function setYear(y){String(y).split('').forEach((d,i)=>{yEl.children[i].style.transform=`translateY(${-d*10}%)`})}
+setYear(1820);
+
+/* ---------- Défilement doux ---------- */
+let lenis=null;
+if(!reduced&&window.Lenis&&hasG){
+  lenis=new Lenis({lerp:.09,smoothWheel:true});
+  lenis.on('scroll',()=>window.ScrollTrigger&&ScrollTrigger.update());
+  gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
+  $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const id=a.getAttribute('href');if(id.length<2&&id!=='#')return;const t=id==='#top'?0:$(id);if(t!==null){e.preventDefault();lenis.scrollTo(t,{offset:0,duration:1.6})}}));
+}
+
+/* ---------- Nav : couleur et masquage ---------- */
+let lastY=0;
+function onScroll(y){const nav=$('#nav');const heroH=$('#hero').offsetHeight-80;nav.classList.toggle('solid',y>heroH);nav.classList.toggle('hide',y>lastY&&y>heroH+200&&!$('#scrim').classList.contains('on'));lastY=y}
+if(lenis)lenis.on('scroll',e=>onScroll(e.scroll));else addEventListener('scroll',()=>onScroll(scrollY),{passive:true});
+
+/* ---------- Curseur ---------- */
+if(fine&&!reduced&&hasG){
+  document.documentElement.classList.add('has-cursor');
+  const c=$('#cursor');const xTo=gsap.quickTo(c,'x',{duration:.35,ease:'power3'}),yTo=gsap.quickTo(c,'y',{duration:.35,ease:'power3'});
+  addEventListener('pointermove',e=>{xTo(e.clientX);yTo(e.clientY)});
+  document.addEventListener('pointerover',e=>{const t=e.target.closest('[data-cursor]');c.classList.toggle('big',!!t&&!e.target.closest('.card-add'))});
+  /* boutons magnétiques */
+  $$('.magnet').forEach(m=>{const xm=gsap.quickTo(m,'x',{duration:.6,ease:'elastic.out(1,.4)'}),ym=gsap.quickTo(m,'y',{duration:.6,ease:'elastic.out(1,.4)'});m.addEventListener('pointermove',e=>{const r=m.getBoundingClientRect();xm((e.clientX-r.left-r.width/2)*.3);ym((e.clientY-r.top-r.height/2)*.4)});m.addEventListener('pointerleave',()=>{xm(0);ym(0)})});
+}
+
+if(!hasG||reduced){$('#loader').style.display='none';$$('[data-count]').forEach(()=>{});return}
+gsap.registerPlugin(...[window.ScrollTrigger,window.Flip].filter(Boolean));
+
+/* ---------- Ouverture : 1820 → 2026 ---------- */
+const intro=gsap.timeline();
+const yr={v:1820};
+intro.to(yr,{v:2026,duration:1.3,ease:'power2.inOut',onUpdate:()=>$('#loaderYear').textContent=Math.round(yr.v)},0)
+ .to('#loaderBar',{scaleX:1,duration:1.3,ease:'power2.inOut'},0)
+ .to('#loader',{clipPath:'inset(0 0 100% 0)',duration:1,ease:'expo.inOut'},1.45)
+ .set('#loader',{display:'none'})
+ .from('#heroTitle .ln>span',{yPercent:110,rotate:3,duration:1.3,stagger:.1,ease:'expo.out'},1.75)
+ .from('.hero-meta span,.hero-foot>*',{y:24,opacity:0,stagger:.07,duration:1,ease:'power3.out'},2)
+ .from('#coq img',{scale:1.25,opacity:0,filter:'blur(12px)',duration:2,ease:'expo.out'},1.6)
+ .from('.seal',{scale:0,rotate:-120,duration:1.4,ease:'expo.out'},2.1)
+ .from('.nav-in>*',{y:-20,opacity:0,stagger:.08,duration:.8,ease:'power3.out'},2);
+
+/* coq : souris + défilement */
+const coq=$('#coq');
+if(fine){const rx=gsap.quickTo(coq,'x',{duration:1.2,ease:'power3'}),ry=gsap.quickTo(coq,'y',{duration:1.2,ease:'power3'});$('#hero').addEventListener('pointermove',e=>{rx((e.clientX/innerWidth-.5)*-30);ry((e.clientY/innerHeight-.5)*-20)})}
+gsap.to('#coq img',{yPercent:14,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+gsap.to('#heroTitle',{yPercent:-18,opacity:.25,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+
+/* défilant sensible à la vitesse */
+const mq=$('#marquee');let mx=0,vel=0;
+ScrollTrigger.create({onUpdate:s=>{vel=s.getVelocity()/300}});
+gsap.ticker.add(()=>{const w=mq.firstElementChild.offsetWidth;mx-=(1.1+Math.abs(vel));vel*=.92;if(mx<=-w)mx+=w;mq.style.transform=`translate3d(${mx}px,0,0)`});
+
+/* manifeste mot à mot */
+gsap.to('#manifesto .w',{opacity:1,stagger:.08,ease:'none',scrollTrigger:{trigger:'#manifesto',start:'top 80%',end:'bottom 45%',scrub:.6}});
+gsap.from('.sig',{y:20,opacity:0,duration:1,scrollTrigger:{trigger:'.sig',start:'top 92%'}});
+
+/* défilement horizontal du cuivre */
+const mm=gsap.matchMedia();
+mm.add('(min-width: 901px)',()=>{
+  const dist=()=>track.scrollWidth-innerWidth;
+  const tw=gsap.to(track,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'#copperPin',start:'top top',end:()=>'+='+dist(),pin:true,scrub:.8,invalidateOnRefresh:true,anticipatePin:1,onUpdate:s=>gsap.set('#copperBar',{scaleX:s.progress})}});
+  $$('.piece').forEach(p=>{
+    gsap.fromTo(p.querySelector('img'),{xPercent:-12,rotate:-6},{xPercent:12,rotate:6,ease:'none',scrollTrigger:{trigger:p,containerAnimation:tw,start:'left right',end:'right left',scrub:true}});
+    gsap.from(p,{y:80,ease:'none',scrollTrigger:{trigger:p,containerAnimation:tw,start:'left right',end:'left 55%',scrub:true}});
+  });
+});
+
+/* compteurs */
+$$('[data-count]').forEach(el=>{const to=parseFloat(el.dataset.count),dec=+el.dataset.dec||0,o={v:to>1000?to-180:0};el.textContent=(dec?o.v.toFixed(dec).replace('.',','):Math.round(o.v));gsap.to(o,{v:to,duration:2,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'},onUpdate:()=>el.textContent=dec?o.v.toFixed(dec).replace('.',','):Math.round(o.v)})});
+gsap.from('.fact',{y:50,opacity:0,stagger:.12,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:'.facts-grid',start:'top 85%'}});
+
+/* image plein cadre : le cadre s'ouvre */
+gsap.timeline({scrollTrigger:{trigger:'#revealCuire',start:'top top',end:'bottom bottom',scrub:.6}})
+ .to('#revealFrame',{clipPath:'inset(0% 0% 0% 0%)',ease:'none'},0)
+ .to('#revealFrame img',{scale:1,ease:'none'},0)
+ .fromTo('#revealWord',{scale:.7,letterSpacing:'0.2em'},{scale:1.25,letterSpacing:'-0.03em',ease:'none'},0);
+
+/* boutique */
+gsap.from('.shop-head>*',{y:40,opacity:0,stagger:.12,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:'.shop-head',start:'top 85%'}});
+ScrollTrigger.batch('.card',{start:'top 92%',once:true,onEnter:b=>gsap.from(b,{y:70,opacity:0,stagger:.08,duration:1.1,ease:'power3.out',clearProps:'transform,opacity'})});
+
+/* histoire */
+$$('.story-item').forEach(it=>{
+  ScrollTrigger.create({trigger:it,start:'top 55%',end:'bottom 55%',onToggle:s=>{if(s.isActive)setYear(it.dataset.year)}});
+  gsap.from(it.children,{y:40,opacity:0,stagger:.08,duration:1,ease:'power3.out',scrollTrigger:{trigger:it,start:'top 82%'}});
+});
+gsap.to('#storyImg',{scale:1,ease:'none',scrollTrigger:{trigger:'#maison',start:'top bottom',end:'bottom top',scrub:true}});
+
+/* services, visite, pied */
+gsap.from('.svc',{y:50,opacity:0,stagger:.12,duration:1,ease:'power3.out',scrollTrigger:{trigger:'.services',start:'top 82%'}});
+gsap.fromTo('#duoImg',{yPercent:-8},{yPercent:8,ease:'none',scrollTrigger:{trigger:'#visite',start:'top bottom',end:'bottom top',scrub:true}});
+gsap.from('.duo-copy>*',{y:40,opacity:0,stagger:.08,duration:1,ease:'power3.out',scrollTrigger:{trigger:'.duo-copy',start:'top 80%'}});
+gsap.from('#giant span',{yPercent:100,opacity:0,stagger:.04,duration:1.2,ease:'expo.out',scrollTrigger:{trigger:'#giant',start:'top 98%'}});
+
+addEventListener('load',()=>ScrollTrigger.refresh());
+})();
+</script>
+
+</body></html>
