@@ -1,0 +1,974 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dopff Au Moulin</title>
+<meta name="description" content="Maquette de refonte du site Dopff Au Moulin, vins et crémants d'Alsace à Riquewihr depuis 1574.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap">
+<style>
+:root{
+  --red:#8E0928;      /* triangle du logo */
+  --red2:#921719;     /* rouge du site */
+  --wine:#58151C;     /* bordeaux profond du site */
+  --night:#1E0B0E;
+  --paper:#F6F1E8;    /* papier d'étiquette */
+  --paper2:#EDE5D7;
+  --ink:#231C19;
+  --stone:#786F66;    /* gris chaud du site */
+  --stone2:#B5AFA8;
+  --taupe:#5F5851;
+  --gold:#B8955A;     /* capsule */
+  --serif:"Cormorant Garamond",Garamond,"Times New Roman",serif;
+  --sans:"Helvetica Neue",Helvetica,Inter,Arial,sans-serif;
+  --ease:cubic-bezier(.7,0,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--paper);-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body.locked{overflow:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--red);color:#fff}
+.serif{font-family:var(--serif)}
+.k{font-family:var(--sans);font-size:11px;letter-spacing:.32em;text-transform:uppercase;font-weight:500}
+.wrap{width:min(1320px,100% - 48px);margin:0 auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+
+/* ---------- curseur ---------- */
+.cur,.cur2{position:fixed;left:0;top:0;pointer-events:none;z-index:9998;border-radius:50%;transform:translate(-50%,-50%)}
+.cur{width:6px;height:6px;background:var(--red)}
+.cur2{width:38px;height:38px;border:1px solid rgba(142,9,40,.45);transition:width .35s var(--ease),height .35s var(--ease),background .35s,border-color .35s;display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#fff}
+.cur2.big{width:84px;height:84px;background:var(--red);border-color:var(--red)}
+.cur2.dark{border-color:rgba(255,255,255,.5)}
+@media (hover:none){.cur,.cur2{display:none}}
+
+/* ---------- badge ---------- */
+.badge{position:fixed;left:16px;bottom:16px;z-index:9000;background:var(--night);color:#fff;font-size:10px;letter-spacing:.28em;text-transform:uppercase;padding:9px 14px 9px 12px;border-radius:40px;display:flex;align-items:center;gap:8px;font-weight:500;box-shadow:0 8px 30px rgba(0,0,0,.25)}
+.badge i{width:7px;height:7px;border-radius:50%;background:#e2405c;box-shadow:0 0 0 0 rgba(226,64,92,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(226,64,92,0)}100%{box-shadow:0 0 0 0 rgba(226,64,92,0)}}
+
+/* ---------- loader / âge ---------- */
+#loader{position:fixed;inset:0;z-index:9500;background:var(--paper);display:flex;align-items:flex-start;justify-content:center;overflow:hidden}
+#loader .tri{position:absolute;top:0;left:50%;width:min(360px,70vw);aspect-ratio:2/1;margin-left:calc(min(360px,70vw) / -2);transform-origin:50% 0}
+#loader .tri svg.t{position:absolute;inset:0;width:100%;height:100%}
+#loader .mill{position:absolute;left:37%;top:10%;width:26%}
+#loader .count{position:absolute;left:50%;top:calc(min(180px,35vw) + 9vh);transform:translateX(-50%);font-family:var(--serif);font-size:clamp(64px,11vw,150px);line-height:1;color:var(--red);font-weight:300;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+#loader .sub{position:absolute;left:50%;top:calc(min(180px,35vw) + 9vh + clamp(70px,12vw,160px));transform:translateX(-50%);white-space:nowrap;color:var(--stone)}
+#loader .gate{position:absolute;left:50%;bottom:9vh;transform:translateX(-50%);text-align:center;width:min(560px,90vw);opacity:0;visibility:hidden}
+#loader .gate p{font-family:var(--serif);font-size:clamp(22px,2.6vw,30px);line-height:1.25;margin-bottom:26px;color:var(--ink)}
+#loader .gate .btns{display:flex;gap:12px;justify-content:center}
+#loader .gate small{display:block;margin-top:22px;color:var(--stone);font-size:11px;letter-spacing:.06em}
+.btn{display:inline-flex;align-items:center;gap:12px;height:52px;padding:0 30px;border-radius:60px;font-size:11px;letter-spacing:.26em;text-transform:uppercase;font-weight:500;position:relative;overflow:hidden;isolation:isolate;transition:color .5s var(--ease)}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;transform:translateY(101%);transition:transform .55s var(--ease);border-radius:inherit}
+.btn:hover::before{transform:none}
+.btn.red{background:var(--red);color:#fff}.btn.red::before{background:var(--wine)}
+.btn.line{border:1px solid currentColor}.btn.line::before{background:var(--ink)}.btn.line:hover{color:var(--paper)}
+.btn.white{background:#fff;color:var(--ink)}.btn.white::before{background:var(--red)}.btn.white:hover{color:#fff}
+.btn.ghost{border:1px solid rgba(255,255,255,.55);color:#fff}.btn.ghost::before{background:#fff}.btn.ghost:hover{color:var(--ink)}
+.btn svg{width:14px;height:14px}
+
+/* ---------- header ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:800;height:84px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(18px,3vw,44px);color:#fff;transition:color .5s,background .5s,transform .6s var(--ease)}
+header.solid{color:var(--ink);background:rgba(246,241,232,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+header.hide{transform:translateY(-100%)}
+header nav{display:flex;gap:clamp(16px,2.4vw,36px);align-items:center}
+header nav a,header nav button{font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:500;position:relative;padding:6px 0}
+header nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+header nav a:hover::after{transform:scaleX(1);transform-origin:left}
+.hlogo{position:absolute;left:50%;top:0;transform:translateX(-50%);width:150px;height:76px;display:block;transition:transform .6s var(--ease)}
+header.solid .hlogo{transform:translateX(-50%) scale(.82);transform-origin:50% 0}
+.hlogo svg{width:100%;height:100%;filter:drop-shadow(0 10px 20px rgba(60,0,10,.25))}
+.hlogo .sails{transform-box:view-box;transform-origin:100px 124px}
+.hlogo:hover .sails{animation:spin 2.4s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cartbtn{display:flex;align-items:center;gap:10px}
+.cartbtn b{min-width:22px;height:22px;border-radius:11px;background:var(--red);color:#fff;font-size:10px;display:inline-flex;align-items:center;justify-content:center;font-weight:500;letter-spacing:0;transition:transform .4s var(--ease)}
+.cartbtn b.bump{transform:scale(1.5)}
+.lang{opacity:.7}
+.burger{display:none;width:28px;height:14px;position:relative}
+.burger i{position:absolute;left:0;right:0;height:1px;background:currentColor}
+.burger i:first-child{top:0}.burger i:last-child{bottom:0}
+@media(max-width:900px){header nav.l a,header nav.r .hide-m{display:none}.burger{display:block}}
+
+/* ---------- hero ---------- */
+#hero{position:relative;height:100svh;min-height:620px;overflow:hidden;background:var(--night);color:#fff}
+#hero .bg{position:absolute;inset:-4%;background-size:cover;background-position:50% 70%;transform:scale(1.25);will-change:transform}
+#hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,11,14,.55) 0%,rgba(30,11,14,0) 28%,rgba(30,11,14,.05) 55%,rgba(30,11,14,.82) 100%)}
+#hero canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#hero .in{position:absolute;left:0;right:0;bottom:clamp(40px,8vh,90px);padding:0 clamp(20px,4vw,64px);display:grid;grid-template-columns:1fr auto;align-items:end;gap:40px}
+#hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(52px,9.4vw,160px);line-height:.88;letter-spacing:-.025em}
+#hero h1 em{font-style:italic;font-weight:300;color:#f3dfc6}
+#hero h1 .ln{display:block;overflow:hidden;padding-bottom:.06em}
+#hero h1 .ln span{display:inline-block;transform:translateY(110%)}
+#hero .kick{margin-bottom:26px;opacity:0}
+#hero .side{max-width:330px;opacity:0}
+#hero .side p{font-size:15px;line-height:1.6;color:rgba(255,255,255,.82);margin-bottom:24px}
+#hero .side .btns{display:flex;gap:10px;flex-wrap:wrap}
+#hero .scroll{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);width:1px;height:56px;background:rgba(255,255,255,.25);overflow:hidden}
+#hero .scroll::after{content:"";position:absolute;left:0;top:-50%;width:1px;height:50%;background:#fff;animation:drip 2.2s var(--ease) infinite}
+@keyframes drip{to{top:100%}}
+@media(max-width:900px){#hero .in{grid-template-columns:1fr}#hero .side{max-width:none}}
+
+/* ---------- chiffres ---------- */
+.figs{background:var(--red);color:#fff;position:relative;overflow:hidden}
+.figs .row{display:grid;grid-template-columns:repeat(4,1fr)}
+.figs .f{padding:44px clamp(18px,2.4vw,36px);border-right:1px solid rgba(255,255,255,.18)}
+.figs .f:last-child{border-right:0}
+.figs .n{font-family:var(--serif);font-size:clamp(46px,5.6vw,84px);line-height:1;font-weight:300;font-variant-numeric:tabular-nums}
+.figs .l{margin-top:10px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.8}
+@media(max-width:800px){.figs .row{grid-template-columns:1fr 1fr}.figs .f:nth-child(2){border-right:0}.figs .f:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.18)}}
+
+/* ---------- manifeste ---------- */
+#manifeste{padding:clamp(110px,16vw,220px) 0 clamp(90px,12vw,160px);position:relative}
+#manifeste .q{font-family:var(--serif);font-weight:300;font-size:clamp(34px,5.4vw,84px);line-height:1.06;letter-spacing:-.015em;max-width:1180px}
+#manifeste .q .w{opacity:.12;transition:none}
+#manifeste .sig{display:flex;align-items:center;gap:18px;margin-top:46px;color:var(--stone)}
+#manifeste .sig::before{content:"";width:60px;height:1px;background:var(--red)}
+#manifeste .duo{display:grid;grid-template-columns:5fr 4fr;gap:clamp(30px,6vw,110px);margin-top:clamp(80px,10vw,150px);align-items:center}
+#manifeste .ph{position:relative;overflow:hidden;aspect-ratio:4/5;clip-path:inset(12% 12% 12% 12%)}
+#manifeste .ph img{position:absolute;inset:-10% 0;width:100%;height:120%;object-fit:cover;object-position:62% 50%}
+#manifeste .txt h3{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.4vw,48px);line-height:1.08;margin:18px 0 22px}
+#manifeste .txt p{color:var(--taupe);max-width:460px;margin-bottom:16px}
+#manifeste .txt .k{color:var(--red)}
+@media(max-width:800px){#manifeste .duo{grid-template-columns:1fr}}
+
+/* ---------- saga horizontale ---------- */
+#saga{background:var(--night);color:#fff;position:relative;overflow:hidden}
+#saga .head{position:absolute;top:clamp(90px,12vh,120px);left:clamp(20px,4vw,64px);right:clamp(20px,4vw,64px);display:flex;justify-content:space-between;align-items:flex-end;z-index:3;pointer-events:none}
+#saga .head h2{font-family:var(--serif);font-weight:300;font-size:clamp(34px,4vw,60px);line-height:1}
+#saga .head h2 em{color:#e9b9a4}
+#saga .track{display:flex;height:100svh;align-items:center;padding-left:clamp(20px,4vw,64px);will-change:transform}
+#saga .panel{flex:0 0 auto;width:min(78vw,820px);height:54vh;margin-right:6vw;display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:end;position:relative;margin-top:22vh}
+#saga .panel .yr{position:absolute;left:-.04em;top:-.62em;font-family:var(--serif);font-size:clamp(110px,15vw,240px);line-height:1;font-weight:300;color:transparent;-webkit-text-stroke:1px rgba(233,185,164,.38);letter-spacing:-.03em;z-index:0;white-space:nowrap}
+#saga .panel .im{height:100%;overflow:hidden;position:relative;z-index:1}
+#saga .panel .im img{width:100%;height:100%;object-fit:cover;transform:scale(1.15)}
+#saga .panel .tx{z-index:1;padding-bottom:8px}
+#saga .panel .tx .k{color:#e9b9a4;margin-bottom:16px;display:block}
+#saga .panel .tx h3{font-family:var(--serif);font-size:clamp(28px,2.6vw,40px);font-weight:400;line-height:1.08;margin-bottom:16px}
+#saga .panel .tx p{color:rgba(255,255,255,.72);font-size:15px}
+#saga .intro{flex:0 0 auto;width:min(70vw,620px);margin-right:8vw}
+#saga .intro p{font-family:var(--serif);font-size:clamp(26px,2.8vw,40px);line-height:1.18;font-weight:300}
+#saga .intro p em{color:#e9b9a4}
+#saga .bar{position:absolute;left:clamp(20px,4vw,64px);right:clamp(20px,4vw,64px);bottom:44px;height:1px;background:rgba(255,255,255,.15);z-index:3}
+#saga .bar i{position:absolute;left:0;top:0;bottom:0;width:100%;background:#e9b9a4;transform:scaleX(0);transform-origin:left}
+#saga .smill{position:absolute;right:clamp(20px,4vw,64px);bottom:62px;width:46px;z-index:3;opacity:.9}
+@media(max-width:800px){
+  #saga .track{flex-direction:column;height:auto;padding:150px 20px 80px;align-items:stretch}
+  #saga .panel{width:100%;height:auto;grid-template-columns:1fr;margin:0 0 90px}
+  #saga .panel .im{height:56vw}
+  #saga .intro{width:100%;margin:0 0 70px}
+  #saga .bar,#saga .smill{display:none}
+}
+
+/* ---------- crémant scrollytelling ---------- */
+#cremant{position:relative;background:linear-gradient(180deg,var(--paper) 0%,#F1E7D3 100%);overflow:hidden}
+#cremant .stage{height:100svh;position:relative;display:grid;grid-template-columns:1fr minmax(180px,22vw) 1fr;align-items:center;padding:0 clamp(20px,4vw,64px)}
+#cremant canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#cremant .lattesbg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0}
+#cremant .bottle{position:relative;height:74vh;justify-self:center;z-index:2;display:flex;align-items:center;justify-content:center}
+#cremant .bottle img{height:100%;width:auto;filter:drop-shadow(0 40px 40px rgba(60,20,10,.28));will-change:transform}
+#cremant .steps{position:relative;height:280px;z-index:2}
+#cremant .step{position:absolute;inset:0;opacity:0;transform:translateY(30px)}
+#cremant .step .k{color:var(--red)}
+#cremant .step h3{font-family:var(--serif);font-weight:300;font-size:clamp(34px,4vw,62px);line-height:1;margin:16px 0 18px;letter-spacing:-.01em}
+#cremant .step h3 em{color:var(--red)}
+#cremant .step p{color:var(--taupe);max-width:400px}
+#cremant .right{position:relative;z-index:2;justify-self:end;text-align:right;height:280px;width:min(100%,380px)}
+#cremant .big{font-family:var(--serif);font-size:clamp(110px,14vw,220px);line-height:.8;color:var(--red);font-weight:300;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+#cremant .bigl{margin-top:16px;color:var(--stone)}
+#cremant .dots{position:absolute;left:clamp(20px,4vw,64px);bottom:46px;display:flex;gap:10px;z-index:3}
+#cremant .dots i{width:30px;height:2px;background:rgba(142,9,40,.18);position:relative;overflow:hidden}
+#cremant .dots i b{position:absolute;inset:0;background:var(--red);transform:scaleX(0);transform-origin:left}
+@media(max-width:800px){
+ #cremant .stage{grid-template-columns:1fr;grid-template-rows:auto 1fr auto;padding-top:96px;padding-bottom:56px}
+ #cremant .bottle{height:44vh;grid-row:2}
+ #cremant .steps{height:200px;grid-row:1}
+ #cremant .right{display:none}
+ #cremant .step p{font-size:14px}
+}
+
+/* ---------- dosage ---------- */
+#dosage{padding:clamp(90px,10vw,150px) 0;background:#F1E7D3}
+#dosage .g{display:grid;grid-template-columns:4fr 7fr;gap:clamp(30px,6vw,90px);align-items:center}
+#dosage h2{font-family:var(--serif);font-weight:300;font-size:clamp(40px,4.6vw,70px);line-height:1;margin:18px 0 22px}
+#dosage h2 em{color:var(--red)}
+#dosage p{color:var(--taupe)}
+.scale{position:relative;padding-top:70px}
+.scale .rail{height:64px;display:flex;border-radius:2px;overflow:hidden;cursor:pointer;position:relative}
+.scale .seg{height:100%;position:relative;border-right:1px solid rgba(255,255,255,.5);display:flex;align-items:flex-end;padding:0 0 8px 8px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.9);white-space:nowrap;overflow:hidden;transition:filter .3s}
+.scale .seg:hover{filter:brightness(1.12)}
+.scale .knob{position:absolute;top:0;left:0;width:2px;height:150px;background:var(--ink);transform:translateX(-1px);pointer-events:none}
+.scale .knob::before{content:"";position:absolute;left:50%;top:58px;width:18px;height:18px;margin-left:-9px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 6px rgba(35,28,25,.12)}
+.scale .val{position:absolute;top:0;left:0;transform:translateX(-50%);font-family:var(--serif);font-size:44px;line-height:1;white-space:nowrap;pointer-events:none}
+.scale .val small{font-size:16px;color:var(--stone)}
+.scale .ticks{position:relative;height:18px;margin-top:12px;font-size:11px;color:var(--stone)}.scale .ticks span{position:absolute;top:0;transform:translateX(-50%)}.scale .ticks span:first-child{transform:none}
+.scale .out{margin-top:42px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;min-height:120px}
+.scale .out img{height:120px;width:auto}.scale .out img.sq{width:120px;object-fit:cover;border-radius:50%}
+.scale .out h4{font-family:var(--serif);font-size:30px;font-weight:400;line-height:1.05}
+.scale .out .m{color:var(--red);margin-bottom:6px}
+.scale .out p{font-size:14px}
+@media(max-width:860px){#dosage .g{grid-template-columns:1fr}.scale .seg{font-size:0}}
+
+/* ---------- terroirs ---------- */
+#terroirs{position:relative;padding:clamp(110px,12vw,180px) 0;overflow:hidden}
+#terroirs svg.topo{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#terroirs .top{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;position:relative;margin-bottom:60px;flex-wrap:wrap}
+#terroirs h2{font-family:var(--serif);font-weight:300;font-size:clamp(46px,6vw,96px);line-height:.95;letter-spacing:-.02em}
+#terroirs h2 em{color:var(--red)}
+#terroirs .top p{max-width:420px;color:var(--taupe)}
+.tabs{display:flex;gap:6px;position:relative;margin-bottom:40px;flex-wrap:wrap}
+.tabs button{height:46px;padding:0 22px;border:1px solid rgba(35,28,25,.18);border-radius:40px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;transition:all .4s var(--ease)}
+.tabs button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.gc{display:grid;grid-template-columns:5fr 3fr 4fr;gap:clamp(24px,4vw,60px);align-items:center;position:relative;min-height:520px}
+.gc .name{font-family:var(--serif);font-size:clamp(52px,7vw,120px);line-height:.9;font-weight:300;letter-spacing:-.02em;overflow:hidden}
+.gc .name span{display:block}
+.gc .meta{display:grid;grid-template-columns:1fr 1fr;gap:26px 20px;margin-top:40px}
+.gc .meta div{border-top:1px solid rgba(35,28,25,.15);padding-top:12px}
+.gc .meta b{display:block;font-family:var(--serif);font-size:34px;font-weight:400;line-height:1.1;color:var(--red)}
+.gc .meta span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone)}
+.gc .bt{height:520px;display:flex;justify-content:center;align-items:flex-end}
+.gc .bt img{height:100%;width:auto;filter:drop-shadow(0 30px 30px rgba(0,0,0,.18))}
+.gc .desc p{color:var(--taupe);margin-bottom:16px}
+.gc .desc blockquote{font-family:var(--serif);font-size:24px;line-height:1.25;font-style:italic;margin:26px 0 0;padding-left:20px;border-left:1px solid var(--red)}
+@media(max-width:900px){.gc{grid-template-columns:1fr 1fr}.gc .desc{grid-column:1/-1}.gc .bt{height:380px}}
+
+/* ---------- ruban photo ---------- */
+#ruban{background:var(--night);color:#fff;padding:clamp(100px,12vw,170px) 0;overflow:hidden;position:relative}
+#ruban h2{font-family:var(--serif);font-weight:300;font-size:clamp(50px,9vw,150px);line-height:.9;text-align:center;letter-spacing:-.02em;position:relative;z-index:2;mix-blend-mode:difference}
+#ruban h2 em{font-style:italic}
+#ruban .cols{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:-70px;padding:0 18px}
+#ruban .col{display:flex;flex-direction:column;gap:18px}
+#ruban .col:nth-child(2),#ruban .col:nth-child(4){margin-top:120px}
+#ruban figure{overflow:hidden;position:relative}
+#ruban figure img{width:100%;height:auto;transform:scale(1.12)}
+#ruban figcaption{position:absolute;left:12px;bottom:10px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.85}
+@media(max-width:800px){#ruban .cols{grid-template-columns:1fr 1fr}#ruban .col:nth-child(n+3){display:none}}
+
+/* ---------- boutique ---------- */
+#boutique{padding:clamp(110px,12vw,170px) 0 clamp(80px,10vw,140px);background:var(--paper)}
+#boutique .top{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:46px}
+#boutique h2{font-family:var(--serif);font-weight:300;font-size:clamp(46px,6vw,96px);line-height:.95;letter-spacing:-.02em}
+#boutique h2 em{color:var(--red)}
+#boutique .cc{display:flex;gap:14px;align-items:center;font-size:13px;color:var(--taupe);max-width:420px}
+#boutique .cc svg{flex:0 0 40px;width:40px;height:40px}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:40px}
+.filters button{height:42px;padding:0 20px;border-radius:40px;border:1px solid rgba(35,28,25,.18);font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;transition:all .4s var(--ease)}
+.filters button.on{background:var(--red);border-color:var(--red);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(35,28,25,.08);border:1px solid rgba(35,28,25,.08)}
+.card{background:var(--paper);position:relative;padding:26px 24px 24px;display:flex;flex-direction:column;min-height:540px;overflow:hidden;transition:background .5s}
+.card:hover{background:#fff}
+.card .cat{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--stone)}
+.card .medal{align-self:flex-start;margin-top:10px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);border:1px solid rgba(142,9,40,.35);border-radius:30px;padding:4px 10px;line-height:1.3}
+.card .pic{flex:1;display:flex;align-items:flex-end;justify-content:center;padding:26px 0 18px;position:relative}
+.card .pic::after{content:"";position:absolute;bottom:14px;left:50%;width:46%;height:14px;margin-left:-23%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.18),transparent);transition:transform .7s var(--ease),opacity .7s}
+.card .pic img{height:330px;width:auto;position:relative;z-index:1;transition:transform .8s var(--ease)}
+.card .pic img.coffret{height:auto;width:100%;max-height:330px;object-fit:cover;aspect-ratio:1/1}
+.card:hover .pic img{transform:translateY(-14px) rotate(-3deg)}
+.card:hover .pic::after{transform:scale(.8);opacity:.6}
+.card h4{font-family:var(--serif);font-size:25px;font-weight:400;line-height:1.08;min-height:54px}
+.card .row{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.card .pr{font-family:var(--serif);font-size:24px;white-space:nowrap}
+.card .add{height:40px;padding:0 18px;border-radius:30px;background:var(--ink);color:var(--paper);font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;transition:background .4s}
+.card .add:hover{background:var(--red)}
+.card.hid{display:none}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:800px){.card .row{flex-wrap:wrap;gap:8px}.card .add{width:100%}.grid{grid-template-columns:1fr 1fr}.card{min-height:440px;padding:20px 16px}.card .pic img{height:240px}.card h4{font-size:20px}.card .medal{display:none}}
+
+/* ---------- panier ---------- */
+#drawer{position:fixed;inset:0;z-index:9200;pointer-events:none}
+#drawer .ov{position:absolute;inset:0;background:rgba(30,11,14,.5);opacity:0;transition:opacity .5s}
+#drawer .pn{position:absolute;right:0;top:0;bottom:0;width:min(480px,100%);background:var(--paper);transform:translateX(100%);transition:transform .7s var(--ease);display:flex;flex-direction:column}
+#drawer.open{pointer-events:auto}
+#drawer.open .ov{opacity:1}
+#drawer.open .pn{transform:none}
+#drawer .hd{display:flex;justify-content:space-between;align-items:center;padding:26px 28px;border-bottom:1px solid rgba(35,28,25,.1)}
+#drawer .hd h3{font-family:var(--serif);font-weight:400;font-size:30px}
+#drawer .items{flex:1;overflow:auto;padding:8px 28px}
+#drawer .it{display:grid;grid-template-columns:52px 1fr auto;gap:16px;align-items:center;padding:16px 0;border-bottom:1px solid rgba(35,28,25,.08)}
+#drawer .it img{height:84px;width:auto;margin:0 auto}
+#drawer .it h5{font-family:var(--serif);font-size:19px;font-weight:400;line-height:1.1}
+#drawer .it .q{display:flex;gap:12px;align-items:center;margin-top:6px;font-size:13px}
+#drawer .it .q button{width:24px;height:24px;border-radius:50%;border:1px solid rgba(35,28,25,.2)}
+#drawer .empty{padding:60px 0;text-align:center;color:var(--stone);font-family:var(--serif);font-size:22px}
+#drawer .ft{padding:22px 28px 28px;border-top:1px solid rgba(35,28,25,.1);background:#fff}
+.mode{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.mode button{border:1px solid rgba(35,28,25,.18);border-radius:10px;padding:12px;text-align:left;font-size:12px;line-height:1.35;transition:all .3s}
+.mode button b{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;margin-bottom:2px}
+.mode button.on{border-color:var(--red);background:rgba(142,9,40,.05);box-shadow:inset 0 0 0 1px var(--red)}
+.shops{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.shops label{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;line-height:1.35;padding:10px 12px;border-radius:10px;border:1px solid rgba(35,28,25,.1);cursor:pointer}
+.shops input{accent-color:var(--red);margin-top:3px}
+.shops small{color:var(--stone)}
+.tot{display:flex;justify-content:space-between;align-items:baseline;margin:6px 0 14px}
+.tot b{font-family:var(--serif);font-size:30px;font-weight:400}
+#drawer .go{width:100%;justify-content:center}
+#drawer .fine{font-size:11px;color:var(--stone);text-align:center;margin-top:10px}
+
+/* ---------- accords ---------- */
+#accords{background:var(--wine);color:#fff;padding:clamp(110px,12vw,170px) 0;position:relative;overflow:hidden}
+#accords .g{display:grid;grid-template-columns:6fr 5fr;gap:clamp(30px,6vw,90px);align-items:center}
+#accords .k{color:#e9b9a4}
+#accords h2{font-family:var(--serif);font-weight:300;font-size:clamp(40px,4.6vw,70px);line-height:1;margin:18px 0 40px}
+#accords ul{list-style:none;border-top:1px solid rgba(255,255,255,.14)}
+#accords li{border-bottom:1px solid rgba(255,255,255,.14)}
+#accords li button{width:100%;display:flex;justify-content:space-between;align-items:center;padding:18px 0;font-family:var(--serif);font-size:clamp(24px,2.6vw,38px);font-weight:300;line-height:1.1;text-align:left;transition:padding .5s var(--ease),color .4s;color:rgba(255,255,255,.55)}
+#accords li button span{font-family:var(--sans);font-size:10px;letter-spacing:.24em;text-transform:uppercase;opacity:0;transition:opacity .4s}
+#accords li button:hover,#accords li button.on{color:#fff;padding-left:18px}
+#accords li button.on span{opacity:.7}
+#accords .res{position:relative;height:620px;display:flex;align-items:center;justify-content:center}
+#accords .res .halo{position:absolute;width:440px;height:440px;border-radius:50%;background:radial-gradient(closest-side,rgba(233,185,164,.28),transparent)}
+#accords .res img{height:460px;margin-bottom:110px;width:auto;position:relative;z-index:1;filter:drop-shadow(0 40px 40px rgba(0,0,0,.4))}
+#accords .res .cap{position:absolute;bottom:0;left:0;right:0;text-align:center;z-index:2}
+#accords .res .cap h4{font-family:var(--serif);font-size:28px;font-weight:400}
+#accords .res .cap p{font-size:13px;color:rgba(255,255,255,.7);max-width:380px;margin:6px auto 0}
+@media(max-width:860px){#accords .g{grid-template-columns:1fr}#accords .res{height:480px}#accords .res img{height:380px}}
+
+/* ---------- visites ---------- */
+#visites{padding:clamp(110px,12vw,170px) 0;background:var(--paper)}
+#visites h2{font-family:var(--serif);font-weight:300;font-size:clamp(46px,6vw,96px);line-height:.95;letter-spacing:-.02em;margin:16px 0 50px;max-width:900px}
+#visites h2 em{color:var(--red)}
+.caves{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.cave{position:relative;overflow:hidden;background:#fff}
+.cave .im{aspect-ratio:4/3;overflow:hidden}
+.cave .im img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.cave:hover .im img{transform:scale(1.06)}
+.cave .b{padding:22px 22px 26px}
+.cave h4{font-family:var(--serif);font-size:28px;font-weight:400;line-height:1.05;margin-bottom:10px}
+.cave p{font-size:13.5px;color:var(--taupe)}
+.cave .open{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);font-weight:500}
+.cave .open i{width:7px;height:7px;border-radius:50%;background:#3c8b4a}
+.book{margin-top:60px;display:grid;grid-template-columns:4fr 7fr;gap:clamp(30px,5vw,80px);background:var(--night);color:#fff;padding:clamp(30px,4vw,60px);position:relative;overflow:hidden}
+.book h3{font-family:var(--serif);font-weight:300;font-size:clamp(34px,3.6vw,54px);line-height:1;margin:14px 0 18px}
+.book p{color:rgba(255,255,255,.7);font-size:14px}
+.book .k{color:#e9b9a4}
+.book .f{display:flex;flex-direction:column;gap:22px}
+.book .lbl{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:10px}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pills button{border:1px solid rgba(255,255,255,.22);border-radius:40px;padding:10px 16px;font-size:12px;transition:all .3s;line-height:1.2}
+.pills button.on{background:#fff;color:var(--ink);border-color:#fff}
+.pills.days button{display:flex;flex-direction:column;align-items:center;padding:10px 14px;border-radius:14px;min-width:62px}
+.pills.days button b{font-family:var(--serif);font-size:24px;font-weight:400;line-height:1}
+.pills.days button small{font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+.stepper{display:flex;align-items:center;gap:16px}
+.stepper button{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.3);font-size:18px}
+.stepper b{font-family:var(--serif);font-size:32px;font-weight:400;min-width:30px;text-align:center}
+@media(max-width:900px){.caves{grid-template-columns:1fr}.book{grid-template-columns:1fr}}
+
+/* ---------- distinctions ---------- */
+#prix{background:var(--paper2);padding:70px 0;overflow:hidden}
+#prix .k{text-align:center;color:var(--red);display:block;margin-bottom:30px}
+.marq{display:flex;gap:70px;white-space:nowrap;will-change:transform}
+.marq div{display:flex;align-items:center;gap:22px;font-family:var(--serif);font-size:clamp(26px,3vw,44px);font-weight:300}
+.marq div b{font-weight:500;color:var(--red)}
+.marq div small{font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--stone)}
+.marq svg{width:22px;height:22px;flex:0 0 22px}
+
+/* ---------- footer ---------- */
+footer{background:var(--red);color:#fff;padding:clamp(80px,10vw,130px) 0 30px;position:relative;overflow:hidden}
+footer .slog{display:grid;grid-template-columns:auto 1px auto;gap:clamp(24px,4vw,56px);align-items:center;justify-content:center;margin-bottom:90px}
+footer .slog svg{height:clamp(110px,14vw,190px);width:auto}
+footer .slog i{height:100%;background:rgba(255,255,255,.7)}
+footer .slog p{font-family:var(--sans);font-size:clamp(22px,3vw,42px);line-height:1.2;font-weight:300}
+footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;border-top:1px solid rgba(255,255,255,.22);padding-top:46px}
+footer h5{font-size:10px;letter-spacing:.26em;text-transform:uppercase;font-weight:500;opacity:.7;margin-bottom:16px}
+footer ul{list-style:none;font-size:14px;line-height:2}
+footer .nl{display:flex;border-bottom:1px solid rgba(255,255,255,.6);max-width:420px}
+footer .nl input{flex:1;background:none;border:0;color:#fff;font:inherit;padding:12px 0;outline:0}
+footer .nl input::placeholder{color:rgba(255,255,255,.65)}
+footer .nl button{font-size:11px;letter-spacing:.22em;text-transform:uppercase}
+footer .legal{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:70px;font-size:11px;opacity:.75;letter-spacing:.04em}
+footer .evin{text-align:center;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-top:40px;opacity:.85}
+@media(max-width:860px){footer .cols{grid-template-columns:1fr 1fr}footer .slog{grid-template-columns:1fr;text-align:center;justify-items:center}footer .slog i{display:none}}
+
+/* ---------- toast ---------- */
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,140%);z-index:9300;background:var(--ink);color:var(--paper);padding:14px 22px;border-radius:40px;font-size:13px;display:flex;gap:12px;align-items:center;transition:transform .6s var(--ease);box-shadow:0 14px 40px rgba(0,0,0,.25);max-width:calc(100% - 32px)}
+.toast.on{transform:translate(-50%,0)}
+.toast img{height:38px;width:auto}
+
+/* reveal util */
+.rv{opacity:0;transform:translateY(40px)}
+.split .ln{display:block;overflow:hidden}
+.split .ln>span{display:block}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body class="locked">
+
+<div class="cur"></div><div class="cur2"></div>
+<div class="badge"><i></i>Maquette</div>
+
+<!-- ======== LOADER + ÂGE ======== -->
+<div id="loader">
+  <div class="tri">
+    <svg class="t" viewBox="0 0 200 100" preserveAspectRatio="none"><polygon points="0,0 200,0 100,100" fill="#8E0928"/></svg>
+    <svg class="mill" viewBox="0 0 200 280"><path fill="#fff" d="M80 150 L62 262 L168 262 L147 152 L154 146 L154 131 L140 121 L124 102 L112 100 L97 112 L86 130 Z"/><g class="sails" fill="#fff"><rect x="93.5" y="16" width="13" height="216" transform="rotate(38 100 124)"/><rect x="93.5" y="16" width="13" height="216" transform="rotate(-52 100 124)"/></g></svg>
+  </div>
+  <div class="count">1574</div>
+  <div class="sub k">Dopff Au Moulin · Riquewihr</div>
+  <div class="gate">
+    <p>Bienvenue au Domaine.<br>Avez-vous l'âge légal pour consommer de l'alcool&nbsp;?</p>
+    <div class="btns"><button class="btn red" id="enter">Oui, entrer</button><button class="btn line" id="nope">Non</button></div>
+    <small>L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</small>
+  </div>
+</div>
+
+<!-- ======== HEADER ======== -->
+<header id="hd">
+  <nav class="l">
+    <button class="burger" aria-label="Menu"><i></i><i></i></button>
+    <a href="#manifeste" data-to>La Maison</a>
+    <a href="#cremant" data-to>Savoir-faire</a>
+    <a href="#terroirs" data-to>Terroirs</a>
+  </nav>
+  <a class="hlogo" href="#hero" data-to aria-label="Dopff Au Moulin">
+    <svg viewBox="0 0 200 100"><polygon points="0,0 200,0 100,100" fill="#8E0928"/><g transform="translate(78 14) scale(.22)"><path fill="#fff" d="M80 150 L62 262 L168 262 L147 152 L154 146 L154 131 L140 121 L124 102 L112 100 L97 112 L86 130 Z"/><g class="sails" fill="#fff"><rect x="93.5" y="16" width="13" height="216" transform="rotate(38 100 124)"/><rect x="93.5" y="16" width="13" height="216" transform="rotate(-52 100 124)"/></g></g></svg>
+  </a>
+  <nav class="r">
+    <a href="#boutique" data-to class="hide-m">Boutique</a>
+    <a href="#visites" data-to class="hide-m">Visites</a>
+    <span class="lang k hide-m" style="font-size:10px">FR · EN · DE</span>
+    <button class="cartbtn" id="openCart">Panier <b id="cnt">0</b></button>
+  </nav>
+</header>
+
+<!-- ======== HERO ======== -->
+<section id="hero">
+  <div class="bg" style="background-image:url(img/panorama.webp)"></div>
+  <div class="shade"></div>
+  <canvas id="bub"></canvas>
+  <div class="in">
+    <div>
+      <div class="k kick">Vins &amp; Crémants d'Alsace · Riquewihr · depuis 1574</div>
+      <h1><span class="ln"><span>Forts de</span></span><span class="ln"><span>nos racines,</span></span><span class="ln"><span><em>fiers de nos vins.</em></span></span></h1>
+    </div>
+    <div class="side">
+      <p>Treize générations de la famille Dopff, soixante-dix hectares au cœur de l'appellation Alsace Grand Cru, et l'audace des pionniers du Crémant d'Alsace.</p>
+      <div class="btns">
+        <a class="btn white" href="#boutique" data-to data-cur="Boutique">La boutique</a>
+        <a class="btn ghost" href="#visites" data-to>Réserver une visite</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll"></div>
+</section>
+
+<!-- ======== CHIFFRES ======== -->
+<section class="figs">
+  <div class="row">
+    <div class="f"><div class="n" data-n="13">0</div><div class="l">générations</div></div>
+    <div class="f"><div class="n" data-n="70">0</div><div class="l">hectares de vignes</div></div>
+    <div class="f"><div class="n" data-n="3">0</div><div class="l">Grands Crus</div></div>
+    <div class="f"><div class="n" data-n="1976">0</div><div class="l">AOC Crémant d'Alsace</div></div>
+  </div>
+</section>
+
+<!-- ======== MANIFESTE ======== -->
+<section id="manifeste">
+  <div class="wrap">
+    <div class="k" style="color:var(--red);margin-bottom:34px">La Maison</div>
+    <p class="q" id="q">«&nbsp;Notre histoire est longue. Nos racines viticoles profondes. Nous vivons par le vin depuis 1574.&nbsp;»</p>
+    <div class="sig k">Etienne-Arnaud Dopff · Direction du Domaine</div>
+    <div class="duo">
+      <div class="ph" id="mph"><img src="img/portrait.webp" alt="Dégustation d'un Riesling au Domaine Dopff"></div>
+      <div class="txt">
+        <div class="k">Une entreprise 100 % familiale</div>
+        <h3 class="serif">De la terre au verre, sans intermédiaire.</h3>
+        <p>Dopff Au Moulin est l'une des rares maisons d'Alsace à capital entièrement familial, totalement intégrée et autonome, de la vigne au verre. Sa richesse est dans ses parcelles et dans son stock.</p>
+        <p>Cinquante passionnés y travaillent au coude à coude : culture de la vigne, pressurage, vinification, remuage, dégorgement, jusqu'à la préparation de votre commande.</p>
+        <p style="font-family:var(--serif);font-size:22px;font-style:italic;color:var(--ink);margin-top:26px">«&nbsp;Notre unique ambition&nbsp;: pouvoir être fiers de nos vins, du plus simple au plus complexe.&nbsp;»</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== SAGA ======== -->
+<section id="saga">
+  <div class="head"><h2 class="serif">Quatre siècles et demi,<br><em>une seule famille.</em></h2><span class="k" style="opacity:.6">Faites défiler</span></div>
+  <div class="track" id="track">
+    <div class="intro"><p>Tonneliers, courtiers en vins, puis vignerons&nbsp;: <em>l'arbre généalogique des Dopff</em> est toujours là pour rappeler d'où l'on vient, et surtout où l'on va.</p></div>
+  </div>
+  <div class="bar"><i id="sbar"></i></div>
+  <svg class="smill" viewBox="0 0 200 280"><path fill="#fff" d="M80 150 L62 262 L168 262 L147 152 L154 146 L154 131 L140 121 L124 102 L112 100 L97 112 L86 130 Z"/><g class="sails" fill="#fff"><rect x="93.5" y="16" width="13" height="216" transform="rotate(38 100 124)"/><rect x="93.5" y="16" width="13" height="216" transform="rotate(-52 100 124)"/></g></svg>
+</section>
+
+<!-- ======== CRÉMANT ======== -->
+<section id="cremant">
+  <div class="stage">
+    <div class="lattesbg" style="background-image:url(img/lattes.webp)"></div>
+    <canvas id="bub2"></canvas>
+    <div class="steps">
+      <div class="step"><span class="k">01 · Le pionnier</span><h3>Le Crémant,<br><em>né chez Dopff.</em></h3><p>En 1900, à l'Exposition universelle de Paris, Julien Dopff découvre la méthode champenoise. Il décide de l'appliquer aux vins d'Alsace.</p></div>
+      <div class="step"><span class="k">02 · La Cuvée</span><h3>Seuls les<br><em>premiers jus.</em></h3><p>Six pressoirs à membranes pour un pressurage souple. Pour nos crémants, seule la Cuvée, les premiers jus, est conservée.</p></div>
+      <div class="step"><span class="k">03 · Sur lattes</span><h3>L'éloge<br><em>de la patience.</em></h3><p>De longs temps sur lattes affinent l'acidité et donnent à nos crémants une bulle parfaite. En 1976, Pierre Dopff obtient l'AOC Crémant d'Alsace.</p></div>
+      <div class="step"><span class="k">04 · Remuage</span><h3>Un quart<br><em>de tour.</em></h3><p>Pointe en bas, la bouteille est tournée et inclinée jour après jour pour amener le dépôt vers le col.</p></div>
+      <div class="step"><span class="k">05 · Dosage</span><h3>Autour de<br><em>6 grammes.</em></h3><p>La famille a toujours privilégié un dosage Brut sobre, pour laisser le vin s'exprimer.</p></div>
+    </div>
+    <div class="bottle"><img id="cb" src="img/b-julien.webp" alt="Crémant d'Alsace Cuvée Julien"></div>
+    <div class="right"><div class="big" id="bign">1900</div><div class="bigl k" id="bigl">Exposition universelle</div></div>
+    <div class="dots"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
+  </div>
+</section>
+
+<!-- ======== DOSAGE ======== -->
+<section id="dosage">
+  <div class="wrap g">
+    <div>
+      <div class="k" style="color:var(--red)">Brut de plaisir</div>
+      <h2>Trouvez <em>votre</em> crémant.</h2>
+      <p>La dernière touche se décide au dégorgement : le dosage. Faites glisser le curseur, du Brut Nature au Doux, et découvrez la cuvée Dopff qui vous ressemble.</p>
+    </div>
+    <div class="scale" id="scale">
+      <div class="val" id="sval">6 <small>g/L</small></div>
+      <div class="rail" id="rail"></div>
+      <div class="knob" id="knob"></div>
+      <div class="ticks"><span style="left:0">0 g</span><span style="left:20%">12 g</span><span style="left:53.33%">32 g</span><span style="left:83.33%">50 g</span></div>
+      <div class="out"><img id="simg" src="img/b-julien.webp" alt=""><div><div class="k m" id="sm">Brut</div><h4 id="sn">Cuvée Julien</h4><p id="sp">La signature de la maison, dosée autour de 6 g.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== TERROIRS ======== -->
+<section id="terroirs">
+  <svg class="topo" id="topo" preserveAspectRatio="none"></svg>
+  <div class="wrap">
+    <div class="top">
+      <div><div class="k" style="color:var(--red);margin-bottom:18px">Le Domaine</div><h2>Trois Grands Crus,<br><em>un cinquième</em> du vignoble.</h2></div>
+      <p>Avec 70 hectares, le domaine Dopff est le plus important au cœur de l'appellation Alsace Grand Cru : 35 ha en AOC Alsace sur le ban de Riquewihr, 20 ha dédiés aux crémants et trois Grands Crus d'exception.</p>
+    </div>
+    <div class="tabs" id="tabs"><button class="on" data-i="0">Schoenenbourg</button><button data-i="1">Sporen</button><button data-i="2">Brand</button></div>
+    <div class="gc" id="gc">
+      <div>
+        <div class="name" id="gname"><span>Schoenen-</span><span>bourg</span></div>
+        <div class="meta" id="gmeta"></div>
+      </div>
+      <div class="bt"><img id="gimg" src="img/b-riesling-gc.webp" alt=""></div>
+      <div class="desc" id="gdesc"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== RUBAN ======== -->
+<section id="ruban">
+  <h2>De la terre<br><em>au verre</em></h2>
+  <div class="cols">
+    <div class="col" data-sp="-80"><figure><img src="img/vendanges.webp" alt=""><figcaption>Vendanges manuelles</figcaption></figure><figure><img src="img/pressoir.webp" alt=""><figcaption>Le pressurage</figcaption></figure></div>
+    <div class="col" data-sp="-260"><figure><img src="img/grappe.webp" alt=""><figcaption>Pinot gris</figcaption></figure><figure><img src="img/foudres.webp" alt=""><figcaption>Les vieux foudres</figcaption></figure><figure><img src="img/muselets.webp" alt=""><figcaption>Depuis 1574</figcaption></figure></div>
+    <div class="col" data-sp="-120"><figure><img src="img/taille.webp" alt=""><figcaption>Taille en Guyot double</figcaption></figure><figure><img src="img/cave.webp" alt=""><figcaption>Sur lattes</figcaption></figure><figure><img src="img/verre.webp" alt=""><figcaption>Dégustation</figcaption></figure></div>
+    <div class="col" data-sp="-320"><figure><img src="img/gants.webp" alt=""><figcaption>Crémant Chardonnay</figcaption></figure><figure><img src="img/vieille.webp" alt=""><figcaption>La cave des millésimes</figcaption></figure></div>
+  </div>
+</section>
+
+<!-- ======== BOUTIQUE ======== -->
+<section id="boutique">
+  <div class="wrap">
+    <div class="top">
+      <div><div class="k" style="color:var(--red);margin-bottom:18px">La boutique du Domaine</div><h2>La cave,<br><em>chez vous.</em></h2></div>
+      <div class="cc"><svg viewBox="0 0 40 40" fill="none" stroke="#8E0928" stroke-width="1.2"><path d="M6 15 20 5l14 10v19H6z"/><path d="M15 34V22h10v12"/><circle cx="31" cy="9" r="5" fill="#F6F1E8"/><path d="m28.8 9 1.6 1.6 2.9-3"/></svg><span><b style="font-weight:500;color:var(--ink)">Click &amp; Collect gratuit</b> dans nos trois caveaux de Riquewihr et Bergheim, ouverts tous les jours de l'année. Ou livraison à domicile.</span></div>
+    </div>
+    <div class="filters" id="filters"><button class="on" data-f="all">Tout</button><button data-f="cremant">Crémants</button><button data-f="alsace">Alsace</button><button data-f="gc">Grands Crus</button><button data-f="vt">VT &amp; SGN</button></div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<!-- ======== ACCORDS ======== -->
+<section id="accords">
+  <div class="wrap g">
+    <div>
+      <div class="k">Cuisine du terroir</div>
+      <h2 class="serif">Que servez-vous<br>ce soir&nbsp;?</h2>
+      <ul id="dishes"></ul>
+    </div>
+    <div class="res"><div class="halo"></div><img id="aimg" src="img/b-riesling-df.webp" alt=""><div class="cap"><h4 id="aname"></h4><p id="atxt"></p></div></div>
+  </div>
+</section>
+
+<!-- ======== VISITES ======== -->
+<section id="visites">
+  <div class="wrap">
+    <div class="k" style="color:var(--red)">Visites &amp; dégustations</div>
+    <h2>Trois caveaux, <em>ouverts tous les jours</em> de l'année.</h2>
+    <div class="caves">
+      <div class="cave rv"><div class="im"><img src="img/caveau.webp" alt=""></div><div class="b"><h4>Centre-ville</h4><p>3 rue du Général de Gaulle<br>68340 Riquewihr</p><div class="open"><i></i>Tous les jours · 11h à 19h</div></div></div>
+      <div class="cave rv"><div class="im"><img src="img/entree.webp" alt=""></div><div class="b"><h4>«&nbsp;Au Domaine&nbsp;»</h4><p>5 avenue Jacques Preiss<br>68340 Riquewihr · visite des caves sur rendez-vous</p><div class="open"><i></i>Tous les jours · 10h à 19h</div></div></div>
+      <div class="cave rv"><div class="im"><img src="img/degustation.webp" alt=""></div><div class="b"><h4>Bergheim</h4><p>25 Grand Rue<br>68750 Bergheim</p><div class="open"><i></i>Tous les jours · 10h à 19h</div></div></div>
+    </div>
+    <div class="book rv">
+      <div>
+        <div class="k">Réservation en ligne</div>
+        <h3>Descendez<br>dans nos caves.</h3>
+        <p>Visite des caves et dégustation commentée avec l'équipe du caveau. Particuliers, groupes et professionnels (CHR, cavistes, importateurs, journalistes).</p>
+        <p style="margin-top:14px">caveau@dopff-au-moulin.fr · +33 (0)3 89 49 09 61</p>
+      </div>
+      <div class="f">
+        <div><div class="lbl">Vous êtes</div><div class="pills" data-g="type"><button class="on">Particulier</button><button>Groupe</button><button>Professionnel</button></div></div>
+        <div><div class="lbl">Date</div><div class="pills days" id="days"></div></div>
+        <div><div class="lbl">Heure</div><div class="pills" data-g="h"><button>10h30</button><button class="on">14h00</button><button>15h30</button><button>17h00</button></div></div>
+        <div style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap"><div><div class="lbl">Personnes</div><div class="stepper"><button id="pm">−</button><b id="pn">2</b><button id="pp">+</button></div></div><button class="btn white" id="bookgo">Demander ma visite</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== DISTINCTIONS ======== -->
+<section id="prix">
+  <span class="k">Ils parlent de nos vins</span>
+  <div class="marq" id="marq"></div>
+</section>
+
+<!-- ======== FOOTER ======== -->
+<footer>
+  <div class="wrap">
+    <div class="slog"><svg viewBox="0 0 510 470"><path fill="#fff" fill-rule="evenodd" d="M191.0,246.5 186.5,248.2 182.2,248.5 171.8,254.0 162.8,263.0 156.0,272.5 153.5,279.2 151.8,281.2 151.2,285.8 149.2,288.2 148.0,293.8 147.0,306.5 145.0,309.2 145.0,324.8 147.0,327.8 147.0,334.2 151.8,352.2 153.5,354.0 154.2,358.0 157.5,361.2 158.5,365.2 163.0,371.0 170.2,378.0 182.2,385.0 200.8,385.5 209.8,382.0 217.5,375.8 225.8,367.2 233.2,354.5 235.5,345.2 237.5,341.5 238.0,331.5 240.0,329.5 240.2,305.0 238.0,302.0 237.5,291.5 235.5,288.5 234.5,282.0 224.0,263.0 217.0,256.0 214.0,254.8 211.0,251.8 207.2,251.0 205.0,248.8 198.2,248.2 196.0,246.5ZM191.5,255.5 195.5,255.5 198.0,257.5 202.2,258.0 205.8,261.0 210.5,271.8 212.8,294.8 213.0,337.8 210.5,361.5 208.2,368.2 201.2,375.2 193.2,378.0 191.0,376.0 184.8,375.5 177.2,368.0 176.5,361.2 174.2,357.8 173.8,348.8 174.2,274.8 176.2,272.8 176.8,266.2 178.8,263.2 184.0,258.2 189.0,257.2ZM313.0,245.2 301.0,245.0 293.0,249.0 288.5,253.8 282.2,265.0 281.0,260.8 282.5,258.5 282.5,248.5 281.0,246.8 248.0,246.5 246.8,248.0 247.8,250.5 250.2,251.2 255.5,256.0 256.8,259.0 256.8,325.5 258.2,328.8 258.2,444.2 254.5,449.0 247.5,454.0 248.5,455.5 290.5,455.8 292.0,455.0 286.8,449.0 283.2,447.5 282.2,444.2 282.5,375.0 284.5,374.2 286.0,377.5 293.0,384.8 299.8,387.2 312.2,387.2 314.0,385.5 318.5,385.0 326.5,378.0 330.8,372.5 333.8,365.5 335.5,363.8 335.8,360.5 339.8,352.2 340.2,345.5 342.2,343.5 343.0,332.2 344.8,328.8 344.8,300.2 343.0,297.2 342.2,285.0 340.2,281.8 337.8,272.0 328.5,256.2 323.2,251.2ZM303.0,253.2 307.0,253.5 312.0,255.8 317.0,263.2 317.2,369.2 311.8,375.8 306.2,378.5 299.2,378.0 290.8,369.5 285.8,361.0 282.2,344.0 282.2,287.2 283.2,279.5 285.2,277.2 285.8,272.8 292.5,261.0 298.0,255.5ZM15.5,183.0 14.2,183.8 18.5,187.2 22.8,187.8 30.0,191.8 31.2,194.0 31.0,377.5 22.8,382.0 18.2,383.0 14.2,386.2 17.5,387.5 82.5,387.2 84.8,385.5 91.2,385.0 105.8,375.8 112.5,368.2 124.0,348.5 126.8,338.5 128.8,336.2 129.0,330.5 131.0,327.2 133.2,314.5 133.2,304.5 135.2,300.5 135.2,269.2 133.2,265.5 133.2,255.5 128.5,233.5 126.8,231.2 121.5,217.0 117.5,211.5 115.0,205.8 113.2,204.5 112.5,201.8 105.5,194.2 95.8,187.8 80.0,182.8ZM59.2,192.0 69.8,192.0 73.0,194.0 82.0,194.2 89.2,197.5 96.5,204.8 99.2,209.0 101.5,215.8 101.5,220.0 103.2,222.8 103.8,231.5 106.2,235.0 106.0,336.0 103.8,338.8 103.2,347.2 101.5,349.8 101.5,354.5 98.8,362.0 89.0,372.5 82.0,375.8 73.2,376.0 70.8,378.2 59.8,378.2 58.2,377.0 58.2,193.5ZM386.8,178.5 384.5,180.5 380.2,181.0 374.2,185.8 370.2,191.0 367.2,200.0 365.5,202.0 365.0,214.0 362.8,218.2 362.8,232.2 361.2,247.2 359.0,248.2 348.0,248.2 347.0,249.5 347.0,252.8 348.2,254.8 359.0,254.8 362.0,256.5 362.8,372.8 353.0,384.2 354.2,385.0 394.0,384.8 394.0,382.8 385.0,374.5 384.8,256.2 386.5,254.8 425.2,254.8 426.5,256.5 426.5,372.8 418.5,381.5 417.5,384.0 418.2,385.0 454.0,385.0 457.2,381.2 452.5,378.0 448.5,372.5 448.5,256.5 450.5,254.8 481.2,254.8 483.0,253.2 483.2,250.2 481.8,248.2 450.5,248.2 449.0,247.2 448.2,243.2 449.2,211.2 456.0,197.0 462.0,191.2 467.0,189.8 469.5,191.8 470.8,194.5 465.0,200.5 464.2,208.8 465.2,214.0 470.2,219.0 477.2,219.2 482.2,216.2 485.5,211.5 485.5,199.0 483.0,192.0 475.5,184.5 469.2,181.2 464.0,180.5 461.5,178.5 450.2,178.5 448.0,180.5 443.5,181.2 433.5,192.5 431.0,202.2 429.5,204.5 428.8,220.0 426.5,222.8 425.8,247.8 386.8,248.2 384.5,245.0 384.5,216.5 385.5,209.0 387.5,206.8 388.0,202.2 392.8,195.0 399.8,189.8 402.8,189.8 405.8,192.2 406.5,195.5 401.5,199.5 400.2,202.5 400.2,207.8 402.0,216.0 405.0,217.0 406.8,219.0 414.5,218.8 419.5,213.8 422.0,208.0 422.0,200.2 420.0,197.8 419.2,192.8 415.2,187.5 409.2,183.0 400.2,180.5 398.0,178.5ZM298.2,17.0 289.2,14.8 285.2,12.2 280.0,12.2 276.8,15.2 240.2,79.5 234.8,87.2 233.5,86.5 233.2,83.5 231.2,79.8 231.0,75.2 228.8,71.0 226.5,59.0 223.5,54.0 209.0,68.0 209.0,71.8 212.8,81.5 215.0,84.5 215.2,88.2 217.2,90.5 219.8,100.2 221.8,103.0 221.5,106.0 199.5,135.8 198.8,138.8 190.5,147.2 189.8,149.8 184.0,156.5 183.5,161.2 185.5,163.5 186.2,169.5 190.0,178.5 190.2,182.0 194.0,184.5 198.8,177.2 200.0,172.5 203.2,169.0 204.2,166.0 207.8,161.8 209.5,156.8 212.0,154.2 213.2,150.2 217.2,145.2 219.2,139.2 224.0,132.8 224.8,129.8 228.0,126.2 230.8,127.2 231.0,131.0 228.8,134.0 226.5,147.5 224.8,150.0 224.2,156.8 222.0,161.0 221.5,169.5 218.2,177.2 217.2,186.5 215.2,189.2 215.0,197.2 212.8,200.2 210.5,211.0 211.2,214.5 302.5,214.8 304.8,213.2 303.8,202.2 301.5,199.0 301.2,193.2 299.2,189.0 294.5,163.0 292.5,160.5 292.0,152.0 288.8,142.8 287.8,134.0 285.8,131.5 285.5,124.8 290.8,120.8 292.0,118.2 291.8,103.5 290.2,101.8 284.2,101.0 279.0,95.5 278.2,92.8 276.5,91.5 271.5,83.0 266.0,79.0 260.8,77.5 270.0,63.2 273.8,59.8 276.5,54.2 280.8,50.0 281.5,47.5 299.0,24.2 301.0,19.8ZM238.8,121.5 257.8,156.0 256.0,163.5 253.8,166.0 252.8,170.8 250.2,169.8 249.0,165.2 247.2,163.2 247.0,159.2 244.8,156.8 240.0,138.5 238.0,136.2 237.5,131.8 235.5,129.0Z"/></svg><i></i><p>forts de nos racines<br>fiers de nos vins</p></div>
+    <div class="cols">
+      <div><h5>La lettre du Domaine</h5><p style="font-size:14px;opacity:.85;margin-bottom:16px;max-width:380px">Nouveaux millésimes, vendanges, ouverture des caves : une lettre par saison, pas davantage.</p><div class="nl"><input placeholder="Votre adresse e-mail" aria-label="E-mail"><button>S'inscrire</button></div></div>
+      <div><h5>La Maison</h5><ul><li>La famille Dopff</li><li>Le Domaine</li><li>Notre équipe</li><li>Recrutement</li></ul></div>
+      <div><h5>Nos vins</h5><ul><li>Crémants d'Alsace</li><li>Alsace</li><li>Alsace Grand Cru</li><li>VT &amp; SGN</li></ul></div>
+      <div><h5>Domaine Dopff Au Moulin</h5><ul><li>5 avenue Jacques Preiss</li><li>68340 Riquewihr</li><li>+33 3 89 49 09 69</li><li>Instagram · Facebook · LinkedIn</li></ul></div>
+    </div>
+    <div class="evin">L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</div>
+    <div class="legal"><span>© Dopff Au Moulin · Certifié HVE · Domaine en conversion biologique</span><span>Maquette de refonte, non contractuelle</span></div>
+  </div>
+</footer>
+
+<div id="drawer">
+  <div class="ov" id="ov"></div>
+  <div class="pn">
+    <div class="hd"><h3>Votre panier</h3><button id="closeCart" class="k">Fermer ✕</button></div>
+    <div class="items" id="items"></div>
+    <div class="ft">
+      <div class="mode" id="mode"><button class="on" data-m="cc"><b>Click &amp; Collect</b>Gratuit · prêt en 2 h</button><button data-m="liv"><b>Livraison</b>À domicile, en France</button></div>
+      <div class="shops" id="shops">
+        <label><input type="radio" name="s" checked> <span><b style="font-weight:500">Caveau Au Domaine</b>, Riquewihr<br><small>5 av. Jacques Preiss · 10h à 19h</small></span></label>
+        <label><input type="radio" name="s"> <span><b style="font-weight:500">Caveau Centre-ville</b>, Riquewihr<br><small>3 rue du Général de Gaulle · 11h à 19h</small></span></label>
+        <label><input type="radio" name="s"> <span><b style="font-weight:500">Caveau de Bergheim</b><br><small>25 Grand Rue · 10h à 19h</small></span></label>
+      </div>
+      <div class="tot"><span class="k">Total</span><b id="tot">0,00 €</b></div>
+      <button class="btn red go" id="pay">Valider ma commande</button>
+      <div class="fine">Maquette : le paiement n'est pas actif.</div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
+const eur=n=>n.toFixed(2).replace('.',',')+' €';
+const mobile=()=>matchMedia('(max-width:800px)').matches;
+let IMGS=window.IMGS||null; const I=n=>IMGS&&IMGS[n]?IMGS[n]:'img/'+n+'.webp';
+
+/* ---------- données ---------- */
+const P=[
+ {id:'julien',n:'Cuvée Julien',c:'cremant',cat:'Crémant d\'Alsace · Brut',p:11.95,m:'Or · Crémants de France'},
+ {id:'rose',n:'Crémant Rosé',c:'cremant',cat:'Crémant d\'Alsace · Brut',p:14.95,m:'Or · Crémants de France'},
+ {id:'bio',n:'Crémant Bio Brut Nature',c:'cremant',cat:'Crémant d\'Alsace',p:15.95,m:'Or · Concours de Colmar'},
+ {id:'bdn',n:'Crémant Blanc de Noirs 2023',c:'cremant',cat:'Crémant d\'Alsace · Brut',p:15.50},
+ {id:'wild',n:'Wild Brut',c:'cremant',cat:'Crémant d\'Alsace · Extra-Brut',p:13.95},
+ {id:'chardo',n:'Crémant Chardonnay Sans Soufre Ajouté 2022',c:'cremant',cat:'Crémant d\'Alsace · Brut Nature',p:18.50},
+ {id:'bartholome',n:'Cuvée Bartholomé 2016',c:'cremant',cat:'Crémant d\'Alsace · Cuvée d\'exception',p:39.00},
+ {id:'riesling-df',n:'Riesling Domaine Familial 2022',c:'alsace',cat:'Alsace · Blanc',p:15.95},
+ {id:'pn-df',n:'Pinot Noir Domaine Familial 2023',c:'alsace',cat:'Alsace · Rouge',p:17.50},
+ {id:'riesling-gc',n:'Riesling Grand Cru Schoenenbourg Vieilles Vignes 2019',c:'gc',cat:'Alsace Grand Cru',p:29.95},
+ {id:'brand',n:'Gewurztraminer Grand Cru Brand 2021',c:'gc',cat:'Alsace Grand Cru',p:27.95,m:'Decanter 98/100 (2015)'},
+ {id:'sporen',n:'Gewurztraminer Grand Cru Sporen 2019',c:'gc',cat:'Alsace Grand Cru',p:22.95},
+ {id:'riesling-vt',n:'Riesling Vendanges Tardives 2019',c:'vt',cat:'Vendanges Tardives',p:35.95},
+ {id:'pg-sgn',n:'Pinot Gris Sélection de Grains Nobles 2022',c:'vt',cat:'Sélection de Grains Nobles',p:59.90},
+ {id:'coffret',n:'Colis Prestige · 6 Grands Crus',c:'gc',cat:'Coffret découverte',p:144.60,img:'grandcru'}
+];
+const pimg=p=>I(p.img||'b-'+p.id);
+
+const SAGA=[
+ ['1574','Riquewihr','Une cité prédestinée','À 300 mètres d\'altitude, au pied des collines sous-vosgiennes, à l\'abri des vents du Nord. Les amandiers y fleurissent parmi les vignes.','riquewihr-vigne'],
+ ['XVIIe','À l\'enseigne du Cerf','Le premier Dopff','Jean-Daniel Dopff, fils de pasteur, s\'établit à Riquewihr comme maître boulanger et aubergiste à l\'enseigne du Cerf.','arbre'],
+ ['1667','Les tonneliers','Quatre générations au foudre','Balthazar-Georges naît à Riquewihr et devient maître-tonnelier. Quatre générations se succéderont dans cette voie.','foudres'],
+ ['XIXe','Le gourmet','Courtier, puis vigneron','Jean Dopff s\'établit comme « gourmet », courtier en vins assermenté. Son fils Jean-Gustave constitue le domaine familial.','vieille'],
+ ['1900','L\'Exposition','La méthode champenoise','Julien Dopff découvre à Paris une démonstration de la méthode champenoise et décide de l\'appliquer aux vins d\'Alsace.','plaque'],
+ ['1913','La flûte','La bouteille flûtée','Pour prouver la parfaite conservation du vin d\'Alsace en bouteille, Julien en fait voyager jusqu\'en Australie, aller et retour.','verse'],
+ ['1925','Au Moulin','Au pied du Schoenenbourg','Gustave-Julien sort des murs de la ville et installe la Maison sur le lieu-dit « Au Moulin ».','maison'],
+ ['1976','L\'AOC','Le Crémant d\'Alsace','Sous l\'impulsion de Pierre Dopff, l\'AOC Crémant d\'Alsace voit le jour. Il représente aujourd\'hui plus de la moitié des crémants consommés.','lattes'],
+ ['2021','La terre','Conversion biologique','Certifié HVE depuis 2019, l\'ensemble du domaine est en conversion bio depuis 2021. Vendanges exclusivement manuelles.','taille'],
+ ['2026','13e génération','Farouchement modernes','Etienne-Arnaud Dopff dirige la Maison : « Forts de nos racines, nous poursuivrons le chemin familial, en étant tout aussi farouchement modernes et ouverts sur le monde. »','famille']
+];
+
+const GC=[
+ {n:['Schoenen-','bourg'],img:'b-riesling-gc',meta:[['9 ha','dont 8 en Riesling'],['265–380 m','altitude'],['53,4 ha','surface du Grand Cru'],['10','parcelles vinifiées à part']],d:['Sur les communes de Riquewihr et de Zellenberg, les vignes courent en pente sur le flanc sud et sud-est du coteau. Sols marneux et gypseux du Keuper, qui retiennent bien l\'eau.','Le Riesling y est roi. De ce Grand Cru proviennent aussi nos Riesling liquoreux, Vendanges Tardives et Sélection de Grains Nobles.'],q:'Des vins de garde par excellence, aux magnifiques acidités et aux beaux amers.'},
+ {n:['Sporen'],img:'b-sporen',meta:[['1,33 ha','parcelle unique'],['1965','année de plantation'],['23,7 ha','surface du Grand Cru'],['Sud-est','exposition']],d:['Un cirque naturel en pente douce, tout près de Riquewihr. Terrains argilo-marneux riches en acide phosphorique : une terre profonde, à l\'abri de la sécheresse.','Notre parcelle est exclusivement plantée en Gewurztraminer.'],q:'Terroir froid et lourd, il donne des vins corsés, veloutés, complexes, d\'une grande garde.'},
+ {n:['Brand'],img:'b-brand',meta:[['3,26 ha','à Turckheim'],['250–380 m','sur granit'],['33 ans','âge moyen des vignes'],['98/100','Decanter, Best in Show']],d:['Surplombant Turckheim, près de 58 hectares exposés sud, sud-est, au remarquable ensoleillement, sur un socle granitique.','Presque entièrement en Gewurztraminer ; seuls 40 ares sont plantés en Pinot Gris.'],q:'Terroir de granit solaire, léger et pauvre : des vins floraux et racés.'}
+];
+
+const DISH=[
+ ['Choucroute garnie','riesling-df','Riesling Domaine Familial','À la fois viril et délicat. Le compagnon de la choucroute garnie et du coq au Riesling.'],
+ ['Foie gras de canard','brand','Gewurztraminer Grand Cru Brand','Sa saveur épicée lui donne puissance et élégance : l\'accord du foie gras.'],
+ ['Munster d\'Alsace','sporen','Gewurztraminer Grand Cru Sporen','Corsé et velouté : le compagnon idéal du Munster.'],
+ ['Quenelles de foie','pn-df','Pinot Noir Domaine Familial','Charpenté, soyeux et fruité. Viandes rouges, desserts au chocolat.'],
+ ['L\'apéritif','julien','Cuvée Julien','Le crémant de la maison, sec, élégant et charmeur.'],
+ ['Fromage persillé','riesling-vt','Riesling Vendanges Tardives','Riche et puissant, pour les mets forts en goût, ou pour lui-même.']
+];
+
+const AW=[
+ ['Decanter','98/100','Gewurztraminer Grand Cru Brand 2015 · Best in Show'],
+ ['Decanter','97/100','Gewurztraminer Grand Cru Brand 2017 · Best in Show'],
+ ['Best of Riesling','94/100','Riesling Grand Cru Schoenenbourg 2010'],
+ ['Wine Enthusiast','93/100','Riesling Grand Cru Schoenenbourg 2016'],
+ ['Guide Hachette','Coup de cœur','Riesling Grand Cru Schoenenbourg 2016'],
+ ['Crémants de France','Médaille d\'or','Crémant Cuvée Julien'],
+ ['Christie\'s','World Encyclopedia','of Champagne & Sparkling Wine'],
+ ['Capital · M6','Reportage','La Maison pionnière des effervescents en Alsace']
+];
+
+/* ---------- construction ---------- */
+$('#track').insertAdjacentHTML('beforeend',SAGA.map(s=>`<div class="panel"><div class="yr">${s[0]}</div><div class="im"><img src="${I(s[4])}" alt=""></div><div class="tx"><span class="k">${s[1]}</span><h3>${s[2]}</h3><p>${s[3]}</p></div></div>`).join(''));
+$('#grid').innerHTML=P.map(p=>`<article class="card" data-c="${p.c}"><div class="cat">${p.cat}</div>${p.m?`<div class="medal">${p.m}</div>`:''}<div class="pic"><img class="${p.img?'coffret':''}" src="${pimg(p)}" alt="${p.n}" loading="lazy"></div><h4>${p.n}</h4><div class="row"><span class="pr">${eur(p.p)}</span><button class="add" data-id="${p.id}">Ajouter</button></div></article>`).join('');
+$('#dishes').innerHTML=DISH.map((d,i)=>`<li><button data-i="${i}" class="${i?'':'on'}">${d[0]}<span>${d[2]}</span></button></li>`).join('');
+const star='<svg viewBox="0 0 24 24"><path fill="#8E0928" d="M12 1.8l3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.6l-6.5 3.9 1.7-7.3L1.6 9.3 9 8.7z"/></svg>';
+const aw=AW.map(a=>`<div>${star}<small>${a[0]}</small><b>${a[1]}</b><span>${a[2]}</span></div>`).join('');
+$('#marq').innerHTML=aw+aw;
+// jours
+const dn=['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];const t0=new Date();
+$('#days').innerHTML=[...Array(7)].map((_,i)=>{const d=new Date(t0);d.setDate(d.getDate()+i+1);return `<button class="${i==1?'on':''}"><small>${dn[d.getDay()]}</small><b>${d.getDate()}</b></button>`}).join('');
+// dosage rail
+const SEG=[[0,3,'Brut Nature','#3b0a12'],[3,6,'Extra Brut','#58151C'],[6,12,'Brut','#8E0928'],[12,17,'Extra Dry','#a8394d'],[17,32,'Sec','#B8955A'],[32,50,'Demi-Sec','#c9ab7c'],[50,60,'Doux','#ddc7a3']];
+$('#rail').innerHTML=SEG.map(s=>`<div class="seg" style="width:${(s[1]-s[0])/60*100}%;background:${s[3]}">${s[2]}</div>`).join('');
+
+/* ---------- Lenis + GSAP ---------- */
+const hasG=typeof gsap!=='undefined';
+let lenis=null;
+if(hasG){gsap.registerPlugin(ScrollTrigger)}
+if(typeof Lenis!=='undefined'){
+  lenis=new Lenis({lerp:.09,smoothWheel:true});
+  lenis.stop();
+  if(hasG){lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0)}
+  else{const r=t=>{lenis.raf(t);requestAnimationFrame(r)};requestAnimationFrame(r)}
+}
+const goTo=t=>{const el=$(t);if(!el)return;lenis?lenis.scrollTo(el,{duration:1.6,offset:0}):el.scrollIntoView({behavior:'smooth'})};
+$$('[data-to]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();goTo(a.getAttribute('href'))}));
+
+/* ---------- curseur ---------- */
+const c1=$('.cur'),c2=$('.cur2');let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my;
+addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY;c1.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`});
+(function loop(){cx+=(mx-cx)*.16;cy+=(my-cy)*.16;c2.style.transform=`translate(${cx}px,${cy}px) translate(-50%,-50%)`;requestAnimationFrame(loop)})();
+document.addEventListener('pointerover',e=>{const t=e.target.closest('a,button,.card,input,label');c2.classList.toggle('big',!!(t&&t.classList.contains('card')));c2.textContent=t&&t.classList.contains('card')?'Voir':'';if(t&&!t.classList.contains('card')){c2.style.width='56px';c2.style.height='56px'}else{c2.style.width='';c2.style.height=''}});
+
+/* ---------- bulles ---------- */
+function bubbles(cv,o){
+  const ctx=cv.getContext('2d');let W,H,dpr=Math.min(devicePixelRatio||1,2),B=[];o=Object.assign({n:70,col:'255,246,226',max:5,speed:1},o);
+  const size=()=>{W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)};
+  const mk=(y)=>({x:Math.random()*W,y:y??H+Math.random()*H,r:.6+Math.random()*o.max,v:.25+Math.random()*1.1,w:Math.random()*6.28,a:.18+Math.random()*.5});
+  size();addEventListener('resize',size);
+  for(let i=0;i<o.n;i++)B.push(mk(Math.random()*H));
+  let px=-999,py=-999;cv.parentElement.addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();px=e.clientX-r.left;py=e.clientY-r.top});
+  let on=true;const st={k:1};
+  new IntersectionObserver(es=>on=es[0].isIntersecting).observe(cv);
+  (function f(){requestAnimationFrame(f);if(!on)return;ctx.clearRect(0,0,W,H);
+    const target=Math.round(o.n*st.k);while(B.length<target)B.push(mk());
+    for(let i=B.length-1;i>=0;i--){const b=B[i];b.y-=b.v*o.speed*(1+st.k*.4);b.w+=.03;b.x+=Math.sin(b.w)*.35;
+      const dx=b.x-px,dy=b.y-py,d=Math.hypot(dx,dy);if(d<110){b.x+=dx/d*2.2;b.y+=dy/d*1.4}
+      if(b.y<-20){if(B.length>target){B.splice(i,1);continue}Object.assign(b,mk())}
+      ctx.beginPath();ctx.arc(b.x,b.y,b.r,0,6.283);ctx.strokeStyle=`rgba(${o.col},${b.a})`;ctx.lineWidth=.9;ctx.stroke();
+      ctx.beginPath();ctx.arc(b.x-b.r*.35,b.y-b.r*.35,b.r*.28,0,6.283);ctx.fillStyle=`rgba(255,255,255,${b.a*.9})`;ctx.fill()}
+  })();
+  return st;
+}
+const hb=bubbles($('#bub'),{n:mobile()?40:90});
+const cbub=bubbles($('#bub2'),{n:30,col:'184,149,90',max:7,speed:.8});
+
+/* ---------- loader ---------- */
+const SA={a:0};const rot=(sel,a)=>{const g=$(sel);g&&g.setAttribute('transform',`rotate(${a} 100 124)`)};
+function intro(){
+  if(!hasG){$('#loader').remove();document.body.classList.remove('locked');lenis&&lenis.start();return}
+  const tl=gsap.timeline();
+  tl.to('#loader .tri',{yPercent:0,duration:1.2,ease:'expo.out',delay:.2})
+    .fromTo(SA,{a:-200},{a:0,duration:2.6,ease:'power3.out',onUpdate:()=>rot('#loader .sails',SA.a)},'<')
+    .from('#loader .count,#loader .sub',{opacity:0,y:20,duration:.8,stagger:.1},'<.3');
+  const o={v:1574};
+  tl.to(o,{v:2026,duration:2.2,ease:'power2.inOut',onUpdate:()=>$('#loader .count').textContent=Math.round(o.v)},'<');
+  tl.to('#loader .gate',{autoAlpha:1,y:-10,duration:.9,ease:'power3.out'},'-=.4');
+}
+// tri initial position via GSAP (translate -50% x, -102% y)
+if(hasG)gsap.set('#loader .tri',{yPercent:-102});
+function enter(){
+  const tl=gsap.timeline({onComplete:()=>{$('#loader').remove();document.body.classList.remove('locked');lenis&&lenis.start();ScrollTrigger.refresh()}});
+  tl.to('#loader .gate,#loader .count,#loader .sub',{autoAlpha:0,y:-20,duration:.5,stagger:.05})
+    .to(SA,{a:540,duration:1.6,ease:'power2.in',onUpdate:()=>rot('#loader .sails',SA.a)},'<')
+    .to('#loader .tri',{scale:16,duration:1.3,ease:'expo.in'},'<.3')
+    .set('#loader',{background:'transparent'})
+    .to('#loader .tri',{opacity:0,duration:.6})
+    .to('#hero .bg',{scale:1.05,duration:2.4,ease:'expo.out'},'<')
+    .to('#hero h1 .ln span',{y:'0%',duration:1.4,ease:'expo.out',stagger:.12},'<.1')
+    .to('#hero .kick,#hero .side',{opacity:1,duration:1,stagger:.15},'<.5')
+    .fromTo('header',{y:-90},{y:0,duration:1,ease:'expo.out',clearProps:'transform'},'<');
+}
+$('#enter').onclick=enter;
+$('#nope').onclick=()=>{$('#loader .gate p').innerHTML='Nous vous remercions.<br>Ce site est réservé aux personnes majeures.';$('#loader .gate .btns').style.display='none'};
+if(hasG){intro()}else{$('#loader').remove()}
+
+/* ---------- scroll ---------- */
+if(hasG){
+  // header
+  let lastY=0;ScrollTrigger.create({start:0,end:'max',onUpdate:s=>{const y=s.scroll();$('#hd').classList.toggle('solid',y>innerHeight*.85);$('#hd').classList.toggle('hide',y>lastY&&y>innerHeight*1.2&&!$('#drawer').classList.contains('open'));lastY=y}});
+  // hero parallax
+  gsap.to('#hero .bg',{yPercent:18,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('#hero .in',{y:-120,opacity:0,ease:'none',scrollTrigger:{trigger:'#hero',start:'30% top',end:'bottom top',scrub:true}});
+  // chiffres
+  $$('.figs .n').forEach(n=>{const v=+n.dataset.n,o={v:v>1000?1900:0};gsap.to(o,{v,duration:2,ease:'power3.out',scrollTrigger:{trigger:n,start:'top 90%'},onUpdate:()=>n.textContent=Math.round(o.v)})});
+  // manifeste : mots
+  const q=$('#q');q.innerHTML=q.textContent.split(' ').map(w=>`<span class="w">${w}</span>`).join(' ');
+  gsap.to('#q .w',{opacity:1,stagger:.1,ease:'none',scrollTrigger:{trigger:'#q',start:'top 80%',end:'bottom 40%',scrub:true}});
+  gsap.to('#mph',{clipPath:'inset(0% 0% 0% 0%)',ease:'none',scrollTrigger:{trigger:'#mph',start:'top 90%',end:'center 50%',scrub:true}});
+  gsap.to('#mph img',{yPercent:10,ease:'none',scrollTrigger:{trigger:'#mph',start:'top bottom',end:'bottom top',scrub:true}});
+  gsap.from('#manifeste .txt>*',{y:40,opacity:0,stagger:.08,duration:1,ease:'power3.out',scrollTrigger:{trigger:'#manifeste .txt',start:'top 80%'}});
+
+  const mm=gsap.matchMedia();
+  mm.add('(min-width:801px)',()=>{
+    // saga horizontale
+    const tr=$('#track');const dist=()=>tr.scrollWidth-innerWidth+80;
+    const ht=gsap.to(tr,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'#saga',start:'top top',end:()=>'+='+dist(),pin:true,scrub:1,invalidateOnRefresh:true,onUpdate:s=>{gsap.set('#sbar',{scaleX:s.progress});rot('#saga .smill .sails',s.progress*720)}}});
+    $$('#saga .panel').forEach(p=>{
+      gsap.to(p.querySelector('.im img'),{scale:1,ease:'none',scrollTrigger:{trigger:p,containerAnimation:ht,start:'left right',end:'right left',scrub:true}});
+      gsap.from(p.querySelector('.yr'),{xPercent:40,ease:'none',scrollTrigger:{trigger:p,containerAnimation:ht,start:'left right',end:'right left',scrub:true}});
+      gsap.from(p.querySelectorAll('.tx>*'),{y:50,opacity:0,stagger:.08,duration:.9,ease:'power3.out',scrollTrigger:{trigger:p,containerAnimation:ht,start:'left 70%'}});
+    });
+    // crémant
+    const st=$$('#cremant .step'),bars=$$('#cremant .dots b');
+    const nums=[['1900','Exposition universelle'],['6','pressoirs à membranes'],['1976','AOC Crémant d\'Alsace'],['¼','de tour, jour après jour'],['6 g','dosage Brut']];
+    const ctl=gsap.timeline({scrollTrigger:{trigger:'#cremant',start:'top top',end:'+=420%',pin:true,scrub:1,onUpdate:s=>{const i=Math.min(4,Math.floor(s.progress*5));if(i!==ctl._i){ctl._i=i;$('#bign').textContent=nums[i][0];$('#bigl').textContent=nums[i][1];gsap.fromTo('#bign',{yPercent:40,opacity:0},{yPercent:0,opacity:1,duration:.6,ease:'expo.out'})}cbub.k=1+s.progress*3}}});
+    ctl._i=0;
+    ctl.to(st[0],{opacity:1,y:0,duration:.4})
+       .to(bars[0],{scaleX:1,duration:1,ease:'none'},'<')
+       .to('#cb',{rotate:-8,duration:1},'<')
+       .to(st[0],{opacity:0,y:-30,duration:.3})
+       .to(st[1],{opacity:1,y:0,duration:.4})
+       .to(bars[1],{scaleX:1,duration:1,ease:'none'},'<')
+       .to('#cb',{rotate:0,scale:1.08,duration:1},'<')
+       .to(st[1],{opacity:0,y:-30,duration:.3})
+       .to(st[2],{opacity:1,y:0,duration:.4})
+       .to('#cremant .lattesbg',{opacity:.2,duration:.6},'<')
+       .to(bars[2],{scaleX:1,duration:1,ease:'none'},'<')
+       .to('#cb',{rotate:90,scale:.6,duration:1},'<')
+       .to(st[2],{opacity:0,y:-30,duration:.3})
+       .to(st[3],{opacity:1,y:0,duration:.4})
+       .to('#cremant .lattesbg',{opacity:0,duration:.6},'<')
+       .to(bars[3],{scaleX:1,duration:1,ease:'none'},'<')
+       .to('#cb',{rotate:160,scale:1,duration:.5},'<')
+       .to('#cb',{rotate:178,duration:.15}).to('#cb',{rotate:162,duration:.15}).to('#cb',{rotate:176,duration:.2})
+       .to(st[3],{opacity:0,y:-30,duration:.3})
+       .to(st[4],{opacity:1,y:0,duration:.4})
+       .to(bars[4],{scaleX:1,duration:1,ease:'none'},'<')
+       .to('#cb',{rotate:360,scale:1.05,duration:1,ease:'power2.inOut'},'<');
+    // ruban
+    $$('#ruban .col').forEach(c=>gsap.to(c,{y:+c.dataset.sp,ease:'none',scrollTrigger:{trigger:'#ruban',start:'top bottom',end:'bottom top',scrub:true}}));
+    return()=>{};
+  });
+  mm.add('(max-width:800px)',()=>{
+    const st=$$('#cremant .step');
+    const ctl=gsap.timeline({scrollTrigger:{trigger:'#cremant',start:'top top',end:'+=300%',pin:true,scrub:1}});
+    st.forEach((s,i)=>{ctl.to(s,{opacity:1,y:0,duration:.4}).to('#cb',{rotate:[0,0,90,170,360][i],duration:1},'<');if(i<4)ctl.to(s,{opacity:0,y:-30,duration:.3})});
+  });
+  $$('#ruban figure img').forEach(im=>gsap.to(im,{scale:1,ease:'none',scrollTrigger:{trigger:im,start:'top bottom',end:'bottom top',scrub:true}}));
+  gsap.from('#ruban h2',{scale:.8,opacity:0,ease:'none',scrollTrigger:{trigger:'#ruban',start:'top 80%',end:'top 20%',scrub:true}});
+  // reveals
+  $$('.rv').forEach(el=>gsap.to(el,{opacity:1,y:0,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}}));
+  gsap.from('.card',{y:60,opacity:0,stagger:.05,duration:1,ease:'power3.out',scrollTrigger:{trigger:'#grid',start:'top 80%'}});
+  ['#terroirs h2','#boutique h2','#visites h2','#dosage h2','#accords h2'].forEach(s=>gsap.from(s,{y:60,opacity:0,duration:1.2,ease:'expo.out',scrollTrigger:{trigger:s,start:'top 85%'}}));
+  // marquee
+  const mq=$('#marq');gsap.to(mq,{xPercent:-50,repeat:-1,duration:50,ease:'none'});
+  // topo draw
+  ScrollTrigger.create({trigger:'#terroirs',start:'top 70%',once:true,onEnter:()=>gsap.to('#topo path',{strokeDashoffset:0,duration:3.2,stagger:.03,ease:'power2.out'})});
+  gsap.to('#topo',{yPercent:-8,ease:'none',scrollTrigger:{trigger:'#terroirs',start:'top bottom',end:'bottom top',scrub:true}});
+}else{$$('.rv').forEach(e=>{e.style.opacity=1;e.style.transform='none'});$$('#cremant .step')[0].style.opacity=1}
+
+/* ---------- topographie ---------- */
+(function(){
+  const s=$('#topo');const W=1600,H=1000;s.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  let h='';const hill=(x,y)=>{const a=Math.exp(-(((x-1150)/420)**2+((y-430)/300)**2)),b=Math.exp(-(((x-380)/360)**2+((y-760)/260)**2))*.6;return a+b+.12*Math.sin(x/170)+.08*Math.cos(y/120+x/300)};
+  // courbes de niveau approchées par marching squares simplifié
+  const N=90,M=56,gx=W/N,gy=H/M,F=[];for(let j=0;j<=M;j++){F[j]=[];for(let i=0;i<=N;i++)F[j][i]=hill(i*gx,j*gy)}
+  for(let L=0;L<22;L++){const lv=-.1+L*.055;let d='';
+    for(let j=0;j<M;j++)for(let i=0;i<N;i++){const a=F[j][i],b=F[j][i+1],c=F[j+1][i+1],e=F[j+1][i];const pts=[];
+      const ip=(v1,v2,x1,y1,x2,y2)=>{const t=(lv-v1)/(v2-v1);return[x1+(x2-x1)*t,y1+(y2-y1)*t]};
+      const x=i*gx,y=j*gy;
+      if((a<lv)!=(b<lv))pts.push(ip(a,b,x,y,x+gx,y));
+      if((b<lv)!=(c<lv))pts.push(ip(b,c,x+gx,y,x+gx,y+gy));
+      if((c<lv)!=(e<lv))pts.push(ip(c,e,x+gx,y+gy,x,y+gy));
+      if((e<lv)!=(a<lv))pts.push(ip(e,a,x,y+gy,x,y));
+      if(pts.length>=2)d+=`M${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}L${pts[1][0].toFixed(1)} ${pts[1][1].toFixed(1)}`}
+    h+=`<path d="${d}" fill="none" stroke="#8E0928" stroke-opacity="${L%5==0?.32:.13}" stroke-width="${L%5==0?1.1:.7}" vector-effect="non-scaling-stroke" pathLength="1" stroke-dasharray="1" stroke-dashoffset="${hasG?1:0}"/>`}
+  s.innerHTML=h;
+})();
+
+/* ---------- grands crus ---------- */
+function showGC(i,anim=true){const g=GC[i];
+  const doit=()=>{$('#gname').innerHTML=g.n.map(x=>`<span>${x}</span>`).join('');$('#gmeta').innerHTML=g.meta.map(m=>`<div><b>${m[0]}</b><span>${m[1]}</span></div>`).join('');$('#gdesc').innerHTML=g.d.map(p=>`<p>${p}</p>`).join('')+`<blockquote>${g.q}</blockquote>`;$('#gimg').src=I(g.img)};
+  if(!anim||!hasG){doit();return}
+  gsap.timeline().to('#gname span,#gmeta div,#gdesc>*',{y:-30,opacity:0,duration:.35,stagger:.02}).to('#gimg',{y:80,opacity:0,duration:.4},'<')
+   .add(doit).fromTo('#gname span',{yPercent:100,opacity:0},{yPercent:0,opacity:1,duration:.9,ease:'expo.out',stagger:.08})
+   .fromTo('#gimg',{y:120,opacity:0,rotate:6},{y:0,opacity:1,rotate:0,duration:1.1,ease:'expo.out'},'<')
+   .fromTo('#gmeta div,#gdesc>*',{y:30,opacity:0},{y:0,opacity:1,duration:.8,ease:'power3.out',stagger:.05},'<.1');
+}
+showGC(0,false);
+$('#tabs').onclick=e=>{const b=e.target.closest('button');if(!b||b.classList.contains('on'))return;$$('#tabs button').forEach(x=>x.classList.toggle('on',x==b));showGC(+b.dataset.i)};
+
+/* ---------- dosage ---------- */
+const DOS=[[3,'Brut Nature','b-bio','Crémant Bio Brut Nature','Zéro dosage, pour encore plus de pureté. Né en 2009.'],[6,'Extra Brut','b-wild','Wild Brut','Né dans les années 90, pour plus de pureté.'],[12,'Brut','b-julien','Cuvée Julien','Le style de la maison : un Brut autour de 6 g, pour laisser le vin s\'exprimer.'],[61,'Extra Dry, Sec, Demi-Sec, Doux','muselets','Au-delà du Brut','Plus de douceur, à l\'apéritif ou au dessert : notre gamme Demi-Sec vous attend au caveau.']];
+let curD=-1;
+function setDos(g){g=Math.max(0,Math.min(60,g));const r=$('#rail').getBoundingClientRect(),sr=$('#scale').getBoundingClientRect();const x=r.left-sr.left+g/60*r.width;
+  $('#knob').style.left=x+'px';$('#sval').style.left=x+'px';$('#sval').innerHTML=(g<10?g.toFixed(1).replace('.',','):Math.round(g))+' <small>g/L</small>';
+  const k=DOS.findIndex(d=>g<d[0]);if(k!==curD){curD=k;const d=DOS[k];$('#sm').textContent=d[1];$('#sn').textContent=d[3];$('#sp').textContent=d[4];$('#simg').src=I(d[2]);$('#simg').classList.toggle('sq',!d[2].startsWith('b-'));hasG&&gsap.fromTo('.scale .out>*',{y:16,opacity:0},{y:0,opacity:1,duration:.6,stagger:.06,ease:'expo.out'})}}
+let drag=false;const ev=e=>{const r=$('#rail').getBoundingClientRect();setDos((e.clientX-r.left)/r.width*60)};
+$('#rail').addEventListener('pointerdown',e=>{drag=true;ev(e)});addEventListener('pointermove',e=>drag&&ev(e));addEventListener('pointerup',()=>drag=false);
+addEventListener('resize',()=>setDos(dosG));let dosG=6;
+setDos(6);
+if(hasG){const o={g:0};ScrollTrigger.create({trigger:'#scale',start:'top 75%',once:true,onEnter:()=>{gsap.fromTo(o,{g:0},{g:6,duration:2.2,ease:'expo.out',onUpdate:()=>{dosG=o.g;setDos(o.g)}})}})}
+
+/* ---------- accords ---------- */
+function showDish(i){const d=DISH[i];$$('#dishes button').forEach((b,k)=>b.classList.toggle('on',k==i));
+  const doit=()=>{$('#aimg').src=I('b-'+d[1]);$('#aname').textContent=d[2];$('#atxt').textContent=d[3]};
+  if(!hasG){doit();return}
+  gsap.timeline().to('#aimg',{y:-60,opacity:0,rotate:-8,duration:.35,ease:'power2.in'}).to('.res .cap',{opacity:0,duration:.2},'<').add(doit)
+  .fromTo('#aimg',{y:90,opacity:0,rotate:8},{y:0,opacity:1,rotate:0,duration:1,ease:'expo.out'}).to('.res .cap',{opacity:1,duration:.5},'<.2')
+  .fromTo('.res .halo',{scale:.6},{scale:1,duration:1.2,ease:'expo.out'},'<-.3')}
+showDish(0);
+$('#dishes').addEventListener('click',e=>{const b=e.target.closest('button');b&&showDish(+b.dataset.i)});
+$('#dishes').addEventListener('mouseover',e=>{const b=e.target.closest('button');if(b&&!b.classList.contains('on')&&matchMedia('(hover:hover)').matches)showDish(+b.dataset.i)});
+
+/* ---------- boutique ---------- */
+$('#filters').onclick=e=>{const b=e.target.closest('button');if(!b)return;$$('#filters button').forEach(x=>x.classList.toggle('on',x==b));const f=b.dataset.f;
+  const cards=$$('.card');const show=c=>f=='all'||c.dataset.c==f;
+  if(!hasG){cards.forEach(c=>c.classList.toggle('hid',!show(c)));return}
+  gsap.to('.card',{opacity:0,y:20,duration:.25,onComplete:()=>{cards.forEach(c=>c.classList.toggle('hid',!show(c)));gsap.fromTo('.card:not(.hid)',{opacity:0,y:40},{opacity:1,y:0,stagger:.05,duration:.7,ease:'expo.out'});ScrollTrigger.refresh()}})};
+const cart={};
+function renderCart(){const ids=Object.keys(cart);let n=0,t=0;
+  $('#items').innerHTML=ids.length?ids.map(id=>{const p=P.find(x=>x.id==id);n+=cart[id];t+=cart[id]*p.p;return `<div class="it"><img src="${pimg(p)}" alt="" style="${p.img?'height:52px;width:52px;object-fit:cover':''}"><div><h5>${p.n}</h5><div class="q"><button data-d="${id}">−</button>${cart[id]}<button data-u="${id}">+</button></div></div><span class="serif" style="font-size:19px">${eur(cart[id]*p.p)}</span></div>`}).join(''):'<div class="empty">Votre panier est vide.</div>';
+  ids.forEach(()=>{});$('#cnt').textContent=n;$('#tot').textContent=eur(t)}
+function add(id,el){cart[id]=(cart[id]||0)+1;renderCart();const p=P.find(x=>x.id==id);
+  const b=$('#cnt');b.classList.add('bump');setTimeout(()=>b.classList.remove('bump'),300);
+  toast(`<img src="${pimg(p)}" alt="" style="${p.img?'width:38px;object-fit:cover':''}"><span><b style="font-weight:500">${p.n}</b> ajouté au panier</span>`);
+  if(el&&hasG){const im=el.closest('.card').querySelector('.pic img'),r=im.getBoundingClientRect(),tg=$('#cnt').getBoundingClientRect();const f=im.cloneNode();Object.assign(f.style,{position:'fixed',left:r.left+'px',top:r.top+'px',height:r.height+'px',width:'auto',zIndex:9400,pointerEvents:'none'});document.body.appendChild(f);
+    gsap.to(f,{x:tg.left-r.left-r.width/2,y:tg.top-r.top-r.height/2,scale:.08,rotate:30,duration:.9,ease:'power3.in',onComplete:()=>f.remove()})}}
+$('#grid').addEventListener('click',e=>{const b=e.target.closest('.add');b&&add(b.dataset.id,b)});
+$('#items').addEventListener('click',e=>{const u=e.target.dataset.u,d=e.target.dataset.d;if(u)cart[u]++;if(d){cart[d]--;if(!cart[d])delete cart[d]}renderCart()});
+const openC=()=>{$('#drawer').classList.add('open');lenis&&lenis.stop()},closeC=()=>{$('#drawer').classList.remove('open');lenis&&lenis.start()};
+$('#openCart').onclick=openC;$('#closeCart').onclick=closeC;$('#ov').onclick=closeC;
+$('#mode').onclick=e=>{const b=e.target.closest('button');if(!b)return;$$('#mode button').forEach(x=>x.classList.toggle('on',x==b));$('#shops').style.display=b.dataset.m=='cc'?'flex':'none'};
+$('#pay').onclick=()=>{if(!Object.keys(cart).length){toast('Ajoutez d\'abord une bouteille.');return}toast('Maquette : la commande serait confirmée ici, avec retrait au caveau choisi.')};
+renderCart();
+
+/* ---------- visite ---------- */
+$$('.pills').forEach(g=>g.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$$('button',g).forEach(x=>x.classList.toggle('on',x==b))}));
+let pn=2;$('#pm').onclick=()=>{pn=Math.max(1,pn-1);$('#pn').textContent=pn};$('#pp').onclick=()=>{pn=Math.min(60,pn+1);$('#pn').textContent=pn};
+$('#bookgo').onclick=()=>{const d=$('#days .on'),h=$('[data-g=h] .on');toast(`Maquette : demande de visite pour ${pn} personne${pn>1?'s':''}, le ${d.querySelector('small').textContent.toLowerCase()} ${d.querySelector('b').textContent} à ${h.textContent}.`)};
+
+/* ---------- toast ---------- */
+let tt;function toast(h){const t=$('#toast');t.innerHTML=h;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2600)}
+
+/* ---------- boutons magnétiques ---------- */
+if(matchMedia('(hover:hover)').matches&&hasG)$$('.btn').forEach(b=>{b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();gsap.to(b,{x:(e.clientX-r.left-r.width/2)*.25,y:(e.clientY-r.top-r.height/2)*.35,duration:.4})});b.addEventListener('pointerleave',()=>gsap.to(b,{x:0,y:0,duration:.6,ease:'elastic.out(1,.4)'}))});
+</script>
+</body>
+</html>
