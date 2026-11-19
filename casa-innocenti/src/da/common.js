@@ -66,9 +66,8 @@ function renderCart() {
     <div class="qty"><button data-dec="${k}" aria-label="Retirer un">−</button><span>${cart[k]}</span><button data-add="${k}" aria-label="Ajouter un">+</button></div></div>
     <b>${eur(p.p * cart[k])}</b></div>`; }).join('') : '<p class="empty">Votre panier est vide. Commencez par une burrata, elle part vite.</p>';
   $('#cart-total').textContent = eur(total);
-  const left = Math.max(0, 60 - total);
-  $('#cart-free').innerHTML = left > 0 ? `Plus que <b>${eur(left)}</b> pour la livraison offerte à Saint-Priest` : 'Livraison offerte à Saint-Priest et alentours';
-  $('#cart-bar').style.setProperty('--pct', Math.min(100, total / 60 * 100) + '%');
+  $('#cart-free').innerHTML = total > 0 ? 'Retrait gratuit en boutique · <b>prêt en 2 h</b>, 30 Grande Rue' : 'Retrait gratuit en boutique, 30 Grande Rue';
+  $('#cart-bar').style.setProperty('--pct', total > 0 ? '100%' : '0%');
 }
 
 function openCart(o = true) { document.documentElement.classList.toggle('cart-open', o); }

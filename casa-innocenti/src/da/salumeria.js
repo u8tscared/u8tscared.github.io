@@ -101,14 +101,14 @@ const CI = (() => {
   const co = document.getElementById('checkout'); if (!co) return;
   let step = 0, mode = 'retrait', sel = {};
   const total = () => Object.keys(cart).reduce((s, k) => s + cart[k] * ALL().find(p => p.id === k).p, 0);
-  const fee = () => mode === 'livraison' && total() < 60 ? 4.9 : 0;
+  const fee = () => 0;
   CI.picker(co.querySelector('.co-picker'), s => { sel = s; sum(); });
   function sum() {
     const ids = Object.keys(cart).filter(k => cart[k] > 0);
     co.querySelector('.co-lines').innerHTML = ids.map(k => { const p = ALL().find(x => x.id === k); return `<div class="co-l"><span class="line-ill" style="--tint:${TINT[p.c]}">${illus(k)}</span><span>${cart[k]} × ${p.n}</span><b>${eur(cart[k] * p.p)}</b></div>`; }).join('');
-    co.querySelector('.co-fee').textContent = mode === 'retrait' ? 'Retrait gratuit' : fee() ? eur(fee()) : 'Offerte';
+    co.querySelector('.co-fee').textContent = 'Gratuit';
     co.querySelector('.co-tot').textContent = eur(total() + fee());
-    co.querySelector('.co-when').textContent = (mode === 'retrait' ? 'Retrait ' : 'Livraison ') + (CI.fmt(sel) || '');
+    co.querySelector('.co-when').textContent = 'Retrait ' + (CI.fmt(sel) || '');
     co.querySelector('#co-pay').textContent = `Payer ${eur(total() + fee())}`;
   }
   function go(n) {
@@ -125,7 +125,7 @@ const CI = (() => {
   document.querySelector('.drawer .pay').addEventListener('click', open);
   co.addEventListener('click', e => {
     if (e.target.closest('[data-co-close]')) { document.documentElement.classList.remove('co-open'); return; }
-    const m = e.target.closest('[data-mode]'); if (m) { mode = m.dataset.mode; co.querySelectorAll('[data-mode]').forEach(b => b.classList.toggle('on', b === m)); co.querySelector('.co-addr').hidden = mode !== 'livraison'; sum(); }
+    const m = e.target.closest('[data-mode]'); if (m) { mode = m.dataset.mode; co.querySelectorAll('[data-mode]').forEach(b => b.classList.toggle('on', b === m)); sum(); }
     const n = e.target.closest('[data-next]'); if (n) { if (step === 1 && sel.slot == null) return; go(step + 1); }
     const b = e.target.closest('[data-back]'); if (b) go(Math.max(0, step - 1));
   });

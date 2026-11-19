@@ -116,7 +116,8 @@
   const PAGES = ['accueil', 'boutique', 'emporter', 'anti-gaspi', 'la-casa'];
   const TITLES = {accueil:['Benvenuti', 'Accueil'], boutique:['La bottega', 'Boutique'], emporter:['Da asporto', 'À emporter'], 'anti-gaspi':['Ultimo minuto', 'Anti-gaspi'], 'la-casa':['La casa', 'La Casa']};
   const pages = qa('.page'); let cur = null, busy = false;
-  const pt = q('#pt');
+  const pt = q('#pt'); let lx = null, ly = null;
+  document.addEventListener('click', e => { lx = e.clientX; ly = e.clientY; }, true);
   function show(name, target) {
     cur = name;
     pages.forEach(p => p.hidden = p.dataset.page !== name);
@@ -138,6 +139,17 @@
     document.documentElement.classList.remove('cart-open', 'qv-open', 'co-open');
     if (!G) { show(name, target); return; }
     busy = true;
+    pt.dataset.to = name;
+    if (window.NOTTE) { q('.pt-it', pt).textContent = TITLES[name][0]; q('.pt-fr', pt).textContent = TITLES[name][1]; pt.hidden = false; const x = lx == null ? innerWidth / 2 : lx, y = ly == null ? innerHeight / 2 : ly, R = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)) + 40, R2 = Math.hypot(innerWidth, innerHeight) / 2 + 40;
+      G.timeline({onComplete:() => { pt.hidden = true; busy = false; G.set(pt, {clearProps:'clipPath'}); G.set('.pt-txt', {clearProps:'all'}); }})
+        .fromTo(pt, {clipPath:`circle(0px at ${x}px ${y}px)`}, {clipPath:`circle(${R}px at ${x}px ${y}px)`, duration:.55, ease:'power3.inOut'})
+        .fromTo('.pt-it', {yPercent:110}, {yPercent:0, duration:.4, ease:'power4.out'}, '-=.25')
+        .fromTo('.pt-fr,.pt-rule i', {opacity:0, scaleX:0}, {opacity:1, scaleX:1, duration:.3, stagger:.04}, '<.05')
+        .add(() => show(name, target))
+        .set(pt, {clipPath:`circle(${R2}px at ${innerWidth / 2}px ${innerHeight / 2}px)`})
+        .to('.pt-txt', {scale:1.12, opacity:0, duration:.3, ease:'power2.in'}, '+=.14')
+        .to(pt, {clipPath:`circle(0px at ${innerWidth / 2}px ${innerHeight / 2}px)`, duration:.55, ease:'power3.inOut'}, '<.08');
+      return; }
     pt.dataset.to = name; q('.pt-it', pt).textContent = TITLES[name][0]; q('.pt-fr', pt).textContent = TITLES[name][1];
     pt.hidden = false;
     G.timeline({onComplete:() => { pt.hidden = true; busy = false; }})

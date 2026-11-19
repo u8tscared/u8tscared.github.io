@@ -452,7 +452,7 @@ footer.ft{padding-bottom:calc(62px + env(safe-area-inset-bottom,0px))}
 }
 </style>
 
-<div class="top"><a href="#anti-gaspi"><b>Ce soir, jusqu’à −50 % en anti-gaspi</b> · Click &amp; collect prêt en 2 h · Livraison offerte dès 60 €</a></div>
+<div class="top"><a href="#anti-gaspi"><b>Ce soir, jusqu’à −50 % en anti-gaspi</b> · Click &amp; collect prêt en 2 h · Coupé à la commande</a></div>
 <div class="tri"><i></i><i></i><i></i></div>
 <header class="site"><div class="wrap hd">
   <nav aria-label="Pages"><a href="#boutique" data-nav="boutique">Boutique</a><a href="#emporter" data-nav="emporter">À emporter</a><a href="#anti-gaspi" data-nav="anti-gaspi">Anti-gaspi<span class="nb">−50 %</span></a><a href="#la-casa" data-nav="la-casa">La Casa</a></nav>
@@ -509,7 +509,7 @@ footer.ft{padding-bottom:calc(62px + env(safe-area-inset-bottom,0px))}
   <img src="{{img:board}}" alt="Plateau de charcuterie et fromages Casa Innocenti">
   <div class="wrap"><div class="eyebrow" style="color:#F2B8B0">Il coffret Aperitivo · 4 personnes</div>
     <h2>L’apéritif à l’italienne, <em>déjà prêt.</em></h2>
-    <p>Prosciutto, salame, mortadelle, gorgonzola, olives, grissini et taralli, posés sur la nappe. 39 €, à retirer ou livré.</p>
+    <p>Prosciutto, salame, mortadelle, gorgonzola, olives, grissini et taralli, posés sur la nappe. 39 €, à retirer en boutique.</p>
     <a class="btn" href="#coffret" data-add="board">Ajouter le coffret · 39 €</a></div>
 </section>
 
@@ -654,7 +654,7 @@ footer.ft{padding-bottom:calc(62px + env(safe-area-inset-bottom,0px))}
     <div><h3>La Casa</h3><ul><li>30 Grande Rue</li><li>69800 Saint-Priest</li><li>09 63 67 76 39</li><li><a href="https://www.instagram.com/casa__innocenti/" target="_blank" rel="noopener">@casa__innocenti</a></li></ul></div>
     <div><h3>Horaires</h3><ul class="hrs" id="ft-hrs"><li data-d="2">Mar.</li><li>10h – 19h30</li><li data-d="3">Mer.</li><li>10h – 19h30</li><li data-d="4">Jeu.</li><li>15h30 – 19h30</li><li data-d="5">Ven.</li><li>10h – 19h30</li><li data-d="6">Sam.</li><li>10h – 19h30</li><li data-d="0">Dim.</li><li>10h – 13h</li></ul></div>
     <div><h3>Boutique</h3><ul><li><a href="#shop">Salumeria</a></li><li><a href="#shop">Formaggi</a></li><li><a href="#shop">Pasta fresca</a></li><li><a href="#shop">Vini e dolci</a></li><li><a href="#coffret">Coffret Aperitivo</a></li></ul></div>
-    <div><h3>Services</h3><ul><li><a href="#emporter">Commander à emporter</a></li><li><a href="#anti-gaspi">Anti-gaspi, jusqu’à −50 %</a></li><li><a href="#taglio">Tranché à la commande</a></li><li>Click &amp; collect en 2 h</li><li>Livraison offerte dès 60 €</li><li>Plateaux et paniers cadeaux</li></ul></div>
+    <div><h3>Services</h3><ul><li><a href="#emporter">Commander à emporter</a></li><li><a href="#anti-gaspi">Anti-gaspi, jusqu’à −50 %</a></li><li><a href="#taglio">Tranché à la commande</a></li><li>Click &amp; collect en 2 h</li><li>Plateaux et paniers cadeaux</li></ul></div>
   </div>
   <div class="ft-shelf" aria-hidden="true">
     <div class="ft-items"><span data-slot="vino"></span><span data-slot="burrata"></span><span data-slot="panettone"></span><span data-slot="olio"></span><span data-slot="parmigiano"></span><span data-slot="espresso"></span><span data-slot="pesto"></span></div>
@@ -671,10 +671,9 @@ footer.ft{padding-bottom:calc(62px + env(safe-area-inset-bottom,0px))}
   <div class="co-panel">
     <div class="co-main">
       <div class="co-headbar">{{LOGO}}<button type="button" data-co-close aria-label="Fermer">Fermer ✕</button></div>
-      <ol class="co-bar"><li class="on">Mode</li><li>Créneau</li><li>Coordonnées</li><li>Paiement</li></ol>
-      <div class="co-step"><h3>Comment récupérez-vous votre commande ?</h3>
-        <div class="co-modes"><button type="button" class="co-mode on" data-mode="retrait"><b>Retrait en boutique</b><span>30 Grande Rue · gratuit · prêt en 2 h</span></button><button type="button" class="co-mode" data-mode="livraison"><b>Livraison à domicile</b><span>Saint-Priest et alentours · offerte dès 60 €</span></button></div>
-        <div class="co-addr" hidden><input id="co-adr" placeholder="Adresse de livraison" autocomplete="street-address"></div>
+      <ol class="co-bar"><li class="on">Retrait</li><li>Créneau</li><li>Coordonnées</li><li>Paiement</li></ol>
+      <div class="co-step"><h3>Votre commande vous attend en boutique</h3>
+        <div class="co-modes"><button type="button" class="co-mode on" data-mode="retrait"><b>Retrait en boutique</b><span>30 Grande Rue · gratuit · prêt en 2 h</span></button><div class="co-mode"><b>Payez en ligne, passez quand vous voulez</b><span>Gardée au frais jusqu’à la fermeture · pas de livraison</span></div></div>
         <div class="co-nav"><span></span><button type="button" class="btn" data-next>Continuer →</button></div></div>
       <div class="co-step" hidden><h3>Choisissez votre créneau</h3><div class="co-picker"></div>
         <div class="co-nav"><button type="button" class="btn ghost" data-back>← Retour</button><button type="button" class="btn" data-next>Continuer →</button></div></div>
@@ -691,7 +690,7 @@ footer.ft{padding-bottom:calc(62px + env(safe-area-inset-bottom,0px))}
       <div class="co-step co-ok" hidden><div class="stamp">Grazie !</div><h3>Commande <span class="ref"></span> confirmée</h3><p class="when"></p><p>On vous envoie un SMS dès qu’elle est prête. À tout de suite Grande Rue.</p><button type="button" class="btn" data-co-close>Retour à la boutique</button></div>
     </div>
     <aside class="co-side"><span class="eyebrow">Votre panier</span><div class="co-lines"></div>
-      <div class="co-row"><span>Retrait / livraison</span><span class="co-fee"></span></div>
+      <div class="co-row"><span>Retrait en boutique</span><span class="co-fee"></span></div>
       <div class="co-row co-big"><span>Total</span><b class="co-tot"></b></div><p class="co-when"></p></aside>
   </div>
 </div>
