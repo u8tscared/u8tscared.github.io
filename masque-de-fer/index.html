@@ -6,13 +6,13 @@
 <title>Masque de Fer · Club d'escrime à Lyon depuis 1910</title>
 <meta name="description" content="Club d'escrime historique de Lyon depuis 1910. Fleuret, épée et sabre dès 4 ans, loisir, compétition et handisport, dans 7 lieux à Lyon. Horaires, tarifs et inscriptions 2026-2027.">
 <link rel="icon" href="img/logo.png">
-<link rel="preload" as="image" href="img/f-jump.webp" media="(min-width:901px)">
+<link rel="preload" as="image" href="img/f-fly.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#1f3a64; --navy-2:#2d4f80; --ink:#0b1424; --night:#06090f;
+  --navy:#002847; --navy-2:#0b3f6b; --ink:#04182b; --night:#020d18;
   --gold:#b8a263; --gold-2:#d6c084; --gold-soft:#f3efe1;
   --paper:#f5f4ef; --line:#e3e1d8; --text:#1b2333; --muted:#5f6878;
   --r:16px; --r-sm:10px;
@@ -113,25 +113,29 @@ body:not(.go) .hero *{animation-play-state:paused!important}
 .hero{height:100vh;height:100svh;min-height:640px;max-height:1100px;padding:0;color:var(--ink);overflow:hidden;background:radial-gradient(110% 80% at 68% 38%,#fff 0,#f4f3ee 55%,#e9e7de 100%);--mx:0;--my:0;--sy:0}
 .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,20,36,.045) 1px,transparent 1px) 0 0/calc(100%/12) 100%;-webkit-mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent);mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent)}
 .hero .eyebrow{position:absolute;left:max(28px,calc(50% - 592px));top:104px;z-index:3;color:#8f7a3c;opacity:0;animation:fadeup .9s .15s var(--ease) forwards}
-.h-title{position:absolute;left:0;right:0;top:clamp(108px,15vh,150px);z-index:1;margin:0;text-align:center;white-space:nowrap;font-family:var(--head);font-weight:800;text-transform:uppercase;font-size:min(16.9vw,36vh);line-height:.82;letter-spacing:-.012em;color:var(--navy);transform:translate3d(calc(var(--mx)*-16px),calc(var(--my)*-8px + var(--sy)*.32px),0)}
+.h-title{position:absolute;left:0;right:0;top:clamp(108px,15vh,150px);z-index:1;margin:0;text-align:center;white-space:nowrap;font-family:var(--head);font-weight:800;text-transform:uppercase;font-size:min(16.9vw,36vh);line-height:.82;letter-spacing:-.012em;color:var(--navy);transform:translate3d(0,calc(var(--sy)*.3px),0)}
 .h-title .wd{display:inline-block;overflow:hidden;padding:.04em 0 .02em;vertical-align:top}
 .h-title .wd+.wd{margin-left:.2em}
 .h-title .ch{display:inline-block;transform:translateY(108%) rotate(6deg);transform-origin:0 100%;animation:chup 1.15s var(--ease) forwards;animation-delay:calc(.12s + var(--i)*.045s)}
 @keyframes chup{to{transform:none}}
-.h-title .wd:last-child .ch{background:linear-gradient(180deg,var(--navy) 35%,#0d1b33);-webkit-background-clip:text;background-clip:text}
-.fig{position:absolute;right:-5vw;bottom:22px;width:min(85vw,146vh);aspect-ratio:1700/930;z-index:2;pointer-events:none}
-.fig .f{position:absolute;inset:0;will-change:transform}
-.fig .f img{width:100%;height:100%;filter:drop-shadow(0 26px 28px rgba(11,20,36,.2))}
-.fig .fj{transform:translate3d(calc(var(--mx)*30px),calc(var(--my)*16px - var(--sy)*.14px),0)}
-.fig .fl{transform:translate3d(calc(var(--mx)*14px),calc(var(--my)*6px),0)}
-.fig .fj .in{opacity:0;animation:fly 1.5s .35s cubic-bezier(.16,.8,.2,1) forwards}
-@keyframes fly{from{opacity:0;transform:translate3d(-14vw,5vh,0) rotate(-5deg)}to{opacity:1;transform:none}}
-.fig .fj .in img{animation:hover 6.5s 1.9s ease-in-out infinite alternate}
-@keyframes hover{from{transform:translate3d(0,0,0) rotate(0)}to{transform:translate3d(.5vw,-1.4vh,0) rotate(.7deg)}}
-.fig .fl .in{opacity:0;animation:lunge 1.2s .55s cubic-bezier(.16,.8,.2,1) forwards}
-@keyframes lunge{from{opacity:0;transform:translate3d(9vw,0,0)}to{opacity:1;transform:none}}
-.fig .in{position:absolute;inset:0}
-.floor{position:absolute;left:44%;right:2%;bottom:-1.2%;height:7%;background:radial-gradient(50% 50% at 50% 50%,rgba(11,20,36,.3),transparent 70%);filter:blur(6px);opacity:0;animation:fadein 1.2s 1.2s forwards}
+.fly{position:absolute;left:14vw;top:clamp(150px,23vh,250px);width:min(57vw,104vh);aspect-ratio:1500/740;z-index:2;pointer-events:none}
+.fly .in{position:absolute;inset:0;opacity:0;animation:fly 1.5s .35s cubic-bezier(.16,.8,.2,1) forwards}
+@keyframes fly{from{opacity:0;transform:translate3d(-16vw,6vh,0) rotate(-6deg)}to{opacity:1;transform:none}}
+.fly img{width:100%;height:100%;filter:drop-shadow(0 30px 30px rgba(0,26,48,.22));animation:hover 6.5s 1.9s ease-in-out infinite alternate}
+@keyframes hover{from{transform:translate3d(0,0,0) rotate(0)}to{transform:translate3d(.5vw,-1.6vh,0) rotate(.8deg)}}
+.speed{position:absolute;left:-9%;top:38%;width:30%;height:40%;opacity:0;animation:fadein .8s 1.5s forwards}
+.speed i{position:absolute;left:0;height:1.5px;border-radius:2px;background:linear-gradient(90deg,transparent,rgba(0,40,71,.5));animation:streak 2.6s linear infinite}
+.speed i:nth-child(1){top:6%;width:70%;animation-delay:.1s}
+.speed i:nth-child(2){top:30%;width:100%;animation-delay:.9s;background:linear-gradient(90deg,transparent,var(--gold))}
+.speed i:nth-child(3){top:52%;width:60%;animation-delay:1.5s}
+.speed i:nth-child(4){top:78%;width:85%;animation-delay:.5s}
+.speed i:nth-child(5){top:96%;width:50%;animation-delay:2s;background:linear-gradient(90deg,transparent,var(--gold))}
+@keyframes streak{0%{transform:translateX(-60%);opacity:0}25%{opacity:1}100%{transform:translateX(70%);opacity:0}}
+.duo{position:absolute;right:-1.5vw;bottom:24px;height:min(70vh,49vw);aspect-ratio:1000/1302;z-index:2;pointer-events:none}
+.duo .in{position:absolute;inset:0;opacity:0;animation:lunge 1.3s .6s cubic-bezier(.16,.8,.2,1) forwards}
+@keyframes lunge{from{opacity:0;transform:translate3d(8vw,0,0)}to{opacity:1;transform:none}}
+.duo img{width:100%;height:100%;filter:drop-shadow(0 22px 26px rgba(0,26,48,.2))}
+.floor{position:absolute;left:4%;right:0;bottom:-1.5%;height:6%;background:radial-gradient(50% 50% at 50% 50%,rgba(0,26,48,.32),transparent 70%);filter:blur(6px);opacity:0;animation:fadein 1.2s 1.3s forwards}
 @keyframes fadein{to{opacity:1}}
 .piste{position:absolute;left:0;right:0;bottom:26px;height:1px;background:linear-gradient(90deg,transparent,var(--gold) 20%,var(--gold) 80%,transparent);transform:scaleX(0);transform-origin:0 50%;animation:pisteIn 1.6s .5s var(--ease) forwards;z-index:1}
 @keyframes pisteIn{to{transform:scaleX(1)}}
@@ -140,7 +144,7 @@ body:not(.go) .hero *{animation-play-state:paused!important}
 .hero-txt p b{color:var(--ink)}
 .hero .ctas{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;opacity:0;animation:fadeup 1s 1.1s var(--ease) forwards}
 @keyframes fadeup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-.seal{position:absolute;left:84.5%;top:33%;width:8.2%;aspect-ratio:1;z-index:3;opacity:0;animation:fadein 1s 1.5s forwards}
+.seal{position:absolute;left:44%;bottom:clamp(48px,8vh,84px);width:104px;aspect-ratio:1;z-index:3;opacity:0;animation:fadein 1s 1.5s forwards}
 .seal svg{width:100%;height:100%;animation:spin 26s linear infinite}
 .seal text{font-family:var(--body);font-size:10.4px;font-weight:700;letter-spacing:.25em;fill:var(--navy);text-transform:uppercase}
 .seal img{position:absolute;left:30%;top:30%;width:40%}
@@ -150,7 +154,7 @@ body:not(.go) .hero *{animation-play-state:paused!important}
 .hero-quick a{display:flex;align-items:center;gap:14px;padding:24px 20px;text-decoration:none;border-right:1px solid var(--line);transition:background .3s}
 .hero-quick a:first-child{padding-left:0}
 .hero-quick a:last-child{border-right:0}
-.hero-quick .ic{width:44px;height:44px;border-radius:50%;border:1px solid rgba(31,58,100,.22);color:var(--navy);display:grid;place-items:center;flex-shrink:0;transition:background .3s,color .3s,border-color .3s,transform .4s var(--ease)}
+.hero-quick .ic{width:44px;height:44px;border-radius:50%;border:1px solid rgba(0,40,71,.22);color:var(--navy);display:grid;place-items:center;flex-shrink:0;transition:background .3s,color .3s,border-color .3s,transform .4s var(--ease)}
 .hero-quick a:hover .ic{background:var(--navy);color:#fff;border-color:var(--navy);transform:scale(1.08)}
 .hero-quick .ic svg{width:19px;height:19px}
 .hero-quick b{display:block;font-size:15px;color:var(--ink)}
@@ -171,7 +175,7 @@ body:not(.go) .hero *{animation-play-state:paused!important}
 .statement .w.on{opacity:1}
 .statement em{font-style:normal;color:var(--gold)}
 .intro-img{position:relative;aspect-ratio:3/4;border-radius:var(--r);overflow:hidden}
-.intro-img img{width:100%;height:100%;object-fit:cover;object-position:50% 14%}
+.intro-img img{width:100%;height:100%;object-fit:cover;object-position:42% 50%}
 .intro-img .tagx{position:absolute;left:18px;bottom:18px;background:rgba(6,9,15,.7);backdrop-filter:blur(8px);color:#fff;border-radius:12px;padding:12px 16px;display:flex;gap:12px;align-items:center}
 .intro-img .tagx img{width:40px;height:40px}
 .intro-img .tagx b{font-family:var(--head);text-transform:uppercase;font-size:20px;display:block;line-height:1}
@@ -214,7 +218,24 @@ body:not(.go) .hero *{animation-play-state:paused!important}
 
 /* finder */
 #cours{background:var(--paper)}
-.who{display:grid;grid-template-columns:.8fr repeat(4,1fr);gap:12px;margin-bottom:14px}
+.fx{background:#fff;border-radius:22px;box-shadow:var(--shadow);padding:28px 30px 30px}
+.fx-h{display:flex;align-items:center;gap:12px;font-family:var(--head);font-weight:700;text-transform:uppercase;font-size:24px;letter-spacing:.02em;color:var(--ink);margin-bottom:16px}
+.fx-h small{font-family:var(--body);text-transform:none;font-weight:500;font-size:13px;letter-spacing:0;color:var(--muted)}
+.fx-n{width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:16px;flex-shrink:0}
+.fx-h2{margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}
+.fx-reset{margin-left:auto;background:none;border:0;font-family:var(--body);font-size:13.5px;font-weight:600;color:var(--navy);text-decoration:underline;text-underline-offset:3px;text-transform:none;letter-spacing:0;opacity:0;pointer-events:none;transition:opacity .3s}
+.fx-reset.show{opacity:1;pointer-events:auto}
+.years{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease),margin .45s var(--ease);margin-top:0}
+.years.show{grid-template-rows:1fr;margin-top:16px}
+.years>div{overflow:hidden;display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap}
+.years .f-label{margin:0}
+.years .ycat{font-size:13.5px;color:var(--muted)}
+.years .ycat b{font-family:var(--head);font-size:20px;color:var(--navy);margin-right:4px}
+.facets{display:grid;grid-template-columns:1.25fr .9fr 1.25fr;gap:22px 34px}
+.chip i{font-style:normal;font-size:11.5px;font-weight:700;margin-left:7px;opacity:.5}
+.chip:disabled{opacity:.32;cursor:not-allowed;border-style:dashed}
+.chip:disabled:hover{border-color:var(--line)}
+.who{display:grid;grid-template-columns:.8fr repeat(4,1fr);gap:12px}
 .who button{text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:var(--r);padding:18px 20px 16px;color:var(--ink);position:relative;overflow:hidden;transition:border-color .25s,background .35s,color .35s,transform .35s var(--ease),box-shadow .35s}
 .who button:hover{border-color:var(--navy);transform:translateY(-3px);box-shadow:var(--shadow)}
 .who .n{display:block;font-family:var(--head);font-weight:700;font-size:46px;line-height:.95;color:var(--navy);transition:color .35s}
@@ -506,14 +527,16 @@ footer .legal{margin-top:48px;padding-top:20px;border-top:1px solid rgba(255,255
   .h-title{position:relative;top:auto;margin-top:14px;white-space:normal;font-size:26.5vw;line-height:.8;text-align:left;padding-left:18px}
   .h-title .wd{display:block}
   .h-title .wd+.wd{margin-left:0}
-  .fig{position:relative;right:auto;bottom:auto;width:100vw;margin:-15vw 0 0 0;aspect-ratio:1100/1331}
-  .floor{left:0;right:20%;bottom:.5%;height:5%}
+  .fly{position:relative;left:auto;top:auto;width:128vw;margin:-17vw 0 0 -14vw}
+  .duo{display:none}
   .piste{display:none}
   .seal{display:none}
   .hero-txt{position:relative;left:auto;bottom:auto;max-width:none;padding:6px 20px 0;margin-top:-4vw}
   .hero .ctas .btn{flex:1;justify-content:center}
   .res-bar{scroll-margin-top:84px}
   .who{grid-template-columns:1fr 1fr}
+  .facets{grid-template-columns:1fr}
+  .fx{padding:22px 18px 24px}
   .who button:first-child{grid-column:span 2;display:flex;align-items:baseline;gap:12px;padding:14px 18px}
   .who button:first-child .n{font-size:30px}
   .who button:first-child .l{margin:0}
@@ -613,14 +636,11 @@ footer .legal{margin-top:48px;padding-top:20px;border-top:1px solid rgba(255,255
   <span class="eyebrow">Club d'escrime à Lyon · depuis 1910</span>
   <h1 class="h-title" id="htitle" aria-label="Masque de Fer">Masque de&nbsp;Fer</h1>
   <div class="piste" aria-hidden="true"></div>
-  <div class="fig" aria-hidden="true">
-    <div class="floor"></div>
-    <div class="seal" aria-hidden="true">
-      <svg viewBox="0 0 120 120"><defs><path id="circ" d="M60 60m-48 0a48 48 0 1 1 96 0a48 48 0 1 1 -96 0"/></defs><text><textPath href="#circ">Fleuret · Épée · Sabre · Lyon · 1910 ·</textPath></text></svg>
-      <img src="img/logo.webp" alt="">
-    </div>
-    <div class="f fl"><div class="in"><picture><source media="(max-width:900px)" srcset="img/f-lunge-m.webp"><img src="img/f-lunge.webp" alt=""></picture></div></div>
-    <div class="f fj"><div class="in"><picture><source media="(max-width:900px)" srcset="img/f-jump-m.webp"><img src="img/f-jump.webp" alt="" fetchpriority="high"></picture></div></div>
+  <div class="fly" aria-hidden="true"><div class="speed"><i></i><i></i><i></i><i></i><i></i></div><div class="in"><img src="img/f-fly.webp" alt="" fetchpriority="high"></div></div>
+  <div class="duo" aria-hidden="true"><div class="floor"></div><div class="in"><img src="img/f-duo.webp" alt=""></div></div>
+  <div class="seal" aria-hidden="true">
+    <svg viewBox="0 0 120 120"><defs><path id="circ" d="M60 60m-48 0a48 48 0 1 1 96 0a48 48 0 1 1 -96 0"/></defs><text><textPath href="#circ">Fleuret · Épée · Sabre · Lyon · 1910 ·</textPath></text></svg>
+    <img src="img/logo.webp" alt="">
   </div>
   <div class="hero-txt">
     <p><b>Le club d'escrime historique de Lyon.</b> Fleuret, épée et sabre dès 4&nbsp;ans, en loisir ou en compétition, dans 7&nbsp;lieux à Lyon.</p>
@@ -650,7 +670,7 @@ footer .legal{margin-top:48px;padding-top:20px;border-top:1px solid rgba(255,255
         <p class="statement" id="statement" style="margin-top:22px">Depuis 1910, le Masque de Fer forme des escrimeurs de <em>4 à 75&nbsp;ans</em>. Des premiers pas au fleuret jusqu'aux podiums olympiques, chacun progresse à son rythme, avec nos maîtres d'armes.</p>
       </div>
       <div class="intro-img wipe">
-        <img src="img/x-pose.webp" alt="Fleurettiste en tenue, masque à la main">
+        <img src="img/x-masque.webp" alt="Fleurettiste en tenue, masque sous le bras">
         <div class="tagx"><img src="img/logo.webp" alt=""><div><b>115 ans</b><small>de sport et de passion</small></div></div>
       </div>
     </div>
@@ -681,7 +701,7 @@ footer .legal{margin-top:48px;padding-top:20px;border-top:1px solid rgba(255,255
     </div>
     <div class="stage-arme rv">
       <div class="ph on"><img src="img/x-grip.webp" alt="Main gantée sur la poignée d'un fleuret"></div>
-      <div class="ph"><img src="img/x-epee.webp" alt="Épéiste tenant son arme"></div>
+      <div class="ph"><img src="img/x-fente2.webp" alt="Épéiste masquée, la pointe de son épée vers l'objectif"></div>
       <div class="ph"><img src="img/x-sabre.webp" alt="Assaut au sabre"></div>
       <div class="zone">
         <svg viewBox="0 0 70 120" aria-hidden="true">
@@ -706,14 +726,12 @@ footer .legal{margin-top:48px;padding-top:20px;border-top:1px solid rgba(255,255
       <h2 class="rv">Trouver mon cours</h2>
       <p class="lead rv">Choisissez un âge : on vous montre les cours qui correspondent, avec les horaires et la cotisation.</p>
     </div>
-    <div class="who rv" id="who"></div>
-    <div class="finder rv">
-      <div class="f-age">
-        <div class="f-label">Affiner par année de naissance</div>
-        <select id="year" aria-label="Année de naissance"></select>
-        <div class="cat" id="catTxt">Tous les âges</div>
-      </div>
-      <div class="f-rows">
+    <div class="fx rv">
+      <div class="fx-h"><span class="fx-n">1</span>Quel âge&nbsp;?</div>
+      <div class="who" id="who"></div>
+      <div class="years" id="years"></div>
+      <div class="fx-h fx-h2"><span class="fx-n">2</span>Affiner <small>facultatif</small><button class="fx-reset" id="fxReset" type="button">Tout effacer</button></div>
+      <div class="facets">
         <div><div class="f-label">Lieu</div><div class="chips" id="fLieu"></div></div>
         <div><div class="f-label">Arme</div><div class="chips" id="fArme"></div></div>
         <div><div class="f-label">Niveau</div><div class="chips" id="fNiv"></div></div>
@@ -1077,8 +1095,6 @@ const cut=$('#cut');let seen=false;try{seen=sessionStorage.getItem('mdf-cut')===
 const ht=$('#htitle');let ci=0;ht.innerHTML=['Masque','de Fer'].map(w=>`<span class="wd">${[...w].map(c=>c===' '?'&nbsp;':`<span class="ch" style="--i:${ci++}">${c}</span>`).join('')}</span>`).join('');
 function go(){document.body.classList.add('go')}
 if(seen||RM){cut.remove();go()}else{setTimeout(()=>{cut.classList.add('open');go()},1050);setTimeout(()=>cut.remove(),2300)}
-let tx=0,ty=0,cx=0,cy=0,raf=0;const lerp=()=>{cx+=(tx-cx)*.07;cy+=(ty-cy)*.07;hero.style.setProperty('--mx',cx.toFixed(4));hero.style.setProperty('--my',cy.toFixed(4));raf=Math.abs(tx-cx)+Math.abs(ty-cy)>.002?requestAnimationFrame(lerp):0};
-if(!RM&&matchMedia('(hover:hover)').matches)hero.addEventListener('pointermove',e=>{tx=e.clientX/innerWidth-.5;ty=e.clientY/innerHeight-.5;if(!raf)raf=requestAnimationFrame(lerp)});
 $('#burger').onclick=()=>$('#mobile').classList.toggle('open');
 $('#mobile').onclick=e=>{if(e.target.tagName==='A')$('#mobile').classList.remove('open')};
 
@@ -1117,29 +1133,37 @@ $('#tabs').addEventListener('pointerdown',()=>{aio.disconnect();clearInterval(ar
 const DAYS=['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
 const st={year:'',who:'all',lieu:'Tous',arme:'Toutes',niv:'Tous',view:'list'};
 const WHO=[{k:'all',n:'Tous',l:'Tous les cours du club'},{k:'baby',n:'4-6',u:'ans',l:'Baby escrime et éveil',y:[2020,2022]},{k:'kid',n:'7-10',u:'ans',l:'Enfants, débutants ou non',y:[2016,2019]},{k:'teen',n:'11-17',u:'ans',l:'Ados, loisir ou compétition',y:[2009,2015]},{k:'adult',n:'18',u:'ans et +',l:'Adultes, débutants bienvenus',y:[1900,2008]}];
-const yr=()=>st.year?[+st.year,+st.year]:(WHO.find(w=>w.k===st.who)||{}).y;
-const whoEl=$('#who');whoEl.innerHTML=WHO.map(w=>`<button data-k="${w.k}" class="${w.k==='all'?'on':''}"><span class="n">${w.n}${w.u?`<small>${w.u}</small>`:''}</span><span class="l">${w.l}</span></button>`).join('');
-const markWho=()=>$$('#who button').forEach(b=>b.classList.toggle('on',b.dataset.k===st.who));
-whoEl.onclick=e=>{const b=e.target.closest('button');if(!b)return;st.who=b.dataset.k;st.year='';sel.value='';markWho();render();if(innerWidth<900)$('.res-bar').scrollIntoView({behavior:'smooth',block:'start'})};
+const FAC={lieu:['Tous','Lyon 6','Lyon 2','Lyon 4','Lyon 7','Lyon 9'],arme:['Toutes','Fleuret','Épée','Sabre'],niv:['Tous','Débutant','Perfectionnement','Loisir','Compétition']},FID={lieu:'fLieu',arme:'fArme',niv:'fNiv'},ALL={lieu:'Tous',arme:'Toutes',niv:'Tous'};
 const groupOf=l=>(PLACES[l]&&PLACES[l].group)||l;
-const sel=$('#year');
-sel.innerHTML='<option value="">Tous les âges</option>'+Array.from({length:2023-1940+1},(_,i)=>2023-i).map(y=>`<option value="${y}">${y}</option>`).join('');
-sel.onchange=()=>{st.year=sel.value;const w=WHO.find(w=>w.y&&+sel.value>=w.y[0]&&+sel.value<=w.y[1]);st.who=sel.value?(w?w.k:(+sel.value>2022?'baby':'adult')):'all';markWho();render()};
-function chips(id,vals,key){const el=document.getElementById(id);
-  el.innerHTML=vals.map(v=>`<button class="chip${st[key]===v?' on':''}" data-v="${v}">${v}</button>`).join('');
-  el.onclick=e=>{const b=e.target.closest('.chip');if(!b)return;st[key]=b.dataset.v;el.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c===b));render()}}
-chips('fLieu',['Tous','Lyon 6','Lyon 2','Lyon 4','Lyon 7','Lyon 9'],'lieu');
-chips('fArme',['Toutes','Fleuret','Épée','Sabre'],'arme');
-chips('fNiv',['Tous','Débutant','Perfectionnement','Loisir','Compétition'],'niv');
-window.setLieu=v=>{st.lieu=v;$$('#fLieu .chip').forEach(c=>c.classList.toggle('on',c.dataset.v===v));render()};
+const yrOf=o=>o.year?[+o.year,+o.year]:(WHO.find(w=>w.k===o.who)||{}).y;
+const yr=()=>yrOf(st);
+const whoEl=$('#who');whoEl.innerHTML=WHO.map(w=>`<button data-k="${w.k}"><span class="n">${w.n}${w.u?`<small>${w.u}</small>`:''}</span><span class="l">${w.l}</span></button>`).join('');
+const cnt=o=>C.filter(c=>match(c,{...st,...o})).length;
+// après un changement d'âge, on retire les filtres devenus impossibles
+const prune=()=>Object.keys(ALL).forEach(k=>{if(st[k]!==ALL[k]&&!cnt({}))st[k]=ALL[k]});
+whoEl.onclick=e=>{const b=e.target.closest('button');if(!b)return;st.who=b.dataset.k;st.year='';prune();render();if(innerWidth<900)$('.res-bar').scrollIntoView({behavior:'smooth',block:'start'})};
+$('#years').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;st.year=b.dataset.v;prune();render()};
+Object.keys(FAC).forEach(k=>{document.getElementById(FID[k]).onclick=e=>{const b=e.target.closest('.chip');if(!b||b.disabled)return;st[k]=b.dataset.v;render()}});
+$('#fxReset').onclick=()=>{Object.assign(st,{year:'',who:'all',...ALL});render()};
+window.setLieu=v=>{Object.assign(st,{year:'',who:'all',...ALL,lieu:v});render()};
+function drawFilters(){
+  $$('#who button').forEach(b=>b.classList.toggle('on',b.dataset.k===st.who));
+  const w=WHO.find(x=>x.k===st.who),ys=$('#years'),kid=w&&w.y&&w.k!=='adult';
+  ys.classList.toggle('show',!!kid);
+  if(kid){const L=[];for(let y=w.y[1];y>=w.y[0];y--)L.push(y);
+    ys.innerHTML=`<div><span class="f-label">Année de naissance</span><span class="chips"><button class="chip${st.year?'':' on'}" data-v="">Toutes</button>${L.map(y=>`<button class="chip${+st.year===y?' on':''}" data-v="${y}">${y}</button>`).join('')}</span>${st.year?`<span class="ycat"><b>${catOf(+st.year)}</b>catégorie 2026-2027</span>`:''}</div>`}
+  Object.keys(FAC).forEach(k=>{document.getElementById(FID[k]).innerHTML=FAC[k].map(v=>{const n=cnt({[k]:v}),on=st[k]===v;
+    return `<button class="chip${on?' on':''}" data-v="${v}"${!n&&!on?' disabled':''}>${v}${v===ALL[k]?'':`<i>${n}</i>`}</button>`}).join('')});
+  $('#fxReset').classList.toggle('show',st.who!=='all'||!!st.year||Object.keys(ALL).some(k=>st[k]!==ALL[k]));
+}
 $('.view').onclick=e=>{const b=e.target.closest('button');if(!b)return;st.view=b.dataset.v;$$('.view button').forEach(x=>x.classList.toggle('on',x===b));render()};
 const okSlot=s=>{const r=yr();return !r||!s[3]||(r[0]<=s[3][1]&&r[1]>=s[3][0])};
 const slotsOf=c=>c.s.filter(okSlot);
-function match(c){
-  const r=yr();if(r&&(r[1]<c.y[0]||r[0]>c.y[1]))return false;
-  if(st.lieu!=='Tous'&&groupOf(c.lieu)!==st.lieu)return false;
-  if(st.arme!=='Toutes'&&!c.arme.includes(st.arme))return false;
-  if(st.niv!=='Tous'&&!(c.niv2||[c.niv]).includes(st.niv))return false;
+function match(c,o=st){
+  const r=yrOf(o);if(r&&(r[1]<c.y[0]||r[0]>c.y[1]))return false;
+  if(o.lieu!=='Tous'&&groupOf(c.lieu)!==o.lieu)return false;
+  if(o.arme!=='Toutes'&&!c.arme.includes(o.arme))return false;
+  if(o.niv!=='Tous'&&!(c.niv2||[c.niv]).includes(o.niv))return false;
   return true}
 function card(c,i){const p=PLACES[c.lieu];
   return `<article class="course" style="--i:${i}">
@@ -1152,8 +1176,8 @@ function card(c,i){const p=PLACES[c.lieu];
     <div class="act"><a class="btn btn-navy btn-sm" href="${c.url}" target="_blank" rel="noopener">S'inscrire</a><a class="btn btn-ghost btn-sm" href="${p.map}" target="_blank" rel="noopener">Itinéraire</a></div>
   </article>`}
 function render(){const y=+st.year;
-  $('#catTxt').innerHTML=st.year?`<b>${catOf(y)}</b> catégorie saison 2026-2027`:'Tous les âges';
-  const list=C.filter(match),n=list.reduce((a,c)=>a+slotsOf(c).length,0);
+  drawFilters();
+  const list=C.filter(c=>match(c)),n=list.reduce((a,c)=>a+slotsOf(c).length,0);
   $('#count').innerHTML=list.length?`${list.length} cours <span>· ${n} créneaux par semaine</span>`:'Aucun cours';
   const out=$('#results');
   if(!list.length){out.innerHTML=`<div class="empty">Aucun cours ne correspond à ces critères. Essayez un autre lieu ou une autre arme, ou <a href="#contact">contactez-nous</a> : on vous orientera.</div>`;return}
@@ -1202,7 +1226,7 @@ addEventListener('pointermove',e=>{if(dx!==null)tl.scrollLeft=sl-(e.clientX-dx)}
 addEventListener('pointerup',()=>{dx=null;tl.classList.remove('drag')});
 
 /* galerie */
-const G=['x-fente','x-garde','x-assaut','x-profil','x-trio','x-croise','x-masque','x-match','x-lame','x-handi2','x-salle','x-sourire','x-pose2','x-fente2','x-duel','x-handi3'];
+const G=['x-fente','x-garde','x-assaut','x-profil','x-trio','x-croise','x-masque','x-match','x-lame','x-handi2','x-grip','x-pose2','x-fente2','x-duel','x-handi3'];
 $('#gal').innerHTML=[...G,...G].map(n=>`<img src="img/${n}.webp" alt="" loading="lazy">`).join('');
 
 /* logos */
