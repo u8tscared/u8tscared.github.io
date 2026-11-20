@@ -174,6 +174,6 @@
   const fromHash = () => { const n = location.hash.slice(1); return PAGES.includes(n) ? n : 'accueil'; };
   addEventListener('hashchange', () => { const n = fromHash(); if (n !== cur) go(n); });
   addEventListener('popstate', () => { const n = fromHash(); if (n !== cur) go(n); });
-  renderGrid('#grid-home', 4);
+  if (!q('#grid-home').children.length) renderGrid('#grid-home', 4);
   show(fromHash());
 })();
