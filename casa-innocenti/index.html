@@ -545,27 +545,86 @@ footer.ft{padding-bottom:calc(62px + env(safe-area-inset-bottom,0px))}
 .agbox{grid-template-columns:1fr}.agbox-ill{min-height:200px}.agbox-ill svg{width:46%}
 .ag-steps{grid-template-columns:1fr}.ag-steps li{border-left:0;border-top:1px solid var(--line);padding:20px}.ag-steps li:first-child{border-top:0}
 }
+
+/* ================= Thème Noël, activé par l'interrupteur (classe .noel sur la racine) ================= */
+:root:not(.noel) [data-x="noel"]{display:none!important}
+:root.noel [data-x="std"]{display:none!important}
+.xsw{display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;color:var(--fg);white-space:nowrap}
+.xsw-k{position:relative;width:46px;height:26px;border-radius:99px;background:var(--line);box-shadow:inset 0 0 0 1px rgba(0,0,0,.08);transition:background .35s}
+.xsw-k i{position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff;color:#B88A3E;display:grid;place-items:center;font-style:normal;font-size:12px;line-height:1;box-shadow:0 2px 6px rgba(0,0,0,.25);transition:transform .4s cubic-bezier(.3,1.5,.5,1),background .3s,color .3s}
+.xsw[aria-checked="true"] .xsw-k{background:#B3262E}
+.xsw[aria-checked="true"] .xsw-k i{transform:translateX(20px) rotate(72deg);background:#F5D27A;color:#7E1A20}
+.hd nav{gap:20px;letter-spacing:.12em}.hd nav a{white-space:nowrap}
+.hd .right{gap:18px}
+@keyframes tw{50%{opacity:.35;box-shadow:none}}
+.st{display:inline-block;color:#E0B24A;letter-spacing:0}
+.nb.nb-g{background:#E0B24A;color:#3A2A08}
+.swag{position:absolute;left:0;right:0;top:19px;height:30px;background:radial-gradient(ellipse 50% 100% at 50% 0,#1F6B45 0 96%,transparent 100%) 0 0/74px 30px repeat-x,radial-gradient(ellipse 50% 100% at 50% 0,#14523A 0 96%,transparent 100%) 37px 0/74px 22px repeat-x;filter:drop-shadow(0 5px 5px rgba(20,40,25,.22));pointer-events:none}
+.lights{position:absolute;left:0;right:0;top:22px;display:flex;pointer-events:none;z-index:1}
+.lights span{flex:1;height:26px;position:relative}
+.lights span::after{content:"";position:absolute;left:50%;top:14px;width:9px;height:12px;margin-left:-4.500px;border-radius:50% 50% 50% 50%/38% 38% 62% 62%;background:var(--c);box-shadow:0 0 12px 3px color-mix(in srgb,var(--c) 70%,transparent);animation:tw 1.8s ease-in-out infinite;animation-delay:var(--d)}
+.lights span::before{content:"";position:absolute;left:50%;top:10px;width:5px;height:5px;margin-left:-2.500px;background:#8A6427;border-radius:1px}
+.hang.orn{pointer-events:none}
+.ball{display:block;width:clamp(34px,3.6vw,50px);aspect-ratio:1;border-radius:50%;margin-top:4px;position:relative;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.85) 0 7%,rgba(255,255,255,0) 24%),radial-gradient(circle at 60% 70%,rgba(0,0,0,.28),transparent 60%),var(--c);box-shadow:0 14px 14px -6px rgba(40,25,10,.28)}
+.ball::before{content:"";position:absolute;left:50%;top:-6px;width:12px;height:8px;margin-left:-6px;background:linear-gradient(#F0D48A,#B88A3E);border-radius:2px 2px 0 0}
+.snow{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:39}
+.noel .top{background:#7E1A20}.noel .top b{color:#F5D27A}
+.noel .rail{height:clamp(270px,28vw,380px)}
+.noel .hangs{inset:42px 0 0}
+@media(min-width:1101px){.noel .hang:nth-child(n+11){display:none}}
+.noel .marq{background:#0E3B2C;color:#F6EFDF;border:0}
+.noel .marq .track span::after{content:"★";width:auto;height:auto;border-radius:0;background:none;color:#E0B24A;font-style:normal;font-size:.55em}
+.noel .ft-vichy{box-shadow:0 -1px 0 #E0B24A}
+.natale{padding:clamp(60px,8vw,110px) 0 0}
+.nt-head{display:flex;justify-content:space-between;align-items:end;gap:28px;flex-wrap:wrap;margin-bottom:40px}
+.natale h2{font-family:var(--display);font-weight:400;font-size:clamp(40px,5vw,72px);line-height:.98;margin:12px 0 0;letter-spacing:-.01em}
+.nt-head p{max-width:44ch;color:var(--mute);margin:14px 0 0}
+.nt-cd{display:grid;justify-items:center;gap:2px;padding:20px 30px 18px;background:#B3262E;color:#FFF6E8;text-align:center;position:relative;box-shadow:0 22px 34px -22px rgba(120,10,20,.7);outline:1.5px dashed rgba(255,246,232,.55);outline-offset:-8px}
+.nt-j{font-family:var(--display);font-style:italic;font-size:clamp(50px,5.6vw,80px);line-height:.95;color:#F5D27A;font-variant-numeric:lining-nums}
+.nt-j b{font-weight:500}
+.nt-l{font-size:12px;letter-spacing:.3em;text-transform:uppercase}
+.nt-s{font-size:12.5px;opacity:.9;margin-top:6px}
+.natale .prod-tag,.noel #grid .prod-tag{background:#B3262E;color:#FFF6E8}
+.nt-band{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:clamp(16px,3vw,40px);margin-top:clamp(40px,5vw,64px);padding:clamp(18px,2.6vw,30px) clamp(18px,3vw,40px);background:#0E3B2C;color:#F6EFDF;position:relative;overflow:hidden}
+.nt-band::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:repeating-linear-gradient(90deg,#C8202F 0 18px,#F6EFDF 18px 36px,#1F7A46 36px 54px)}
+.nt-ill{width:clamp(80px,9vw,120px)}.nt-ill svg{width:100%;height:auto;display:block}.nt-ill svg>ellipse:first-child{display:none}
+.nt-band b{display:block;font-family:var(--display);font-weight:500;font-size:clamp(24px,2.8vw,36px);line-height:1.05}
+.nt-band div span{display:block;margin-top:6px;opacity:.88;max-width:52ch;font-size:15px}
+.nt-band .btn{background:#F5D27A;color:#13201A;white-space:nowrap}
+@media(max-width:1180px){.xsw .xl{display:none}.xsw{gap:8px;letter-spacing:.08em}}
+@media(max-width:900px){
+.noel .rail{height:250px}.swag{background-size:54px 24px,54px 18px;background-position:0 0,27px 0}
+.nt-head{align-items:start}.nt-cd{justify-self:start;padding:16px 24px}
+.nt-band{grid-template-columns:auto 1fr}.nt-band .btn{grid-column:1/-1;justify-content:center;white-space:normal}
+}
 </style>
 
 </head>
 <body>
-<div class="top"><a href="#anti-gaspi"><b>Ce soir, jusqu’à −50 % en anti-gaspi</b> · Click &amp; collect prêt en 2 h · Coupé à la commande</a></div>
+<div class="top" data-x="noel"><a href="#natale"><b>★ Buon Natale</b> · Panettone et coffrets : commandes de fêtes jusqu’au 23 décembre · Retrait en boutique</a></div>
+<div class="top" data-x="std"><a href="#anti-gaspi"><b>Ce soir, jusqu’à −50 % en anti-gaspi</b> · Click &amp; collect prêt en 2 h · Coupé à la commande</a></div>
 <div class="tri"><i></i><i></i><i></i></div>
 <header class="site"><div class="wrap hd">
-  <nav aria-label="Pages"><a href="#boutique" data-nav="boutique">Boutique</a><a href="#emporter" data-nav="emporter">À emporter</a><a href="#anti-gaspi" data-nav="anti-gaspi">Anti-gaspi<span class="nb">−50 %</span></a><a href="#la-casa" data-nav="la-casa">La Casa</a></nav>
+  <nav aria-label="Pages"><a href="#boutique" data-nav="boutique">Boutique</a><a href="#emporter" data-nav="emporter">À emporter</a><a href="#anti-gaspi" data-nav="anti-gaspi">Anti-gaspi<span class="nb">−50 %</span></a><a href="#natale" class="nv-noel" data-x="noel">Noël<span class="nb nb-g">★</span></a><a href="#la-casa" data-nav="la-casa">La Casa</a></nav>
   <a class="ci" href="#" aria-label="Casa Innocenti, accueil"><span class="ci-n">CASA<br>INNOCENTI</span><span class="ci-l"><i></i><i></i></span><span class="ci-t">EPICERIE FINE ITALIENNE</span></a>
-  <div class="right"><span class="open" data-open></span><button class="cartbtn" data-cart>Panier <span data-count>0</span></button></div>
+  <div class="right"><button type="button" class="xsw" id="xsw" role="switch" aria-checked="false" aria-label="Thème Noël"><span class="xsw-t"><span class="xl">Thème </span>Noël</span><span class="xsw-k"><i>★</i></span></button><span class="open" data-open></span><button class="cartbtn" data-cart>Panier <span data-count>0</span></button></div>
 </div></header>
 
 <main>
 <div class="page" data-page="accueil">
 <section class="hero" id="hero">
-  <div class="rail"><div class="bar"></div><div class="hangs" id="hangs"></div></div>
-  <div class="wrap hero-txt">
+  <div class="rail"><div class="bar"></div><div class="swag" data-x="noel" aria-hidden="true"></div><div class="lights" id="lights" data-x="noel" aria-hidden="true"></div><div class="hangs" id="hangs"></div></div>
+  <div class="wrap hero-txt" data-x="std">
     <div class="eyebrow h-in">Casa Innocenti · 30 Grande Rue, Saint-Priest</div>
     <h1><span class="l"><span>L’épicerie italienne</span></span><span class="l"><span><em>de Saint-Priest.</em></span></span></h1>
     <p class="lead h-in">Charcuterie tranchée à la commande, fromages, pâtes fraîches maison et épicerie fine. Commandez en ligne, c’est prêt en boutique en 2 heures.</p>
     <div class="btns h-in"><a class="btn" href="#boutique">Faire mes courses <span>→</span></a><a class="btn ghost" href="#emporter">Commander à emporter</a></div>
+  </div>
+  <div class="wrap hero-txt" data-x="noel">
+    <div class="eyebrow h-in"><span class="st">★</span> Natale 2026 · Casa Innocenti, Saint-Priest <span class="st">★</span></div>
+    <h1><span class="l"><span>Le Noël italien</span></span><span class="l"><span><em>de Saint-Priest.</em></span></span></h1>
+    <p class="lead h-in">Panettone au levain, coffrets à offrir, plateaux de fêtes et prosecco. Réservez en ligne dès maintenant, retirez en boutique jusqu’au 24 décembre.</p>
+    <div class="btns h-in"><a class="btn" href="#natale">La vitrine de Noël <span>→</span></a><a class="btn ghost" href="#boutique">Toute la boutique</a></div>
   </div>
   <div class="wrap"><div class="how h-in">
     <a href="#boutique"><small>Boutique</small><b>Click &amp; collect</b><span>Votre panier prêt en 2 h, Grande Rue</span></a>
@@ -575,7 +634,17 @@ footer.ft{padding-bottom:calc(62px + env(safe-area-inset-bottom,0px))}
   </div></div>
 </section>
 
-<div class="marq" aria-hidden="true"><div class="track"><span>Prosciutto di Parma</span><span>Burrata pugliese</span><span>Parmigiano 30 mesi</span><span>Tagliatelle all’uovo</span><span>Panettone</span><span>Chianti Classico</span><span>Prosciutto di Parma</span><span>Burrata pugliese</span><span>Parmigiano 30 mesi</span><span>Tagliatelle all’uovo</span><span>Panettone</span><span>Chianti Classico</span></div></div>
+<div class="marq" data-x="std" aria-hidden="true"><div class="track"><span>Prosciutto di Parma</span><span>Burrata pugliese</span><span>Parmigiano 30 mesi</span><span>Tagliatelle all’uovo</span><span>Panettone</span><span>Chianti Classico</span><span>Prosciutto di Parma</span><span>Burrata pugliese</span><span>Parmigiano 30 mesi</span><span>Tagliatelle all’uovo</span><span>Panettone</span><span>Chianti Classico</span></div></div>
+<div class="marq" data-x="noel" aria-hidden="true"><div class="track"><span>Buon Natale</span><span>Panettone</span><span>Pandoro</span><span>Torrone</span><span>Prosecco</span><span>Coffrets à offrir</span><span>Buon Natale</span><span>Panettone</span><span>Pandoro</span><span>Torrone</span><span>Prosecco</span><span>Coffrets à offrir</span></div></div>
+
+<section class="natale" id="natale" data-x="noel"><div class="wrap">
+  <div class="nt-head">
+    <div><div class="eyebrow"><span class="st">★</span> La vetrina di Natale</div><h2>La vitrine <span class="it">de Noël.</span></h2><p>Quatre idées pour la table et pour le sapin. Tout se réserve en ligne et se retire en boutique, emballé.</p></div>
+    <div class="nt-cd"><span class="nt-j">J−<b id="nt-days">35</b></span><span class="nt-l">avant Noël</span><span class="nt-s">Dernières commandes le 23 décembre</span></div>
+  </div>
+  <div class="grid" id="grid-noel"></div>
+  <div class="nt-band"><span class="nt-ill" data-slot="panettone"></span><div><b>Le panettone se réserve.</b><span>Fait au levain naturel, 36 heures de pousse : on en reçoit peu, chaque semaine jusqu’à Noël.</span></div><a class="btn" href="#natale" data-add="panettone-xl">Réserver le mien · 29 €</a></div>
+</div></section>
 
 <section class="reparti"><div class="wrap">
   <div class="head"><div><div class="eyebrow">I nostri reparti</div><h2>Six rayons, <span class="it">une seule Italie.</span></h2></div><p style="max-width:34ch;color:var(--mute);margin:0">Passez la souris sur un rayon pour voir ce qui vous attend en vitrine.</p></div>
@@ -615,7 +684,7 @@ footer.ft{padding-bottom:calc(62px + env(safe-area-inset-bottom,0px))}
 <div class="page" data-page="boutique">
 <section class="shop" id="shop"><div class="wrap">
   <div class="sh"><div><div class="eyebrow">La bottega · click &amp; collect en 2 h</div><h1 class="ph">Toute <span class="it">la vitrine.</span></h1></div><div class="chips" id="filters"></div></div>
-  <div class="grid" id="grid" data-n="14"></div>
+  <div class="grid" id="grid" data-n="18"></div>
 </div></section>
 
 <section class="taglio" id="taglio"><div class="wrap">
@@ -743,7 +812,7 @@ footer.ft{padding-bottom:calc(62px + env(safe-area-inset-bottom,0px))}
 <footer class="ft">
   <div class="ft-vichy"></div>
   <div class="wrap ft-top">
-    <div><div class="eyebrow">Ci vediamo presto</div><h2>À très vite, <em>Grande Rue.</em></h2><span class="ft-open" data-open></span></div>
+    <div><div class="eyebrow" data-x="std">Ci vediamo presto</div><h2 data-x="std">À très vite, <em>Grande Rue.</em></h2><div class="eyebrow" data-x="noel">★ Buone feste</div><h2 data-x="noel">Joyeuses fêtes, <em>Grande Rue.</em></h2><span class="ft-open" data-open></span></div>
     <form class="ft-news" id="ft-news"><label for="ft-tel">L’arrivage de burrata, par SMS.</label><p>Un message le mardi et le vendredi matin, quand elle arrive des Pouilles. Rien d’autre.</p>
       <div class="f"><input id="ft-tel" type="tel" inputmode="tel" placeholder="Votre numéro de mobile" autocomplete="tel"><button type="submit">Prévenez-moi →</button></div><div class="ok" hidden>Perfetto, c’est noté (démonstration).</div></form>
   </div>
@@ -762,6 +831,7 @@ footer.ft{padding-bottom:calc(62px + env(safe-area-inset-bottom,0px))}
 </footer>
 <nav class="tabs" aria-label="Navigation"><a href="#accueil" data-nav="accueil"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V10a8 8 0 0 1 16 0v11zM9 21v-6h6v6"/></svg>Accueil</a><a href="#boutique" data-nav="boutique"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h18l-2 11H5zM8 9l3-6M16 9l-3-6"/></svg>Boutique</a><a href="#emporter" data-nav="emporter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l1 13H5zM9 8V6a3 3 0 0 1 6 0v2"/></svg>À emporter</a><a href="#anti-gaspi" data-nav="anti-gaspi" class="ag"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.3"/></svg>−50 %</a><a href="#la-casa" data-nav="la-casa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.5 7-12a7 7 0 0 0-14 0c0 5.500 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>La Casa</a></nav>
 <div id="pt" hidden aria-hidden="true"><div class="pt-col"></div><div class="pt-col"></div><div class="pt-col"></div><div class="pt-txt"><span class="pt-itw"><span class="pt-it"></span></span><span class="pt-rule"><i></i><i></i><i></i></span><span class="pt-fr"></span></div></div>
+<canvas class="snow" id="snow" data-x="noel" aria-hidden="true"></canvas>
 <div class="flagline" id="flagline" aria-hidden="true"><i></i><i></i><i></i></div>
 <div class="co" id="checkout" role="dialog" aria-modal="true" aria-label="Commande">
   <div class="co-scrim" data-co-close></div>
@@ -1315,6 +1385,52 @@ const CI = (() => {
   document.getElementById('hangs').innerHTML = HANG.map(([id, l, r]) => { const p = P.find(x => x.id === id); return `<button type="button" class="hang" data-add="${id}" style="--l:${l}px;--r:${r}deg" aria-label="Ajouter ${p.n} au panier"><span class="sw"><i class="hook"></i><i class="str"></i><span class="hg">${illus(id)}</span></span><span class="ptag"><b>${p.n}</b><span>${p.w} · ${eur(p.p)}</span><i>+ Ajouter</i></span></button>`; }).join('');
   document.querySelectorAll('.hang').forEach((el, i) => swing.push({el, sw:el.querySelector('.sw'), a:0, v:0, k:38 + (i % 3) * 9, d:1.5 + (i % 2) * .5}));
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* ----- thème Noël : un interrupteur, tout le reste du site est identique ----- */
+  const NP = [{id:'panettone-xl', n:'Panettone artigianale', d:'Levain naturel, oranges confites, raisins', w:'1 kg', p:29, c:'Natale', tag:'Édition de Noël'},
+              {id:'coffret-natale', n:'Coffret Natale', d:'Panettone, prosecco, torrone, chocolats', w:'pour 4 à 6', p:69, c:'Natale', tag:'À offrir'},
+              {id:'pandoro', n:'Pandoro di Verona', d:'Brioche étoilée au beurre, sucre glace', w:'750 g', p:24, c:'Natale'},
+              {id:'prosecco', n:'Prosecco delle feste', d:'Valdobbiadene DOCG, brut', w:'75 cl', p:16.5, c:'Natale'}];
+  Object.assign(ILLUS, {'panettone-xl':ILLUS.panettone, pandoro:ILLUS.panettone, 'coffret-natale':ILLUS.board, prosecco:ILLUS.vino});
+  TINT.Natale = '#F3D9D6';
+  const root = document.documentElement, xsw = document.getElementById('xsw'), hangsEl = document.getElementById('hangs');
+  const gn = document.getElementById('grid-noel'); gn.innerHTML = NP.map(card).join('');
+  { const nowP = new Date(new Date().toLocaleString('en-US', {timeZone:'Europe/Paris'})); let x = new Date(nowP.getFullYear(), 11, 25); if (nowP > x) x = new Date(nowP.getFullYear() + 1, 11, 25); document.getElementById('nt-days').textContent = Math.ceil((x - nowP) / 864e5); }
+  const LC = ['#E8B33A', '#C8202F', '#F6EFDF', '#1F7A46'];
+  document.getElementById('lights').innerHTML = Array.from({length:innerWidth > 900 ? 30 : 12}, (_, i) => `<span style="--c:${LC[i % 4]};--d:${(i * .37 % 1.8).toFixed(2)}s"></span>`).join('');
+  const prodHangs = [...hangsEl.querySelectorAll('.hang')];
+  const orns = [['#C8202F', 74], ['#E0B24A', 44], ['#1F7A46', 104], ['#C8202F', 58]].map(o => { const e = document.createElement('span'); e.className = 'hang orn'; e.style.setProperty('--l', o[1] + 'px'); e.innerHTML = `<span class="sw"><i class="hook"></i><i class="str"></i><span class="ball" style="--c:${o[0]}"></span></span>`; return e; });
+  orns.forEach((el, i) => swing.push({el, sw:el.querySelector('.sw'), a:0, v:0, k:44 + i * 6, d:1.2}));
+  /* neige */
+  const cv = document.getElementById('snow'), cx = cv.getContext('2d'); let SW, SH, flk = [], snowOn = false, sLast = 0;
+  const sSize = () => { const r = Math.min(devicePixelRatio || 1, 2); SW = innerWidth; SH = innerHeight; cv.width = SW * r; cv.height = SH * r; cx.setTransform(r, 0, 0, r, 0, 0); };
+  addEventListener('resize', () => { if (snowOn) sSize(); });
+  const sTick = t => { if (!snowOn || document.hidden) return; const dt = Math.min(t - sLast, 50) / 1000; sLast = t; cx.clearRect(0, 0, SW, SH);
+    for (const f of flk) { f.y += f.v * dt; f.a += f.w * dt; f.x += Math.sin(f.a) * 14 * dt; if (f.y > SH + 6) { f.y = -6; f.x = Math.random() * SW; }
+      cx.beginPath(); cx.arc(f.x, f.y, f.r, 0, 6.283); cx.fillStyle = 'rgba(255,255,255,.95)'; cx.fill(); cx.lineWidth = .8; cx.strokeStyle = 'rgba(14,59,44,.22)'; cx.stroke(); }
+    requestAnimationFrame(sTick); };
+  const snow = on => { snowOn = on && !reduce; if (!snowOn) return; sSize(); if (!flk.length) flk = Array.from({length:innerWidth > 900 ? 70 : 34}, () => ({x:Math.random() * SW, y:Math.random() * SH, r:1.2 + Math.random() * 2.8, v:18 + Math.random() * 38, a:Math.random() * 6.28, w:.4 + Math.random() * .9})); sLast = performance.now(); requestAnimationFrame(sTick); };
+  document.addEventListener('visibilitychange', () => { if (snowOn && !document.hidden) { sLast = performance.now(); requestAnimationFrame(sTick); } });
+  function noel(on, play) {
+    root.classList.toggle('noel', on); xsw.setAttribute('aria-checked', on);
+    const live = P.some(x => x.gg); /* catalogue réel Growth Gusto chargé : on ne touche pas aux produits */
+    NP.forEach(n => { const i = P.indexOf(n); if (i > -1) P.splice(i, 1); });
+    if (on && !live) P.unshift(...NP); else { NP.forEach(n => delete cart[n.id]); renderCart(); }
+    orns.forEach((el, i) => { if (on) prodHangs[i].after(el); else el.remove(); });
+    const gh = document.getElementById('grid-home'); if (gh && !live) gh.innerHTML = P.filter(x => x.c !== 'Natale').slice(0, 4).map(card).join('');
+    if (!live) renderGrid('#grid', 18);
+    const f = document.getElementById('filters'); if (f && !live) f.innerHTML = ['Tout', ...new Set(P.map(x => x.c))].map((c, i) => `<button class="chip${i ? '' : ' on'}" data-f="${c}">${c}</button>`).join('');
+    snow(on);
+    try { localStorage.setItem('ci-noel', on ? '1' : '0'); } catch (e) {}
+    if (play && window.gsap && !reduce) {
+      if (window.ScrollTrigger) ScrollTrigger.refresh();
+      swing.forEach(o => o.v += gsap.utils.random(-220, 220));
+      if (on) { gsap.from('.lights span', {scaleY:0, opacity:0, transformOrigin:'50% 0', duration:.45, stagger:.025, ease:'back.out(2)'}); gsap.from(orns, {y:-320, duration:.8, stagger:.07, ease:'bounce.out', clearProps:'transform'}); gsap.from('.swag', {scaleY:0, transformOrigin:'50% 0', duration:.6, ease:'back.out(1.6)'}); }
+      gsap.from('.hero-txt>*', {y:18, opacity:0, duration:.6, stagger:.06, ease:'power3.out', clearProps:'opacity,transform'});
+    }
+  }
+  let saved = false; try { saved = localStorage.getItem('ci-noel') === '1'; } catch (e) {}
+  noel(saved, false);
+  xsw.addEventListener('click', () => noel(!root.classList.contains('noel'), true));
   const cill = document.getElementById('cill');
   document.querySelectorAll('.rlist a').forEach(a => {
     a.querySelector('.mini').innerHTML = illus(a.dataset.ill);
@@ -1354,10 +1470,11 @@ const CI = (() => {
   setInterval(() => { const o = swing[Math.floor(Math.random() * swing.length)]; if (o && Math.abs(o.v) < 4) o.v += gsap.utils.random(-22, 22); }, 1400);
 
   document.querySelectorAll('[data-num]').forEach(el => { const v = +el.dataset.num, o = {n:0}; gsap.to(o, {n:v, duration:1.8, delay:seen ? .6 : 1.8, ease:'power2.out', onUpdate:() => el.textContent = (v % 1 ? o.n.toFixed(1).replace('.', ',') : Math.round(o.n))}); });
-  const track = document.querySelector('.marq .track');
+  gsap.to('.st', {rotate:360, duration:9, repeat:-1, ease:'none'});
+  const track = document.querySelectorAll('.marq .track');
   const loop = gsap.to(track, {xPercent:-50, duration:40, ease:'none', repeat:-1});
   ScrollTrigger.create({onUpdate:s => { const v = s.getVelocity(); gsap.to(loop, {timeScale:1 + Math.min(Math.abs(v) / 250, 6) * (v < 0 ? -1 : 1), duration:.25, overwrite:true, onComplete:() => gsap.to(loop, {timeScale:1, duration:1.2})}); }});
-  gsap.utils.toArray('.reparti h2,.sh h2,.orig h2,.casa h2').forEach(h => gsap.from(h, {y:60, opacity:0, duration:1.1, ease:'power4.out', scrollTrigger:{trigger:h, start:'top 90%'}}));
+  gsap.utils.toArray('.reparti h2,.sh h2,.orig h2,.casa h2,.natale h2').forEach(h => gsap.from(h, {y:60, opacity:0, duration:1.1, ease:'power4.out', scrollTrigger:{trigger:h, start:'top 90%'}}));
   gsap.from('.rlist li', {y:40, opacity:0, duration:.9, stagger:.07, ease:'power3.out', scrollTrigger:{trigger:'.rlist', start:'top 88%'}});
   const sl = document.getElementById('slices');
   for (let i = 0; i < 9; i++) sl.insertAdjacentHTML('beforeend', `<path class="sli" d="M450 ${350 - i * 3.4}c20-10 70-10 110 0-20 8-80 10-110 0z" fill="${i % 2 ? '#C94F52' : '#D35E5F'}" stroke="#F3D2C6" stroke-width="2"/>`);
@@ -1565,8 +1682,156 @@ const CI = (() => {
   const fromHash = () => { const n = location.hash.slice(1); return PAGES.includes(n) ? n : 'accueil'; };
   addEventListener('hashchange', () => { const n = fromHash(); if (n !== cur) go(n); });
   addEventListener('popstate', () => { const n = fromHash(); if (n !== cur) go(n); });
-  renderGrid('#grid-home', 4);
+  if (!q('#grid-home').children.length) renderGrid('#grid-home', 4);
   show(fromHash());
+})();
+</script>
+<script>/* Casa Innocenti × Growth Gusto : la boutique du site lit le vrai catalogue et le vrai stock, et les commandes arrivent dans Growth Gusto.
+   Le design du site ne change pas. Sans identifiant d'établissement, le site reste en démonstration (rien ne part nulle part).
+   Identifiant : GG_RID ci-dessous, ou ?gg=<identifiant> dans l'adresse (gardé sur cet appareil ; ?gg=off revient à la démo).
+   Le catalogue du site EST celui de Growth Gusto (Boutique) : chaque produit mis en ligne là-bas apparaît ici avec sa photo, son prix,
+   son rayon et son stock ; les produits d'exemple du site sont remplacés. Les lots anti-gaspi de Growth Gusto arrivent en rayon « Anti-gaspi ».
+   Commande : retrait en boutique, paiement sur place, l'équipe valide l'heure ; le client suit sa commande ici et sur la page Growth Gusto. */
+(() => {
+  const GG_RID = 'rmwp3qeur'; /* Casa Innocenti dans Growth Gusto */
+  const LS = 'ci-gg-rid';
+  const q = new URLSearchParams(location.search).get('gg');
+  try { if (q === 'off') localStorage.removeItem(LS); else if (q) localStorage.setItem(LS, q); } catch (e) {}
+  let rid = GG_RID; try { rid = (q && q !== 'off' ? q : localStorage.getItem(LS)) || GG_RID; } catch (e) {}
+  if (!rid || !/^[A-Za-z0-9_-]{4,80}$/.test(rid)) return;
+  const SRC = 'https://app.growthgusto.fr/w/gg-boutique.js';
+  const G = { menu: null, by: {}, order: null, pollT: 0, slot: '' };
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => '&#' + c.charCodeAt(0) + ';');
+  const hmFr = (s) => String(s || '').replace(':', 'h');
+
+  /* site id → Growth Gusto item */
+  const gItem = (k) => G.by[k] || null;
+  const left = (k) => { const it = gItem(k); return it ? (it.left == null ? 99 : it.left) : 0; };
+
+  function css() {
+    const s = document.createElement('style');
+    s.textContent = `.gg-stk{display:inline-block;margin-left:6px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--rosso,#B3262E)}
+.prod.gg-out{opacity:.55}.prod.gg-out .add,.prod.gg-out .quick{pointer-events:none;opacity:.4}
+.gg-live{display:flex;gap:8px;align-items:center;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}.gg-live i{width:7px;height:7px;border-radius:50%;background:var(--verde,#2E9E5B);box-shadow:0 0 0 4px color-mix(in srgb,var(--verde,#2E9E5B) 20%,transparent)}
+.gg-slots{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 4px}.gg-slots button{padding:10px 14px;border:1px solid var(--line);font-variant-numeric:tabular-nums}.gg-slots button.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.gg-ph{width:100%;height:100%;object-fit:cover;display:block}.gg-ini{display:grid!important;place-items:center;width:100%;height:100%;font:600 42px/1 Georgia,serif;font-style:italic;color:var(--fg);opacity:.55}
+.gg-none{color:var(--mute)}.gg-err{color:var(--rosso,#B3262E);font-size:14px;min-height:1.2em}
+.gg-st{display:grid;gap:10px;justify-items:start}.gg-st .stamp{transform:rotate(-6deg)}.gg-st .gg-wait{display:flex;gap:10px;align-items:center;color:var(--mute)}
+.gg-dots{display:inline-flex;gap:4px}.gg-dots i{width:6px;height:6px;border-radius:50%;background:currentColor;animation:ggd 1.2s infinite}.gg-dots i:nth-child(2){animation-delay:.15s}.gg-dots i:nth-child(3){animation-delay:.3s}
+@keyframes ggd{0%,80%,100%{opacity:.25}40%{opacity:1}}@media(prefers-reduced-motion:reduce){.gg-dots i{animation:none}}`;
+    document.head.appendChild(s);
+  }
+
+  /* the catalogue: Growth Gusto's products replace the example ones (photo, price, shelf, stock) */
+  const ini = (t) => String(t || '').split(/[\s'’-]+/).filter((w) => w.length > 2 && !/^\d/.test(w)).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
+  Object.assign(TINT, { 'Épicerie': '#EFE6DA', Charcuterie: '#F6E3DF', Fromages: '#F7EFD9', Huiles: '#E5EDDC', 'Apéritif et vins': '#F1E0E2', Boissons: '#E3ECEF',
+    'Plats du midi': '#F7E8D0', Riz: '#F4EEDC', Arancini: '#F8EBC8', Desserts: '#F4E6D6', Formules: '#EFE6DA', 'Anti-gaspi': '#F6DCDC', Autres: '#EEE9E0' });
+  function apply() {
+    const M = G.menu; G.by = {}; const cat = {}; (M.cats || []).forEach((c) => { cat[c.id] = c.t; });
+    const L = M.items.filter((it) => it.p > 0);
+    L.forEach((it) => { G.by[it.id] = it; });
+    P.length = 0;
+    L.forEach((it) => P.push({ id: it.id, n: it.t, d: it.gaspi ? `Au lieu de ${eur(it.old || it.p)}${it.dlc ? ' · date courte' : ''}` : (it.b || ''), w: it.w || '', p: it.p,
+      c: it.gaspi ? 'Anti-gaspi' : (cat[it.c] || 'Épicerie'), tag: it.gaspi ? `−${it.pct || ''} %` : '', gg: it }));
+    (window.PA || []).forEach((x) => { if (!/^ag-/.test(x.id)) return; const c = $(`.agc[data-id="${x.id}"]`); x.stock = 0; if (c) c.hidden = true; });
+    $$('[data-box-left]').forEach((el) => { el.textContent = 0; });
+    const f = $('#filters'); if (f) { const n = Math.max(+($('#grid')?.dataset.n || 0), P.length); const f2 = f.cloneNode(false); f.replaceWith(f2); filters('#filters', '#grid', n); renderGrid('#grid', n); }
+    if ($('#grid-home')) renderGrid('#grid-home', 4);
+    Object.keys(cart).forEach((k) => { if (!G.by[k] && !(window.PA || []).some((x) => x.id === k)) cart[k] = 0; });
+    renderCart();
+  }
+  /* the product's photo from Growth Gusto (or its initials) where the site drew an illustration */
+  const illus0 = illus;
+  illus = function (id) { // eslint-disable-line no-global-assign
+    const it = G.by[id]; if (!it) return illus0.apply(this, arguments);
+    return it.ph ? `<img class="ill gg-ph" src="${esc(it.ph)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : `<span class="ill gg-ini">${esc(ini(it.t))}</span>`;
+  };
+  /* stock on the cards: « Plus que 2 », « Épuisé » */
+  const card0 = card;
+  card = function (p, i) { // eslint-disable-line no-global-assign
+    let h = card0(p, i).replace(/<p class="prod-desc"> · /, '<p class="prod-desc">').replace(/ · <\/p>/, '</p>'); const it = p.gg; if (!it) return h;
+    if (it.out || it.left === 0) h = h.replace('class="prod rv"', 'class="prod rv gg-out"').replace('<span class="prod-price">', '<span class="prod-price"><span class="gg-stk">Épuisé</span> ');
+    else if (it.few && it.left != null) h = h.replace(`${p.d} · ${p.w}</p>`, `${p.d} · ${p.w}<span class="gg-stk">${it.left === 1 ? 'Dernier' : 'Plus que ' + it.left}</span></p>`);
+    return h;
+  };
+  /* never more than what is left */
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('[data-add]'); if (!a || !G.menu) return;
+    const k = a.dataset.add; if (/^ag-/.test(k) && !a.closest('.drawer')) return; /* pages.js counts the anti-gaspi stock itself */
+    if (!gItem(k)) { if ((window.PA || []).some((x) => x.id === k && !/^ag-/.test(x.id))) return;
+      /* an example product of the site (decor) that is not sold online: show the shop instead of adding it */
+      e.stopImmediatePropagation(); e.preventDefault(); const sh = $('#grid'); if (sh) sh.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
+    if ((cart[k] || 0) >= left(k)) { e.stopImmediatePropagation(); e.preventDefault(); const t = $('#toast'); if (t) { t.textContent = left(k) ? `Plus que ${left(k)} en stock` : 'Épuisé pour aujourd’hui'; t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 1800); } }
+  }, true);
+
+  /* ───────── checkout: today's pickup times, pay in the shop, the shop confirms ───────── */
+  function checkout() {
+    const co = $('#checkout'); if (!co) return;
+    const bar = $$('.co-bar li', co); if (bar[3]) bar[3].textContent = 'Envoi';
+    const steps = $$('.co-step', co);
+    const mode = $$('.co-mode', co); if (mode[1]) mode[1].hidden = true;
+    if (mode[0]) mode[0].querySelector('span').textContent = '30 Grande Rue · gratuit · paiement sur place';
+    /* step 1: the times Growth Gusto accepts today */
+    const pk = $('.co-picker', co); const nav1 = steps[1] && $('[data-next]', steps[1]);
+    const paintSlots = () => { const L = GGBoutique.slots(G.menu); if (!L.includes(G.slot)) G.slot = L[0] || '';
+      pk.innerHTML = L.length ? `<p class="gg-live"><i></i>Aujourd’hui, l’équipe confirme l’heure</p><div class="gg-slots" role="radiogroup" aria-label="Heure de retrait">${L.map((s) => `<button type="button" role="radio" aria-checked="${s === G.slot}" class="${s === G.slot ? 'on' : ''}" data-ggs="${s}">${hmFr(s)}</button>`).join('')}</div>`
+        : '<p class="gg-none">Plus de retrait possible aujourd’hui. Revenez demain, ou appelez le 09 63 67 76 39.</p>';
+      if (nav1) nav1.disabled = !G.slot; whenTxt(); };
+    const whenTxt = () => { const w = $('.co-when', co); if (w) w.textContent = G.slot ? `Retrait aujourd’hui à ${hmFr(G.slot)}, à confirmer par la boutique` : ''; };
+    pk.addEventListener('click', (e) => { const b = e.target.closest('[data-ggs]'); if (!b) return; e.stopPropagation(); G.slot = b.dataset.ggs; paintSlots(); }, true);
+    $('.drawer .pay')?.addEventListener('click', () => setTimeout(() => { paintSlots(); const p = $('#co-pay'); }, 0));
+    /* step 3: send, no card */
+    if (steps[3]) {
+      steps[3].innerHTML = `<h3>Paiement en boutique</h3><p>Vous réglez au retrait, par carte ou en espèces. La boutique vérifie que tout est là et vous confirme l’heure, ici${''} et par e-mail.</p>
+        <p class="gg-err" id="gg-err" role="alert"></p>
+        <div class="co-nav"><button type="button" class="btn ghost" data-back>← Retour</button><button type="button" class="btn" id="gg-send">Envoyer la commande</button></div>`;
+      $('#gg-send', steps[3]).addEventListener('click', send);
+    }
+    const ok = steps[4];
+    async function send() {
+      const b = $('#gg-send'), er = $('#gg-err'); const fn = ($('#co-fn')?.value || '').trim(), ln = ($('#co-ln')?.value || '').trim(), tel = ($('#co-tel')?.value || '').trim(), mail = ($('#co-mail')?.value || '').trim();
+      const items = Object.keys(cart).filter((k) => cart[k] > 0).map((k) => ({ k, it: gItem(k), q: cart[k] }));
+      if (items.some((x) => !x.it)) { er.textContent = 'Un produit du panier n’est pas encore en vente en ligne. Retirez-le, ou appelez la boutique.'; return; }
+      if (fn.length < 2 || tel.replace(/\D/g, '').length < 8) { er.textContent = 'Indiquez votre prénom et votre téléphone (étape Coordonnées).'; return; }
+      if (!G.slot) { er.textContent = 'Choisissez une heure de retrait.'; return; }
+      b.disabled = true; b.textContent = 'Envoi…'; er.textContent = '';
+      try {
+        const r = await GGBoutique.order(rid, { items: items.map((x) => ({ id: x.it.id, q: x.q })), name: (fn + ' ' + ln.slice(0, 1)).trim() + (ln ? '.' : ''), phone: tel, email: mail, slot: G.slot });
+        G.order = { oid: r.oid, k: r.k, track: r.track, st: (r.order && r.order.status) || 'demande', n: r.order && r.order.n };
+        try { localStorage.setItem('ci-gg-order', JSON.stringify({ ...G.order, at: Date.now() })); } catch (e) {}
+        Object.keys(cart).forEach((k) => cart[k] = 0); renderCart();
+        steps.forEach((s, i) => s.hidden = i !== 4); $$('.co-bar li', co).forEach((l) => l.classList.add('on'));
+        paintOk(r.order || {}); poll();
+      } catch (e) { b.disabled = false; b.textContent = 'Envoyer la commande'; er.textContent = GGBoutique.say(e); if (/plat|prix/.test(e.message)) load(); }
+    }
+    function paintOk(o) {
+      if (!ok) return; const st = o.status || G.order.st;
+      const H = { demande: ['Grazie !', 'Demande envoyée', 'Casa Innocenti vérifie que tout est là et vous confirme l’heure. Gardez cette page ouverte : elle change toute seule.'],
+        nouvelle: ['Va bene !', `C’est accepté${o.okSlot ? ` : prête à ${hmFr(o.okSlot)}` : ''}`, o.okMsg ? `« ${o.okMsg} »` : 'On prépare votre commande. À tout à l’heure, 30 Grande Rue.'],
+        prep: ['In corso', `En préparation${o.okSlot ? ` · prête à ${hmFr(o.okSlot)}` : ''}`, 'On s’en occupe.'],
+        prete: ['Pronto !', 'Votre commande est prête', 'Elle vous attend en boutique, 30 Grande Rue.'], servie: ['Grazie !', 'Bonne dégustation', 'Merci pour votre commande.'],
+        annulee: ['Mi dispiace', 'Pas possible cette fois', o.why ? `« ${o.why} »` : 'La boutique ne peut pas préparer cette commande. Appelez le 09 63 67 76 39.'] }[st] || ['Grazie !', 'Commande envoyée', ''];
+      ok.innerHTML = `<div class="gg-st"><div class="stamp">${H[0]}</div><h3>${esc(H[1])}${G.order.n ? ` <span class="ref">n° ${esc(G.order.n)}</span>` : ''}</h3><p>${esc(H[2])}</p>
+        ${st === 'demande' ? '<p class="gg-wait"><span class="gg-dots"><i></i><i></i><i></i></span>En attente de la boutique</p>' : ''}
+        <a class="btn ghost" href="${esc(G.order.track)}" target="_blank" rel="noopener">Suivre ma commande →</a><button type="button" class="btn" data-co-close>Continuer mes courses</button></div>`;
+    }
+    function chime() { try { const A = new (window.AudioContext || window.webkitAudioContext)(); [660, 880].forEach((f, i) => { const o = A.createOscillator(), g = A.createGain(); o.frequency.value = f; g.gain.setValueAtTime(.0001, A.currentTime + i * .18); g.gain.exponentialRampToValueAtTime(.12, A.currentTime + i * .18 + .02); g.gain.exponentialRampToValueAtTime(.0001, A.currentTime + i * .18 + .5); o.connect(g).connect(A.destination); o.start(A.currentTime + i * .18); o.stop(A.currentTime + i * .18 + .55); }); } catch (e) {} }
+    async function poll() {
+      clearTimeout(G.pollT); if (!G.order) return;
+      try { const o = await GGBoutique.status(rid, G.order.oid, G.order.k); if (o && o.status !== G.order.st) { G.order.st = o.status; chime(); paintOk(o); if (window.gsap) gsap.from('.gg-st .stamp', { scale: 2.4, rotate: -30, opacity: 0, duration: .55, ease: 'back.out(2)' }); }
+        if (o && ['servie', 'annulee', 'abandonnee'].includes(o.status)) return; } catch (e) {}
+      G.pollT = setTimeout(poll, document.hidden ? 20000 : 6000);
+    }
+  }
+
+  async function load() {
+    try { G.menu = await GGBoutique.load(rid); } catch (e) { console.warn('Growth Gusto : boutique indisponible', e); return; }
+    if (!G.menu.open) { const p = $('.drawer .pay'); if (p) { p.disabled = true; p.textContent = 'Commande en ligne fermée pour le moment'; } }
+    apply();
+  }
+  function start() { css(); checkout(); load(); setInterval(() => { if (!document.hidden && !$('.co-open')) load(); }, 60000); }
+  const s = document.createElement('script'); s.src = SRC; s.onload = () => (document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', start) : start()); document.head.appendChild(s);
 })();
 </script>
 

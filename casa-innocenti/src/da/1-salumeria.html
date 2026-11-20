@@ -820,12 +820,13 @@ footer.ft{padding-bottom:calc(62px + env(safe-area-inset-bottom,0px))}
   document.addEventListener('visibilitychange', () => { if (snowOn && !document.hidden) { sLast = performance.now(); requestAnimationFrame(sTick); } });
   function noel(on, play) {
     root.classList.toggle('noel', on); xsw.setAttribute('aria-checked', on);
+    const live = P.some(x => x.gg); /* catalogue réel Growth Gusto chargé : on ne touche pas aux produits */
     NP.forEach(n => { const i = P.indexOf(n); if (i > -1) P.splice(i, 1); });
-    if (on) P.unshift(...NP); else { NP.forEach(n => delete cart[n.id]); renderCart(); }
+    if (on && !live) P.unshift(...NP); else { NP.forEach(n => delete cart[n.id]); renderCart(); }
     orns.forEach((el, i) => { if (on) prodHangs[i].after(el); else el.remove(); });
-    const gh = document.getElementById('grid-home'); if (gh) gh.innerHTML = P.filter(x => x.c !== 'Natale').slice(0, 4).map(card).join('');
-    renderGrid('#grid', 18);
-    const f = document.getElementById('filters'); if (f) f.innerHTML = ['Tout', ...new Set(P.map(x => x.c))].map((c, i) => `<button class="chip${i ? '' : ' on'}" data-f="${c}">${c}</button>`).join('');
+    const gh = document.getElementById('grid-home'); if (gh && !live) gh.innerHTML = P.filter(x => x.c !== 'Natale').slice(0, 4).map(card).join('');
+    if (!live) renderGrid('#grid', 18);
+    const f = document.getElementById('filters'); if (f && !live) f.innerHTML = ['Tout', ...new Set(P.map(x => x.c))].map((c, i) => `<button class="chip${i ? '' : ' on'}" data-f="${c}">${c}</button>`).join('');
     snow(on);
     try { localStorage.setItem('ci-noel', on ? '1' : '0'); } catch (e) {}
     if (play && window.gsap && !reduce) {
@@ -914,3 +915,4 @@ footer.ft{padding-bottom:calc(62px + env(safe-area-inset-bottom,0px))}
 })();
 </script>
 <script>{{INCLUDE:pages.js}}</script>
+<script>{{INCLUDE:gg.js}}</script>
